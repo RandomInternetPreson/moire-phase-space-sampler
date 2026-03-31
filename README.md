@@ -146,7 +146,7 @@ Whether the wave is real, whether the particle has a definite path — those are
 
 ## Further Reading
 
-This repository emerged from a longer investigation. The moiré-Wigner connection was the entry point into a broader framework connecting spacetime geometry to fundamental physical constants — the fine structure constant, particle generations, the proton-to-electron mass ratio, and others.
+This repository emerged from a longer investigation. The moiré-Wigner connection was the entry point into a broader framework connecting spacetime geometry to fundamental physical constants — the fine structure constant, why matter is spin-1/2, why there are exactly three generations, why gravity is so extraordinarily weak, the proton-to-electron mass ratio, and others.
 
 Documents exploring that framework are in [`/docs`](./docs). They include a unified paper and three supplementary documents addressing specific objections. They stand or fall on their own merits.
 
