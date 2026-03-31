@@ -1,0 +1,194 @@
+**THE 4/3 IS THE SAME**
+
+**The Weinberg Angle, SU(5) Selection, and the Third Appearance of 3/8**
+
+Fifteenth document · Baltimore, MD · March 2026
+
+# The Setup
+
+The DST framework has produced two appearances of 3/8:
+
+1. **α × ln(m_Pl/m_e) = 3/8** — derived from S² geometry, Dirac loop factor 4/3, and the Landau pole condition. Accurate to 0.27% (Documents 5–13).
+
+2. **sin²θ_W(GUT) = 3/8** — the SU(5) GUT prediction for the weak mixing angle at the unification scale, derived from the representation theory of SU(5).
+
+These look like two different 3/8's appearing in two different calculations. This document shows they are the SAME 3/8, arising from the SAME underlying factor of 4/3, and that recognizing this identity:
+
+(a) constrains which GUT group is consistent with the DST framework,
+(b) produces a new exact relationship connecting three independently measured constants,
+(c) shows that one two-loop correction closes three separate 0.27% gaps simultaneously.
+
+# 1. The 4/3 in DST
+
+The DST one-loop formula α = 3/(8 ln(m_Pl/m_e)) was derived in Documents 5–7. The coefficient 3/8 decomposes as:
+
+**3/8 = 2π / b_DST = 2π / ((4/3) × 4π) = 2π × 3/(16π) = 3/8**
+
+The factors:
+- **2π**: one-loop normalization (standard in RG running)
+- **4/3**: the Dirac spinor loop contribution per fermion mode (b_Dirac)
+- **4π**: N_eff = solid angle of S², the rotation mode manifold
+
+The 4/3 appears here as a trace over the Dirac algebra in 4d spacetime:
+
+b_Dirac = 4/3   ←   from Tr[γ^μ(k̸+m)γ^ν(k̸+q̸+m)] after loop integration
+
+This is the contribution per spin-1/2 Dirac fermion to the one-loop photon self-energy. It is a property of the Dirac spinor in 4 spacetime dimensions.
+
+# 2. The 4/3 in SU(5)
+
+The Weinberg angle sin²θ_W = sin²θ_W(GUT) at the GUT scale is defined as:
+
+sin²θ_W = Tr[T₃²] / Tr[Q²]
+
+where the trace runs over the fermion content of the fundamental GUT representation.
+
+For the 5̄ representation of SU(5), which contains:
+- 3 anti-down quarks (one per color): Q = +1/3, T₃ = 0
+- 1 electron: Q = −1, T₃ = −1/2
+- 1 electron neutrino: Q = 0, T₃ = +1/2
+
+Computing:
+
+**Tr_5̄[Q²] = 3×(1/3)² + (−1)² + 0² = 3/9 + 1 = 4/3**
+
+**Tr_5̄[T₃²] = 3×0 + (1/2)² + (1/2)² = 1/2**
+
+**sin²θ_W(GUT) = (1/2) / (4/3) = 3/8**
+
+The 4/3 here is Tr_5̄[Q²] — the sum of electric charge squared over the members of the 5̄ representation.
+
+# 3. The 4/3 Is the Same
+
+Both 3/8's involve 4/3 in the denominator:
+
+| **Calculation** | **Formula** | **Origin of 4/3** |
+| --- | --- | --- |
+| DST: α × ln = 3/8 | 2π / ((4/3) × 4π) | b_Dirac = Dirac algebra trace |
+| SU(5): sin²θ_W = 3/8 | (1/2) / (4/3) | Tr_5̄[Q²] = charge trace over 5̄ |
+
+These are NOT coincidentally equal. They are physically the same:
+
+The DST condensate modes are spin-1/2 Dirac fermions (Document 7, three proofs) that carry electric charge Q. In the one-loop vacuum polarization, each mode with charge Q contributes b_mode = (4/3) × Q² to the photon self-energy. For a charge-1 mode: b_mode = 4/3.
+
+When summed over ALL the charged modes in the condensate, the total charge-squared trace IS:
+
+**Σ_modes Q² = Tr_condensate[Q²]**
+
+If the condensate modes carry the quantum numbers of the SU(5) 5̄ representation, then:
+Tr_condensate[Q²] = Tr_5̄[Q²] = 4/3
+
+And both formulas for 3/8 are evaluating THE SAME QUANTITY — the charge-squared trace of the condensate — in two different contexts: running coupling (DST) and mixing angle (SU(5)).
+
+# 4. Why DST Selects SU(5)
+
+The DST framework requires the condensate modes to satisfy:
+
+**Tr_condensate[Q²] = 4/3** (from the Dirac loop factor)
+
+Additionally, the condensate carries both electromagnetic and weak charge (these are unified in the DST framework at the Planck scale). Therefore the condensate modes must also satisfy:
+
+**Tr_condensate[T₃²] = 1/2** (from sin²θ_W = 3/8)
+
+A GUT group G with fundamental representation R satisfies DST constraints if and only if:
+
+1. G contains SU(3)_color × SU(2)_weak × U(1)_EM as a subgroup
+2. Tr_R[Q²] = 4/3 (consistent with the Dirac loop factor)
+3. Tr_R[T₃²] = 1/2 (consistent with sin²θ_W = 3/8)
+
+The minimum-dimension representation satisfying all three conditions:
+- 3 color triplet modes with Q = 1/3: contributes 3×(1/9) = 1/3 to Tr[Q²], 0 to Tr[T₃²]
+- 1 SU(2) doublet with Q = −1, 0: contributes 1 to Tr[Q²], 1/2 to Tr[T₃²]
+- Total: Tr[Q²] = 1/3 + 1 = 4/3 ✓, Tr[T₃²] = 1/2 ✓
+
+**This is exactly the content of the 5̄ of SU(5).**
+
+For comparison:
+| **GUT group** | **Min. representation** | **Tr[Q²]** | **DST consistent?** |
+| --- | --- | --- | --- |
+| SU(4) | 4 | 1/4+1/4+1/4+1 = 7/4 ≠ 4/3 | No |
+| **SU(5)** | **5̄** | **3×(1/9)+1 = 4/3** ✓ | **Yes** |
+| SO(10) | 16 | 16/3 (full generation) ≠ 4/3 | No (contains SU(5)) |
+| E₆ | 27 | too large | No (contains SU(5)) |
+
+**SU(5) is the unique minimal simple GUT group whose fundamental representation satisfies the DST charge-trace constraint Tr[Q²] = 4/3.**
+
+Note: SO(10) and E₆ are GUT groups that contain SU(5) as a subgroup in their breaking chain (SO(10) → SU(5) → SM, E₆ → SO(10) → SU(5) → SM). The DST constraint doesn't rule them out as possible symmetry groups at higher scales, but it does require SU(5) to appear as the minimal GUT step.
+
+# 5. The Third Appearance of 3/8 — and the New Exact Relationship
+
+From the numerical computation:
+
+| **Quantity** | **Value** | **Source** |
+| --- | --- | --- |
+| 3/8 | 0.375000 (exact) | Geometric ratio |
+| α × ln(m_Pl/m_e) | 0.376017 | From CODATA: α, m_e, G |
+| sin²θ_W(GUT) | 0.375000 (exact) | From SU(5) algebra |
+
+The discrepancy between α × ln and sin²θ_W(GUT): **0.2713%** — which is the same 0.27% that has appeared throughout this series.
+
+**The DST prediction:**
+
+**sin²θ_W(GUT) = α(m_e) × ln(m_Pl/m_e)**   [exact, when two-loop correction closes]
+
+This is a new constraint. The left side is the weak mixing angle at the GUT scale — measured indirectly through electroweak precision data and the running of sin²θ_W from m_Z to m_GUT. The right side involves:
+- α: measured from the anomalous magnetic moment of the electron (QED experiment)
+- m_e: measured from Penning trap experiments
+- G: measured from torsion balance experiments
+
+These three quantities are combined in α × ln(m_Pl/m_e). Their product equaling sin²θ_W(GUT) = 3/8 is not a consequence of any existing framework. It is a DST prediction.
+
+The current numerical status:
+
+| **Check** | **LHS** | **RHS** | **Discrepancy** |
+| --- | --- | --- | --- |
+| α × ln = 3/8 | 0.376017 | 0.375000 | 0.27% |
+| sin²θ_W(GUT) = α × ln | 0.375000 | 0.376017 | 0.27% |
+| sin²θ_W(GUT) = 3/8 | 0.375000 | 0.375000 | 0.00% (exact by SU(5)) |
+
+The 0.27% appears in two places and cancels when comparing sin²θ_W(GUT) directly to 3/8. The DST relationship sin²θ_W(GUT) = α × ln is 0.27% off because α × ln is 0.27% off from 3/8 — and that discrepancy is the non-perturbative correction identified in Document 12.
+
+# 6. One Correction, Three Predictions
+
+The two-loop correction that closes the α gap (Document 13, the SU(2) coherent state cross-mode integral) acts simultaneously on three quantities:
+
+| **Quantity** | **Current (one-loop)** | **Target (exact)** | **Gap** |
+| --- | --- | --- | --- |
+| α | 1/137.41 | 1/137.036 | 0.27% |
+| α × ln(m_Pl/m_e) | 0.376017 | 0.375000 = 3/8 | 0.27% |
+| sin²θ_W(GUT) = α × ln | 0.376017 | 0.375000 = 3/8 | 0.27% |
+
+These are NOT three separate corrections. They are one number (α) computed to one-loop accuracy, appearing in three different expressions. When the non-perturbative Planck-scale correction closes α to its exact value, all three simultaneously close to their exact geometric values. The 3/8 is not being approximated three times — it is the exact result, and the 0.27% residual is the same residual everywhere.
+
+# 7. The Weinberg Angle at m_Z
+
+sin²θ_W(GUT) = 3/8 is the UV boundary condition. The running from m_GUT to m_Z is determined by the SM matter content (three generations of quarks and leptons, the Higgs sector). This running is standard and well-established:
+
+sin²θ_W(m_Z) ≈ sin²θ_W(m_GUT) − (running corrections) × ln(m_GUT/m_Z)
+
+The observed value sin²θ_W(m_Z) = 0.23122 ± 0.00003.
+The SU(5) boundary condition 3/8 = 0.375.
+The running Δ = 0.375 − 0.231 = 0.144.
+
+This running has been computed in the SM and MSSM. In the non-supersymmetric SM, the three gauge couplings do not meet at a precise point when run from m_Z upward. In the MSSM (supersymmetric extension), they meet precisely at m_GUT ≈ 2×10¹⁶ GeV with sin²θ_W(m_Z) = 0.231 in excellent agreement with observation.
+
+**Whether DST points toward supersymmetry** is beyond what can be concluded from Document 15 alone. What can be said: the DST framework provides the UV boundary condition sin²θ_W(GUT) = 3/8 from first principles (from the SU(5) selection via the Dirac loop factor). The running from there to the observed value 0.231 requires the matter spectrum — an open problem in DST. The MSSM demonstrates that the matter spectrum consistent with this boundary condition and exact GUT unification does exist.
+
+# 8. Summary
+
+| **Result** | **Derivation** | **Status** |
+| --- | --- | --- |
+| b_Dirac = 4/3 | Dirac algebra trace in 4d QED | Standard QFT |
+| Tr_5̄[Q²] = 4/3 | SU(5) 5̄ charge content | Standard SU(5) |
+| b_Dirac = Tr_5̄[Q²] | DST condensate modes = SU(5) 5̄ content | **DST identification** |
+| sin²θ_W(GUT) = 3/8 | SU(5) representation theory | Standard SU(5) |
+| SU(5) selected by DST | Tr[Q²] = 4/3 uniquely identifies 5̄ content | **DST prediction** |
+| sin²θ_W(GUT) = α × ln(m_Pl/m_e) | Same 3/8 in both expressions | **New DST relationship** |
+| One correction closes three gaps | α, α×ln, sin²θ_W all 0.27% off | **Structural self-consistency** |
+| sin²θ_W(m_Z) = 0.231 | SU(5) + RG running (MSSM) | Standard (needs matter spectrum) |
+
+**The 4/3 is the same. The 3/8 is the same. The correction is the same.**
+
+*The Weinberg angle at the GUT scale is not independent of α and G. It equals α × ln(m_Pl/m_e). This is a DST prediction connecting three experiments through one geometric structure.*
+
+— End of Document —
