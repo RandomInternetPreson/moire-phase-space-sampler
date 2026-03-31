@@ -1,1 +1,1 @@
-This docs folder has a main Unified Framework document outlining a framework connecting spacetime geometry to fundamental physical constants — the fine structure constant, particle generations, the proton-to-electron mass ratio, and others.
+This docs folder has a main Unified Framework document outlining a framework connecting spacetime geometry to fundamental physical constants — the fine structure constant, why matter is spin-1/2, why there are exactly three generations, why gravity is so extraordinarily weak, the proton-to-electron mass ratio, and others.
