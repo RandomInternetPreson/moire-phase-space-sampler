@@ -150,7 +150,7 @@ This repository emerged from a longer investigation. The moiré-Wigner connectio
 
 Documents exploring that framework are in [`/docs`](./docs). They include a unified paper and three supplementary documents addressing specific objections. They stand or fall on their own merits.
 
-The origin story for why a question about window screens led there is in [`/docs/00_origin.md`](./docs/00_origin.md).
+The origin story for why a question about window screens led there is in [`Displacement_Contextualization.txt`]([./docs/00_origin.md](https://github.com/RandomInternetPreson/moire-phase-space-sampler/blob/main/docs/Displacement_Contextualization.txt)).
 
 ---
 
