@@ -2,7 +2,7 @@
 
 **A prime-free pipeline: surface geometry → Laplacian eigenvalues → Riemann zeros → π(x)**
 
-Aaron Alai · Baltimore, MD · April 2026
+Aaron Alai ·  April 2026
 
 Code: [github.com/RandomInternetPreson/moire-phase-space-sampler](https://github.com/RandomInternetPreson/moire-phase-space-sampler)
 
