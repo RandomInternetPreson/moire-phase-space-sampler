@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Moiré Garden — a local universe, animated (v2)</title>
+<style>
+body{margin:0;background:#0b0e12;color:#d8d5cc;font-family:Georgia,serif;overflow-x:hidden}
+#hdr{text-align:center;padding:14px 0 4px}
+#hdr h1{font-size:22px;font-weight:normal;letter-spacing:2px;margin:0;color:#9FE1CB}
+#hdr p{font-size:13px;color:#888780;margin:4px 0 0;font-style:italic}
+#tabs{display:flex;justify-content:center;gap:6px;padding:10px 0}
+.tab{background:#12161c;border:1px solid #26302c;color:#B4B2A9;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:13px;font-family:inherit}
+.tab.on{background:#0F3D30;color:#9FE1CB;border-color:#1D9E75}
+#stage{display:block;margin:6px auto;background:#0d1117;border:1px solid #1c2128;border-radius:8px}
+#bar{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;padding:8px;font-size:12px;color:#B4B2A9}
+#bar label{display:flex;align-items:center;gap:6px}
+#bar input[type=range]{width:120px;accent-color:#1D9E75}
+#bar button{background:#1a1f26;border:1px solid #3a4a44;color:#9FE1CB;padding:5px 12px;border-radius:5px;cursor:pointer;font-family:inherit;font-size:12px}
+#cap{max-width:940px;margin:2px auto 24px;font-size:13px;color:#9a978e;line-height:1.6}
+#cap .lead{color:#c9c6bd}
+.v{color:#AFA9EC}.t{color:#5DCAA5}.e{color:#F0997B}
+</style>
+</head>
+<body>
+<div id="hdr"><h1>THE MOIRÉ GARDEN</h1>
+<p>a local universe, run live on the equations it earned — v13 (era-consistency sweep)</p></div>
+<div id="tabs"></div>
+<canvas id="stage" width="1100" height="600"></canvas>
+<div id="bar"></div>
+<div id="cap"></div>
+<script>
+"use strict";
+const cv=document.getElementById('stage'),cx=cv.getContext('2d');
+const W=cv.width,H=cv.height,TAU=Math.PI*2;
+const COL={teal:'#5DCAA5',teal2:'#1D9E75',vio:'#AFA9EC',vio2:'#7F77DD',emb:'#D85A30',embL:'#F0997B',dim:'#888780',bg:'#0d1117'};
+const H_M=[0,0.025,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],
+H_V=[1.17451,1.17372,1.17106,1.16496,1.15789,1.15012,1.14180,1.13300,1.12377,1.11414,1.10414,1.09379,1.08311,1.07211,1.06081,1.04922,1.03735,1.02521,1.01281,1.00016,1.00008,1];
+function hInterp(m){let i=1;while(i<H_M.length-1&&H_M[i]<m)i++;
+ const t=(m-H_M[i-1])/(H_M[i]-H_M[i-1]);return H_V[i-1]+t*(H_V[i]-H_V[i-1]);}
+function Dm(m){m=Math.max(0,Math.min(1,m));return Math.sqrt(m)*hInterp(m);}
+function clear(){cx.fillStyle=COL.bg;cx.fillRect(0,0,W,H);}
+function txt(s,x,y,c,sz,al){cx.fillStyle=c||COL.dim;cx.font=(sz||13)+'px Georgia';cx.textAlign=al||'left';cx.fillText(s,x,y);}
+const tabsEl=document.getElementById('tabs'),barEl=document.getElementById('bar'),capEl=document.getElementById('cap');
+let scenes=[],cur=0,frame=0;
+function slider(lbl,min,max,step,val,cb){const l=document.createElement('label');
+ l.innerHTML=lbl+' ';const i=document.createElement('input');i.type='range';
+ i.min=min;i.max=max;i.step=step;i.value=val;const o=document.createElement('span');
+ o.textContent=val;o.style.minWidth='34px';o.style.color='#9FE1CB';
+ i.oninput=()=>{o.textContent=(+i.value).toFixed(step<1?(step<0.1?2:1):0);cb(+i.value);};
+ l.appendChild(i);l.appendChild(o);barEl.appendChild(l);return i;}
+function button(lbl,cb){const b=document.createElement('button');b.textContent=lbl;b.onclick=cb;barEl.appendChild(b);return b;}
+function setScene(k){cur=k;barEl.innerHTML='';capEl.innerHTML=scenes[k].cap;
+ scenes[k].ui();document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',i===k));}
+
+/* ================= SCENE 1 : THE WALKWAY ================= */
+(function(){
+let dth=22.5,cool=30,drift=0.6,pan=0,mode=0;
+let dither=false;
+let FW=220,FH=120;
+let field=new Float32Array(FW*FH);
+const off=document.createElement('canvas');off.width=FW;off.height=FH;
+let octx=off.getContext('2d');let idata=octx.createImageData(FW,FH);
+function setRes(w){FW=w|0;FH=Math.round(FW*120/220);
+ field=new Float32Array(FW*FH);off.width=FW;off.height=FH;
+ octx=off.getContext('2d');idata=octx.createImageData(FW,FH);}
+function lat(u,p,ph){return 0.5+0.5*Math.cos(TAU*u/p+ph);}
+function fieldAt(x,y){
+ const th=dth*Math.PI/180,jit=cool*0.02;
+ const c1=Math.cos(Math.PI/4),s1=Math.sin(Math.PI/4);
+ const ct=Math.cos(th+Math.PI/4),st=Math.sin(th+Math.PI/4);
+ const j1=jit*Math.sin(0.05*x+frame*0.02),j2=jit*Math.sin(0.04*y-frame*0.017+2);
+ const P=lat(x*c1+y*s1,14,j1*3)*lat(-x*s1+y*c1,14,-j1*3);
+ const A=lat(x*ct+y*st,26,j2*2)*lat(-x*st+y*ct,26,j2*2);
+ return P*A;}
+function computeField(){
+ for(let iy=0;iy<FH;iy++)for(let ix=0;ix<FW;ix++){
+  const x=(ix-FW/2)*(1100/FW)+pan*2,y=(iy-FH/2)*(600/FH);
+  field[iy*FW+ix]=fieldAt(x,y);}}
+function fence(pitch,ang,phase,color,lw,alpha,jit){
+ cx.save();cx.beginPath();cx.rect(0,0,W-250,H);cx.clip();
+ cx.translate((W-250)/2,H/2);cx.rotate(ang);cx.globalAlpha=alpha;
+ cx.strokeStyle=color;cx.lineWidth=lw;
+ const R=Math.hypot(W,H);
+ for(const dir of [Math.PI/4,-Math.PI/4]){
+  cx.save();cx.rotate(dir);
+  for(let u=-R;u<R;u+=pitch){
+   const j=jit*Math.sin(u*0.13+frame*0.02+phase);
+   cx.beginPath();cx.moveTo(u+phase%pitch+j,-R);cx.lineTo(u+phase%pitch+j,R);cx.stroke();}
+  cx.restore();}
+ cx.globalAlpha=1;cx.restore();}
+scenes.push({name:'1 · the walkway',
+cap:'<span class=lead>Two chain-link fences, one on each side of the walkway — two ways to see them.</span> <b>Lines</b> is the original view: the raw fences, the beat revealed by motion. <b>Nodes</b> grades every intersection by strength: <span class=e>ember = strongest lattice agreement</span> (always detected), <span class=v>violet = the weakest — the sliding zone</span>, teal between. The histogram of node intensities rides along in both views, because <b>that histogram is the rate observable</b>: how its shape shifts with relative angle is exactly what the fourfold-sum fringe measures, and what quantum mechanics insists never shifts at all.<br><br>The layers you see are real: every harmonic pair of the two lattices births its own moire, each order traveling at its own speed — some fast, some nearly stationary, flickering back as they alias against the animation clock (a temporal moire on top of the spatial ones). Heat blurs the fine orders first, so at high temperature only the largest, slowest beat survives — a fuzzy medium can only carry the fundamental, the same harmonic purity the mathematics needs to pin the quantum bound.<br><span style="color:#7d9a8d">In plain words: two window screens make a whole family of slower patterns where they overlap — patterns of patterns. Heat erases the fine ones first, leaving only the big one, and the big one is the one the physics cares about. (Epilogue from the finished theory: the mechanism itself runs best stone cold — heat was never the engine, only the blur.)</span>',
+ui(){slider('relative angle Δθ',0,90,0.5,dth,v=>dth=v);
+ slider('node grid resolution',120,520,20,FW,v=>setRes(v));
+ slider('temperature (heat blur)',0,100,1,cool,v=>cool=v);
+ slider('drift',0,2,0.05,drift,v=>drift=v);
+ const db=button('sample dither: OFF (grid census)',()=>{dither=!dither;
+  db.textContent='sample dither: '+(dither?'ON (fair sampling)':'OFF (grid census)');});
+ button('nodes ⇄ lines',()=>mode=1-mode);},
+step(){pan+=drift;},
+draw(){clear();computeField();
+ if(!window._gTH){const samp=[];
+  for(let i=0;i<field.length;i+=13)samp.push(field[i]);
+  samp.sort((a,b)=>a-b);
+  window._gTH={lo:samp[Math.floor(samp.length*0.10)],
+   med:samp[Math.floor(samp.length*0.5)],
+   hi:samp[Math.floor(samp.length*0.92)]};}
+ const lo=window._gTH.lo,med=window._gTH.med,hi=window._gTH.hi;
+ if(mode===0){
+  for(let i=0;i<field.length;i++){const v=field[i],k=4*i;
+   if(v>=hi){idata.data[k]=188;idata.data[k+1]=84;idata.data[k+2]=52;}
+   else if(v<=lo){idata.data[k]=168;idata.data[k+1]=148;idata.data[k+2]=236;}
+   else if(v<med){idata.data[k]=24;idata.data[k+1]=92;idata.data[k+2]=78;}
+   else{idata.data[k]=46;idata.data[k+1]=148;idata.data[k+2]=118;}
+   idata.data[k+3]=255;}
+  octx.putImageData(idata,0,0);
+  cx.imageSmoothingEnabled=true;
+  cx.drawImage(off,0,0,W-250,H);
+ } else {
+  const jit=cool*0.05;
+  cx.globalCompositeOperation='lighter';
+  fence(14,0,pan,COL.teal2,1.0,0.5,jit);
+  fence(26,dth*Math.PI/180,pan*0.6,COL.vio2,1.6,0.45,jit*0.6);
+  cx.globalCompositeOperation='source-over';
+ }
+ const cN=[0,0,0,0];
+ if(dither){
+  for(let i=0;i<6000;i++){
+   const x=(Math.random()-0.5)*1100+pan*2,y=(Math.random()-0.5)*600;
+   const v=fieldAt(x,y);
+   cN[v>=hi?0:(v<=lo?3:(v<med?2:1))]++;}
+ } else {
+  for(let i=0;i<field.length;i+=5){const v=field[i];
+   cN[v>=hi?0:(v<=lo?3:(v<med?2:1))]++;}
+ }
+ const tot=cN[0]+cN[1]+cN[2]+cN[3];
+ let hm=1;for(const c of cN)hm=Math.max(hm,c);
+ const hx=W-230,hy=90,hw=190,hh=380;
+ txt('node color populations',hx,hy-14,COL.dim,13);
+ txt('(these four counts ARE the',hx,hy+hh+22,COL.dim,11);
+ txt('rate observable)',hx,hy+hh+38,COL.dim,11);
+ cx.strokeStyle='#26302c';cx.strokeRect(hx,hy,hw,hh);
+ const names=['ember','light teal','dark teal','violet'];
+ const cols=['rgb(188,84,52)','rgb(46,148,118)','rgb(24,92,78)','rgb(168,148,236)'];
+ for(let b=0;b<4;b++){const y=hy+30+b*92;
+  const w=cN[b]/hm*(hw-16);
+  cx.fillStyle=cols[b];cx.fillRect(hx+8,y,Math.max(w,2),54);
+  txt(names[b]+'  '+(100*cN[b]/tot).toFixed(1)+'%',hx+8,y+70,cols[b],12);}
+
+ txt('ember ↑ strongest (always seen)',hx,hy-34,COL.embL,11);
+ const beat=dth>0.5?(14/(2*Math.sin(dth*Math.PI/360))).toFixed(0):'∞';
+ txt('beat wavelength ≈ '+beat+' px   ·   Δθ = '+dth.toFixed(1)+'°   ·   heat blur: '+(cool>3?'T='+cool:'off')+'   ·   view: '+(mode?'lines':'nodes')+'   ·   build v13',20,30,COL.teal,14);}});
+})();
+
+/* ================= SCENE 2 : THE MIGRATION ================= */
+(function(){
+let v=7,k2=1.21,T=0.19,k1=0.22,pairIdx=0,view=0;
+const pairs=[[0,22.5],[0,67.5],[45,22.5],[45,67.5]];
+const N=420;
+let lam=new Float32Array(N);for(let i=0;i<N;i++)lam[i]=Math.random()*Math.PI;
+let hist=new Float32Array(72);
+function dU(l,a,b){const A=2*(l-a),B=2*(l+Math.PI/2-b);
+ return k1*2*(Math.sin(A)+Math.sin(B))+k2*2*(Math.sin(A)*Math.cos(B)+Math.cos(A)*Math.sin(B));}
+const GW=140,GH=76;let G=new Float32Array(GW*GH);
+function buildField(){const a=pairs[pairIdx][0]*Math.PI/180,b=(pairs[pairIdx][1]+90)*Math.PI/180;
+ const q=TAU/64;
+ for(let iy=0;iy<GH;iy++)for(let ix=0;ix<GW;ix++){
+  const x=ix*7.8,y=iy*7.8;
+  G[iy*GW+ix]=(0.5+0.5*Math.cos(q*(x*Math.cos(a)+y*Math.sin(a))))*
+              (0.5+0.5*Math.cos(q*(x*Math.cos(b)+y*Math.sin(b))));}}
+buildField();
+const M=300;const fp=[];for(let i=0;i<M;i++)fp.push({x:Math.random()*W,y:Math.random()*H,vx:1.8,vy:0,tr:[]});
+function gradAt(x,y){const ix=Math.max(1,Math.min(GW-2,Math.round(x/7.8))),iy=Math.max(1,Math.min(GH-2,Math.round(y/7.8)));
+ return [(G[iy*GW+ix+1]-G[iy*GW+ix-1])/2,(G[(iy+1)*GW+ix]-G[(iy-1)*GW+ix])/2];}
+scenes.push({name:'2 · the migration',
+cap:'<span class=lead>The pair\'s hidden phase, drifting through the standing lattice environment before birth.</span> The <span class=t>teal line is Alice\'s polarizer axis</span>; the <span class=v>violet line is Bob\'s</span>. Drift carries the phase; the joint beat grabs it; fuzz shakes it loose. The surviving pile-up — the ember arcs — is the conspiracy: this warm, noisy sculptor from the search era reached 44% of the optimum, and taught us exactly what to remove.<br><br>Press <b>ring ⇄ field</b> for the real-space twin: particles streaming through the visible beat field of both stations, nudged by its lanes — channeling where the grab is strong, hopping lanes where the fuzz wins. The uneven lane traffic in the field view and the arcs in the ring view are the <i>same object</i> seen from two sides; cycle the setting pair and both reorganize together, because the lanes belong to the apparatus. That reorganization is measurement dependence, filmed. (Kept for the record: this is the THERMAL-ERA prototype. The finished law removed the noise entirely — Scene 6, the census — and pays the certified minimum price exactly. The bath was overhead all along.)<br><span style="color:#7d9a8d">In plain words: a marble rolling across a washboard gets caught in the grooves and shaken loose again. Where marbles linger, they pile up — and the grooves belong to the measuring devices, so the piles move when the dials move.</span>',
+ui(){slider('drift v',0,12,0.1,v,x=>v=x);
+ slider('joint beat κ₂',0,3,0.01,k2,x=>k2=x);
+ slider('fuzz T',0.03,1,0.01,T,x=>T=x);
+ button('cycle setting pair',()=>{pairIdx=(pairIdx+1)%4;hist.fill(0);buildField();});
+ button('ring ⇄ field',()=>view=1-view);},
+step(){const a=pairs[pairIdx][0]*Math.PI/180,b=pairs[pairIdx][1]*Math.PI/180;
+ const dt=0.004,sq=Math.sqrt(2*T*dt);
+ for(let s=0;s<6;s++)for(let i=0;i<N;i++){
+  let l=lam[i]+(v-dU(lam[i],a,b))*dt+sq*(Math.random()*2-1)*1.73;
+  l%=Math.PI;if(l<0)l+=Math.PI;lam[i]=l;}
+ for(let i=0;i<N;i++){const bi=Math.floor(lam[i]/Math.PI*72)%72;hist[bi]+=0.02;}
+ for(let i=0;i<72;i++)hist[i]*=0.995;
+ if(view===1){for(const p of fp){
+  const g=gradAt(p.x,p.y);
+  p.vx+=g[0]*k2*2.2;p.vy+=g[1]*k2*2.2+(Math.random()*2-1)*T*1.4;
+  p.vx=0.9*p.vx+0.1*1.8;p.vy*=0.94;
+  p.x+=p.vx;p.y+=p.vy;
+  p.tr.push([p.x,p.y]);if(p.tr.length>10)p.tr.shift();
+  if(p.x>W){p.x=0;p.y=Math.random()*H;p.tr=[];}
+  if(p.y<0)p.y+=H;if(p.y>H)p.y-=H;}}},
+draw(){clear();
+ const a=pairs[pairIdx][0],b=pairs[pairIdx][1];
+ if(view===0){
+  const cxx=W/2,cy=H/2,R=200;
+  cx.strokeStyle='#1c2128';cx.lineWidth=1;cx.beginPath();cx.arc(cxx,cy,R,0,TAU);cx.stroke();
+  for(const [ang,c,lab] of [[a,COL.teal,'Alice a='+a+'°'],[b+90,COL.vio,'Bob b='+b+'°']]){
+   const t=ang*Math.PI/90;cx.strokeStyle=c;cx.globalAlpha=0.5;cx.lineWidth=2;
+   cx.beginPath();cx.moveTo(cxx-Math.cos(t)*(R+26),cy-Math.sin(t)*(R+26));
+   cx.lineTo(cxx+Math.cos(t)*(R+26),cy+Math.sin(t)*(R+26));cx.stroke();cx.globalAlpha=1;
+   txt(lab,cxx+Math.cos(t)*(R+50)-24,cy+Math.sin(t)*(R+50),c,12);}
+  let mx=0.001;for(let i=0;i<72;i++)mx=Math.max(mx,hist[i]);
+  for(let i=0;i<72;i++){const t=(i+0.5)/72*TAU;const h=hist[i]/mx*70;
+   cx.strokeStyle=COL.emb;cx.globalAlpha=0.85;cx.lineWidth=5;
+   cx.beginPath();cx.moveTo(cxx+Math.cos(t)*R,cy+Math.sin(t)*R);
+   cx.lineTo(cxx+Math.cos(t)*(R+h),cy+Math.sin(t)*(R+h));cx.stroke();}
+  cx.globalAlpha=1;
+  for(let i=0;i<N;i++){const t=lam[i]*2;
+   cx.fillStyle=COL.teal;cx.globalAlpha=0.7;
+   cx.beginPath();cx.arc(cxx+Math.cos(t)*(R-14),cy+Math.sin(t)*(R-14),2.1,0,TAU);cx.fill();}
+  cx.globalAlpha=1;
+ } else {
+  for(let iy=0;iy<GH;iy++)for(let ix=0;ix<GW;ix++){
+   const g=G[iy*GW+ix];
+   cx.fillStyle='rgb('+Math.round(8+22*g)+','+Math.round(16+70*g)+','+Math.round(20+62*g)+')';
+   cx.fillRect(ix*7.86,iy*7.9,8,8);}
+  for(const p of fp){
+   cx.strokeStyle=COL.teal;cx.globalAlpha=0.35;cx.beginPath();
+   p.tr.forEach((q,i)=>i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1]));cx.stroke();
+   cx.globalAlpha=0.95;cx.fillStyle=COL.teal;
+   cx.beginPath();cx.arc(p.x,p.y,2.4,0,TAU);cx.fill();cx.globalAlpha=1;}
+  txt('the joint beat field of both stations — lanes grab, fuzz hops, traffic goes uneven',20,36,COL.dim,13);
+ }
+ let s=0;for(let i=0;i<72;i++)s+=hist[i];let tv=0;
+ for(let i=0;i<72;i++)tv+=Math.abs(hist[i]/(s||1)-1/72);
+ txt('setting pair: a='+a+'°, b='+b+'°   ·   distance from uniform (proxy) = '+(tv/2).toFixed(3)+'   ·   Hall floor (max pairwise) ≈ 0.138',20,H-16,COL.dim,12);}});
+})();
+
+/* ================= SCENE 3 : THE DECISION ================= */
+(function(){
+let aDeg=0,auto=true;const phots=[];let nDet=0,nTot=0,nUp=0,nDn=0;
+scenes.push({name:'3 · the decision',
+cap:'<span class=lead>One photon, one analyzer — now with the hidden phase visible.</span> Every photon carries a <span class=t>needle: its phase λ</span>. At the analyzer the alignment is m = |cos 2(λ−a)|: needles near the stripe axis are loud (bright) and always seen; needles near the <b>edge</b> (45° off) are quiet, and they <span class=e>wiggle, slide, and pass unseen</span> under the solved law D(m) = √m·h(m). Detected photons deflect <b>along the analyzer\'s own axis</b> — teal one way, ember the other.<br><br><b>Now rotate the analyzer and watch closely.</b> The traffic visibly re-routes — different needles get bright, different photons slide — yet the counters do not move. That stubbornness is not a bug; it is the <b>no-signaling theorem on camera</b>: because the hidden phases arrive uniformly, rotating a changes <i>which</i> photons meet <i>which</i> fate, never <i>how many</i>. Alice\'s dial cannot send Bob a message. The magic in Scene 4 lives entirely in the <i>pairings</i>, never in the singles. At detector efficiency near 80% this channel alone carries the entire quantum statistics with zero measurement dependence — the far end of the dial whose other end is Scene 6.<br><span style="color:#7d9a8d">In plain words: photons near a clear yes-or-no always get counted; photons near the borderline sometimes slip through uncounted. That tiny blind spot at the borderline changes the story the survivors tell — but turning the dial never changes how many survive, so no dial can send a message.</span>',
+ui(){slider('analyzer angle a',0,180,1,aDeg,v=>aDeg=v);
+ button('toggle photon stream',()=>auto=!auto);
+ button('reset counters',()=>{nDet=0;nTot=0;nUp=0;nDn=0;});},
+step(){if(auto&&frame%4===0){phots.push({x:60,y:H/2,vx:6,vy:0,lam:Math.random()*Math.PI,st:0,m:0,a:1,w:0});}
+ const ar=aDeg*Math.PI/180;
+ for(const p of phots){
+  if(p.st===0){p.x+=p.vx;
+   if(p.x>=W/2-40){
+    p.m=Math.abs(Math.cos(2*(p.lam-ar)));nTot++;
+    if(Math.random()<Dm(p.m)){nDet++;
+     const sg=Math.sign(Math.cos(2*(p.lam-ar)))||1;
+     if(sg>0)nUp++;else nDn++;
+     p.st=sg;p.vx=5.2*Math.abs(Math.cos(ar))+1.5;p.vy=-5.2*Math.sin(ar)*sg-(sg>0?2.4:-2.4)*Math.cos(ar);}
+    else {p.st=9;p.vx=1.2;}}}
+  else if(p.st===9){p.w+=0.35;p.x+=p.vx;p.y+=Math.sin(p.w)*1.6;p.a-=0.012;}
+  else {p.x+=p.vx;p.y+=p.vy;}}
+ while(phots.length&&(phots[0].x>W+20||phots[0].a<=0))phots.shift();},
+draw(){clear();const ax=W/2-40;const ar=aDeg*Math.PI/180;
+ cx.save();cx.translate(ax,H/2);cx.rotate(ar);
+ for(let u=-260;u<260;u+=28){cx.fillStyle=u/28%2?'#1a2530':'#101821';
+  cx.fillRect(-9,u,18,28);}
+ cx.strokeStyle=COL.vio2;cx.lineWidth=2;cx.strokeRect(-9,-260,18,520);cx.restore();
+ txt('analyzer axis',ax+Math.sin(ar)*270,H/2-Math.cos(ar)*270-6,COL.vio,11,'center');
+ for(const p of phots){
+  const bright=p.st===0?0.9:(p.st===9?Math.max(0,p.a):0.45+0.55*p.m);
+  cx.globalAlpha=bright;
+  const c=p.st===9?COL.dim:(p.st===1?COL.teal:(p.st===-1?COL.emb:'#c9c6bd'));
+  cx.fillStyle=c;cx.beginPath();cx.arc(p.x,p.y,4,0,TAU);cx.fill();
+  cx.strokeStyle=c;cx.lineWidth=1.6;
+  cx.beginPath();
+  cx.moveTo(p.x-8*Math.cos(p.lam),p.y+8*Math.sin(p.lam));
+  cx.lineTo(p.x+8*Math.cos(p.lam),p.y-8*Math.sin(p.lam));cx.stroke();
+  cx.globalAlpha=1;}
+ const gx=W-320,gy=90,gw=270,gh=150;
+ txt('D(m) = √m · h(m)',gx,gy-12,COL.teal,14);
+ cx.strokeStyle='#26302c';cx.strokeRect(gx,gy,gw,gh);
+ cx.beginPath();for(let i=0;i<=100;i++){const m=i/100;
+  const X=gx+m*gw,Y=gy+gh-Dm(m)*gh*0.92;i?cx.lineTo(X,Y):cx.moveTo(X,Y);}
+ cx.strokeStyle=COL.teal;cx.lineWidth=2.2;cx.stroke();cx.lineWidth=1;
+ txt('edge: slides past',gx,gy+gh+16,COL.embL,11);
+ txt('center: always seen',gx+150,gy+gh+16,COL.dim,11);
+ txt('η ≈ '+(nTot?(nDet/nTot).toFixed(3):'—')+'   (theory ceiling 0.801)',20,30,COL.teal,15);
+ txt('+1: '+nUp+'    −1: '+nDn+'    slid past: '+(nTot-nDet),20,52,COL.dim,13);
+ txt('rotate a: routes change, counters do not — no-signaling, live',20,74,COL.embL,12);}});
+})();
+
+/* ================= SCENE 4 : THE CONVERGENCE ================= */
+(function(){
+let bins=61,sumE,cntE,Sacc=0,Scnt=0,speed=400;
+function reset(){sumE=new Float32Array(bins);cntE=new Float32Array(bins);Sacc=0;Scnt=0;}
+reset();
+const bell=[[0,22.5,1],[0,67.5,-1],[45,22.5,1],[45,67.5,1]];
+function pairE(dl){const lam=Math.random()*Math.PI;
+ const a=Math.random()*Math.PI, b=a+dl;   // absolute analyzer angles
+ const ca=Math.cos(2*(lam-a)),cb=Math.cos(2*(lam+Math.PI/2-b));
+ if(Math.random()<Dm(Math.abs(ca))&&Math.random()<Dm(Math.abs(cb)))
+  return Math.sign(ca)*Math.sign(cb)||1;return 0;}
+scenes.push({name:'4 · the convergence',
+cap:'<span class=lead>Pairs stream from the source with shared hidden phases. Each side decides locally by sign; each side slides or is seen by D(m). Nothing communicates.</span> And yet the surviving coincidences trace out the <span class=t>quantum cosine</span> — here to a few tenths of a percent (this page carries a 22-point interpolation of the solved profile; the exact profile in the paper lands at 10<sup>−11</sup>) — while the CHSH ticker climbs to <span class=e>2√2 = 2.8284</span>.<br><br>Read the source. There is one shared variable λ, drawn before the photons part; two local sign rules; one local detection law each. No message, no lookup, no reach across the gap. The universe pays for the cosine at the till instead: an 80.1% ceiling on detection efficiency, or a 13.8% conspiracy in the phase distribution, or the mixture the guilt curve prices — and the price is a theorem, certified in exact arithmetic at seven points. If you are skeptical, good: the code is short, the claim is precise, and the till never lies.<br><span style="color:#7d9a8d">In plain words: no photon ever talks to its partner. Each follows its own small rule. Count only the pairs where both were seen, and their agreement traces the exact curve quantum mechanics predicts — a curve everyone is taught no local story can draw. (Scene 6 draws it — at exactly the certified minimum price.)</span>',
+ui(){slider('pairs per frame',50,2000,50,speed,v=>speed=v);
+ button('reset counters',reset);},
+step(){for(let k=0;k<speed;k++){
+  const bi=Math.floor(Math.random()*bins);const dl=bi/(bins-1)*Math.PI;
+  const e=pairE(dl);if(e!==0){sumE[bi]+=e;cntE[bi]++;}
+  const b4=bell[Math.floor(Math.random()*4)];
+  const e4=pairE((b4[1]-b4[0])*Math.PI/180);
+  if(e4!==0){Sacc+=b4[2]*e4*4;Scnt++;}}},
+draw(){clear();const gx=90,gy=60,gw=W-360,gh=H-150;
+ cx.strokeStyle='#26302c';cx.strokeRect(gx,gy,gw,gh);
+ cx.setLineDash([5,5]);cx.beginPath();
+ for(let i=0;i<=200;i++){const d=i/200*Math.PI;
+  const X=gx+i/200*gw,Y=gy+gh/2-(-Math.cos(2*d))*gh/2*0.92;
+  i?cx.lineTo(X,Y):cx.moveTo(X,Y);}
+ cx.strokeStyle=COL.vio2;cx.stroke();cx.setLineDash([]);
+ for(let i=0;i<bins;i++){if(cntE[i]<8)continue;
+  const d=i/(bins-1),E=sumE[i]/cntE[i];
+  const X=gx+d*gw,Y=gy+gh/2-E*gh/2*0.92;
+  cx.fillStyle=COL.teal;cx.beginPath();cx.arc(X,Y,3.2,0,TAU);cx.fill();}
+ txt('E(Δ) — dots: this local universe · dashed: quantum mechanics',gx,gy-14,COL.dim,13);
+ txt('0°',gx-4,gy+gh+20);txt('90°',gx+gw/2-10,gy+gh+20);txt('180°',gx+gw-16,gy+gh+20);
+ const S=Scnt?Math.abs(Sacc/Scnt):0;
+ txt('CHSH',W-230,140,COL.dim,15);
+ txt(S.toFixed(4),W-230,185,COL.embL,38);
+ txt('target  2.8284',W-230,215,COL.vio,14);
+ txt('pairs: '+(Scnt+Array.from(cntE).reduce((a,b)=>a+b,0)).toLocaleString(),W-230,245,COL.dim,12);
+ txt('local bound (no sliding): 2.0000',W-230,275,COL.dim,12);}});
+})();
+
+/* ================= SCENE 5 : THE PIXEL ================= */
+(function(){
+const NA=24;let counts=new Float32Array(NA*NA),eps=2.0,mode=0,Fmag=null;
+const f=[],g=[];for(let i=0;i<NA;i++){const a=i*Math.PI/NA;
+ f.push(1+0.03*Math.cos(2*a+1.1)+0.012*Math.cos(4*a+0.4));
+ g.push(1+0.025*Math.cos(2*a+2.3)+0.015*Math.cos(4*a+1.7));}
+function accumulate(n){for(let k=0;k<n;k++){
+ const i=Math.floor(Math.random()*NA),j=Math.floor(Math.random()*NA);
+ const d=(i-j)*Math.PI/NA;
+ const mu=f[i]*g[j]*(1+eps/100*(Math.cos(4*d)+0.17*Math.cos(8*d)));
+ counts[i*NA+j]+=mu*(1+0.15*(Math.random()*2-1));}}
+function dft(){const L=new Float32Array(NA*NA);
+ for(let i=0;i<NA*NA;i++)L[i]=Math.log(counts[i]+1e-9);
+ Fmag=new Float32Array(NA*NA);
+ for(let ka=0;ka<NA;ka++)for(let kb=0;kb<NA;kb++){let re=0,im=0;
+  for(let i=0;i<NA;i++)for(let j=0;j<NA;j++){
+   const ph=-TAU*(ka*i+kb*j)/NA;re+=L[i*NA+j]*Math.cos(ph);im+=L[i*NA+j]*Math.sin(ph);}
+  Fmag[ka*NA+kb]=Math.hypot(re,im)/(NA*NA);}}
+scenes.push({name:'5 · the pixel',
+cap:'<span class=lead>The experiment nobody ran.</span> Scan the full settings torus (a, b) and count <b>total</b> coincidences — all four outcome combinations summed, the number QM says is perfectly flat. Hardware ripples along <b>rows and columns</b>, because apparatus is local and factorizes as η_A(a)·η_B(b). But the physics of this universe-class depends only on a−b, and after the log-Fourier transform it lives where hardware <i>cannot go</i>: the anti-diagonal pixels at <span class=e>(±2, ∓2)</span>.<br><br>The fringe vanishes identically at 22.5° and 67.5° — cos(90°k) = cos(270°k) for every harmonic — so every four-point CHSH experiment in forty-four years has been mathematically blind to it. Aspect logged the sum once as "typically 80/s"; a 1998 analysis flagged the missing error bar; a 2003 paper proposed the test and no one ran it. Slide ε to zero and watch the pixel go dark — that darkness is quantum mechanics\' claim. Twenty minutes on a modern photon source settles whether it is true at the 0.1% level.<br><span style="color:#7d9a8d">In plain words: add up ALL the pair-counts, not just the matching ones. Quantum mechanics says that total never changes as you turn the dials. This universe says it wobbles, gently, in a place no experiment has looked in forty-four years.</span>',
+ui(){slider('fringe ε (%)',0,3,0.1,eps,v=>{eps=v;counts.fill(0);mode=0;});
+ button('transform ⇄',()=>{if(mode===0){dft();mode=1;}else mode=0;});
+ button('reset',()=>{counts.fill(0);mode=0;});},
+step(){if(mode===0)accumulate(3000);},
+draw(){clear();const sz=Math.min(W,H)-130,px=sz/NA,ox=(W-sz)/2,oy=70;
+ if(mode===0){let mx=1e-9;for(const c of counts)mx=Math.max(mx,c);
+  for(let i=0;i<NA;i++)for(let j=0;j<NA;j++){
+   const v=counts[i*NA+j]/mx;
+   cx.fillStyle='rgb('+Math.round(10+30*v)+','+Math.round(20+140*v)+','+Math.round(25+105*v)+')';
+   cx.fillRect(ox+j*px,oy+i*px,px-1,px-1);}
+  txt('total coincidence rate over the settings torus (a, b) — accumulating',ox,oy-16,COL.dim,13);
+  txt('Alice ↑   Bob →   fringe ε = '+eps.toFixed(1)+'%   (hidden inside: 3% apparatus ripple + noise)',ox,oy+sz+24,COL.dim,12);}
+ else{let mx=1e-9;for(let i=0;i<NA*NA;i++){const ka=Math.floor(i/NA),kb=i%NA;
+   if(ka===0&&kb===0)continue;mx=Math.max(mx,Fmag[i]);}
+  for(let ka=0;ka<NA;ka++)for(let kb=0;kb<NA;kb++){
+   const sa=(ka+NA/2)%NA,sb=(kb+NA/2)%NA;
+   let v=(ka===0&&kb===0)?1:Fmag[ka*NA+kb]/mx;v=Math.pow(v,0.4);
+   cx.fillStyle='rgb('+Math.round(8+70*v)+','+Math.round(12+90*v)+','+Math.round(20+180*v)+')';
+   cx.fillRect(ox+sb*px,oy+sa*px,px-1,px-1);}
+  const pulse=3+2*Math.sin(frame*0.1);
+  for(const [ka,kb] of [[2,-2],[-2,2]]){
+   const sa=((ka%NA)+NA+NA/2)%NA,sb=((kb%NA)+NA+NA/2)%NA;
+   cx.strokeStyle=COL.emb;cx.lineWidth=2.5;
+   cx.strokeRect(ox+sb*px-pulse,oy+sa*px-pulse,px+2*pulse,px+2*pulse);}
+  txt('log-Fourier plane — apparatus on the axes, physics at (±2, ∓2)',ox,oy-16,COL.dim,13);
+  txt('the pixel hardware cannot reach  ·  truth ε = '+eps.toFixed(1)+'%  ·  QM predicts: dark',ox,oy+sz+24,COL.embL,13);}}});
+})();
+
+
+/* ================= SCENE 6 : THE CENSUS ================= */
+(function(){
+let v=15,variety=1.0,pairIdx=0;
+const pairs=[[0,22.5],[0,67.5],[45,22.5],[45,67.5]];
+const N=420;
+let walkers=[], hist=new Float32Array(90);
+function dU(l,A,B){
+ const p1=4*A+2*B+Math.PI, p2=4*A-2*B-Math.PI;
+ return 0.42*12*Math.sin(6*l-p1)+0.31*4*Math.sin(2*l-p2)
+       +0.9*16*Math.sin(8*l-2*A-6*B-3*Math.PI);}
+function spawn(){
+ walkers=[];
+ const a=pairs[pairIdx][0]*Math.PI/180, b=pairs[pairIdx][1]*Math.PI/180;
+ for(let i=0;i<N;i++){
+  const xa=variety*(Math.random()*Math.PI);
+  const xb=variety*(Math.random()*Math.PI);
+  const tau=0.4+variety*Math.random()*5.6+(1-variety)*2.6;
+  walkers.push({lam:Math.random()*Math.PI, xa, xb,
+   A:a+xa, B:b+xb, tau, age:0, y:30+Math.random()*(H-120),
+   frozen:false});}
+}
+spawn();
+scenes.push({name:'6 · the census',
+cap:'<span class=lead>Moir\u00e9 phase locking, whole: the census.</span> Every dot is one photon-pair event. Each carries its own <b>frozen inheritance</b>, drawn once at birth and never changed: a private lattice offset for each station (its patch of the one medium\u2019s texture) and a private flight time. Then \u2014 <b>no noise, no dice</b> \u2014 pure deterministic drift through its own beat terrain until its personal clock runs out and it <span class=e>freezes where it stands</span>. The histogram is the census of the frozen: and <i>that census is the quantum statistics</i>. Cycle the setting pair \u2014 the whole census reorganizes, because every private terrain belongs to the apparatus.<br><br>Now the payoff: drag <b>variety \u2192 0</b>. Every event becomes identical \u2014 same offsets, same clock \u2014 and watch the census collapse to a spike: dead, classical, mute. Slide it back and the arcs bloom again. <b>Frozen variety is the resource.</b> Not noise \u2014 the universe does not shake the dice; it inherited a different pair of hands for every throw. The full 23-term mechanism with its optimized ensemble pays exactly the certified minimum price and sings the cosine to within a percent (Sec. 7 of the paper); what you are watching is a 3-term sketch of the same law.<br><span style="color:#7d9a8d">In plain words: the same two screens \u2014 but every photon meets them at its own tiny frozen shift, and walks them for its own frozen length of time. Each walk is completely predictable; nothing random ever happens to anyone. Pile up where all the walks ended, and the pile is quantum mechanics. Make every shift and every clock identical, and the pile goes dead.</span>',
+ui(){slider('drift v (the detuning)',4,26,0.5,v,x=>v=x);
+ slider('variety (the frozen spread)',0,1,0.02,variety,x=>{variety=x;});
+ button('cycle setting pair',()=>{pairIdx=(pairIdx+1)%4;hist.fill(0);spawn();});
+ button('release new cohort',()=>{spawn();});},
+step(){const dt=0.004;
+ let allFrozen=true;
+ for(const w of walkers){
+  if(w.frozen)continue;
+  allFrozen=false;
+  for(let s=0;s<5;s++){
+   w.lam+=(v-dU(w.lam,w.A,w.B))*dt;
+   w.age+=dt;
+   if(w.age>=w.tau){w.frozen=true;
+    const bi=Math.floor(((w.lam%Math.PI+Math.PI)%Math.PI)/Math.PI*90)%90;
+    hist[bi]+=1;break;}}}
+ if(allFrozen){for(let i=0;i<90;i++)hist[i]*=0.93;spawn();}},
+draw(){clear();
+ const a=pairs[pairIdx][0],b=pairs[pairIdx][1];
+ const PW=W-260;
+ for(let g=0;g<=6;g++){const x=g/6*PW;
+  cx.strokeStyle='#1a1f24';cx.beginPath();cx.moveTo(x,20);cx.lineTo(x,H-90);cx.stroke();
+  txt((g*30)+'\u00b0',x-8,H-72,COL.dim,10);}
+ let nf=0;
+ for(const w of walkers){
+  const x=((w.lam%Math.PI+Math.PI)%Math.PI)/Math.PI*PW;
+  if(w.frozen){nf++;
+   cx.fillStyle=COL.emb;cx.globalAlpha=0.85;
+   cx.beginPath();cx.arc(x,w.y,2.6,0,TAU);cx.fill();
+  }else{
+   cx.fillStyle=COL.teal;cx.globalAlpha=0.55+0.3*Math.min(1,w.age/w.tau);
+   cx.beginPath();cx.arc(x,w.y,2.0,0,TAU);cx.fill();}
+ }
+ cx.globalAlpha=1;
+ let hm=1;for(const h of hist)hm=Math.max(hm,h);
+ for(let i=0;i<90;i++){
+  const x=i/90*PW, hgt=hist[i]/hm*54;
+  cx.fillStyle=COL.emb;cx.globalAlpha=0.8;
+  cx.fillRect(x,H-64-hgt,PW/90-1,hgt);}
+ cx.globalAlpha=1;
+ const hx=W-235,hy=60;
+ txt('THE CENSUS',hx,hy-24,COL.embL,14);
+ txt('frozen: '+nf+' / '+N,hx,hy,COL.dim,12);
+ txt('variety: '+(variety*100).toFixed(0)+'%',hx,hy+20,COL.dim,12);
+ let s=0;for(let i=0;i<90;i++)s+=hist[i];
+ let tv=0;for(let i=0;i<90;i++)tv+=Math.abs(hist[i]/(s||1)-1/90);
+ txt('dist. from uniform (proxy): '+(tv/2).toFixed(3),hx,hy+40,COL.dim,12);
+ txt('certified floor \u2248 0.138',hx,hy+60,COL.dim,11);
+ txt(variety<0.15?'variety gone \u2014 the magic is dead':'frozen variety at work',
+     hx,hy+92,variety<0.15?'#b06060':COL.teal,12);
+ txt('setting pair: a='+a+'\u00b0, b='+b+'\u00b0   \u00b7   each dot: private offsets + private clock, drawn ONCE   \u00b7   no dice anywhere',20,H-16,COL.dim,12);}});
+})();
+
+scenes.forEach((s,i)=>{const t=document.createElement('div');t.className='tab';
+ t.textContent=s.name;t.onclick=()=>setScene(i);tabsEl.appendChild(t);});
+setScene(0);
+(function loop(){frame++;const s=scenes[cur];s.step();s.draw();requestAnimationFrame(loop);})();
+</script>
+</body>
+</html>
