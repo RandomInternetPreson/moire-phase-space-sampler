@@ -1,16 +1,16 @@
-# Geometric Prime Counting via the Modular Surface
+# Geometric Prime Counting via the Modular Surface https://doi.org/10.5281/zenodo.22073845
 
 **A prime-free pipeline: surface geometry → Laplacian eigenvalues → Riemann zeros → π(x)**
 
-Aaron Alai ·  April 2026
+Aaron Alai ·  April 2026, revised August 2026
 
-Code: [github.com/RandomInternetPreson/moire-phase-space-sampler](https://github.com/RandomInternetPreson/moire-phase-space-sampler)
+Code: [github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/Geometric_Prime_Counter](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/Geometric_Prime_Counter)
 
 ---
 
 ## Abstract
 
-We present a fully self-contained implementation of prime counting that uses no primes, no sieve, and no number-theoretic lookup tables as input. The only input is a truncation height *Y*. The modular surface SL(2,ℤ)\ℍ² is discretised, its hyperbolic Laplacian is solved for eigenvalues, and those eigenvalues — via the scattering phase mechanism studied by Colin de Verdière — approximate the imaginary parts of nontrivial zeros of the Riemann zeta function ζ(*s*). Newton's method on the Riemann-Siegel *Z* function refines each candidate to a true zero without any prime input. The Chebyshev explicit formula then yields π(*x*). The pipeline is geometry → analysis → primes. We describe the implementation, verify accuracy against exact prime counts, benchmark against a standard sieve, and discuss the break-even point at which the geometric method becomes faster.
+This note presents a fully self-contained implementation of prime counting that uses no primes, no sieve, and no number-theoretic lookup tables as input. The only input is a truncation height *Y*. The modular surface SL(2,ℤ)\ℍ² is discretised, its hyperbolic Laplacian is solved for eigenvalues, and those eigenvalues — via the scattering phase mechanism studied by Colin de Verdière — approximate the imaginary parts of nontrivial zeros of the Riemann zeta function ζ(*s*). Newton's method on the Riemann-Siegel *Z* function refines each candidate to a true zero without any prime input. Riemann's explicit formula for the prime-power counting function *J*(*x*) then yields π(*x*) by a prime-free recursion. The pipeline is geometry → analysis → primes. With the 17 zeros a modest surface provides, π(*x*) is recovered to within 0.25% for 100 ≤ *x* ≤ 10⁶ and within 0.1% for *x* ≥ 10⁴. I describe the implementation, verify accuracy against exact prime counts, benchmark against a standard sieve, and show why the shortcut π(*x*) ≈ ψ(*x*)/log *x* discards the information the zeros carry.
 
 ---
 
@@ -20,17 +20,17 @@ Prime counting is one of the oldest problems in mathematics. Given a positive in
 
 All of these methods are fundamentally arithmetic: they use the divisibility structure of integers as their primary input. Even the analytic approximations — Li(*x*), the Riemann prime counting function R(*x*) — are typically initialized from known lists of Riemann zeta zeros, which are in turn computed via arithmetic algorithms.
 
-A different question, less commonly asked, is: **can primes be counted from a geometric object, using no primes as input?** This note answers yes, and provides runnable code. The key ingredients, all dating to the 20th century, are:
+A different question, less commonly asked, is: **can primes be counted from a geometric object, using no primes as input?** This note answers yes, and provides runnable code. The key ingredients, none newer than 1983, are:
 
 1. **The Colin de Verdière mechanism (1983):** truncating the hyperbolic modular surface with a wall in the cusp forces eigenvalues of the Laplacian to approximate Riemann zeta zeros.
 
 2. **The Riemann-Siegel formula:** a real-valued function *Z*(*t*) whose zeros coincide with zeta zeros, computable from elementary functions with no primes required.
 
-3. **Chebyshev's explicit formula:** expresses ψ(*x*) = *x* − log 2π − Σ (oscillatory corrections), where the sum runs over zeta zeros. Division by log *x* approximates π(*x*).
+3. **Riemann's explicit formula (1859):** expresses the prime-power counting function *J*(*x*), which weights each prime power *p*^*k* by 1/*k*, as li(*x*) minus a sum of li(*x*^ρ) over zeta zeros ρ. Since *J*(*x*) = π(*x*) + ½π(√*x*) + ⅓π(*x*^(1/3)) + …, π(*x*) follows by a short recursion (§2.4).
 
-Combining these three: the surface gives rough zero candidates; Newton's method on *Z*(*t*) snaps them to true zeros; the explicit formula counts primes. No integer factorization, no divisibility testing, and no pre-computed prime tables appear anywhere in the pipeline.
+Combining these three: the surface gives rough zero candidates; Newton's method on *Z*(*t*) snaps them to true zeros; Riemann's formula counts primes. No integer factorization, no divisibility testing, and no pre-computed prime tables appear anywhere in the pipeline.
 
-**A note on "prime-free" vs "arithmetic-free."** The Riemann-Siegel formula sums over integers *n* = 1, …, *N*, so integers and their logarithms do appear in the computation. What does *not* appear is any use of primes, factorisation, or divisibility — the structures that make prime counting hard. The integers in the Riemann-Siegel sum play the same role as grid indices in a numerical quadrature: they are bookkeeping, not number theory. We therefore describe the pipeline as **prime-free**, not arithmetic-free.
+**A note on "prime-free" vs "arithmetic-free."** The Riemann-Siegel formula sums over integers *n* = 1, …, *N*, so integers and their logarithms do appear in the computation. What does *not* appear is any use of primes, factorisation, or divisibility — the structures that make prime counting hard. The integers in the Riemann-Siegel sum play the same role as grid indices in a numerical quadrature: they are bookkeeping, not number theory. The pipeline is therefore described as **prime-free**, not arithmetic-free.
 
 ---
 
@@ -78,17 +78,25 @@ where *N* = floor(√(*t* / 2π)).
 
 This formula uses only elementary functions (logarithms, square roots, cosines) evaluated at integer arguments. No primes, no divisibility, and no factorisation appears. It is therefore suitable for Newton's method starting from geometric eigenvalue estimates.
 
-### 2.4 The Explicit Formula
+### 2.4 Riemann's Explicit Formula
 
-Riemann's explicit formula (in Chebyshev's ψ form) is:
+Riemann (1859) counts prime powers with weight 1/*k*:
 
-> ψ(*x*) = *x* − log(2π) − Σ\_γ 2√*x* · [½ cos(γ log *x*) + γ sin(γ log *x*)] / (¼ + γ²)
+> *J*(*x*) = Σ\_{*p*^*k* ≤ *x*} 1/*k* = π(*x*) + ½ π(*x*^(1/2)) + ⅓ π(*x*^(1/3)) + …
 
-where γ runs over imaginary parts of nontrivial zeta zeros (paired with their conjugates).
+and expresses *J* in terms of the zeros:
 
-> π(*x*) ≈ ψ(*x*) / log *x*
+> *J*(*x*) = li(*x*) − Σ\_ρ li(*x*^ρ) − log 2 + ∫\_*x*^∞ d*t* / (*t*(*t*² − 1) log *t*)
 
-Accuracy increases with the number of zeros included in the sum. With *N* zeros, the error in π(*x*) is approximately O(√*x* / log *x*), improving as *N* grows.
+where ρ = ½ + *i*γ runs over the nontrivial zeros (each paired with its conjugate) and li(*x*^ρ) = Ei(ρ log *x*). Inverting the first relation gives
+
+> π(*x*) = *J*(*x*) − ½ π(*x*^(1/2)) − ⅓ π(*x*^(1/3)) − …
+
+which terminates once *x*^(1/*k*) < 2 and can be evaluated recursively with the same *J*. This is equivalent to Möbius inversion but uses no arithmetic function. Every ingredient — li, Ei at complex arguments, the exponential integral E₁ for the tail — is analysis, not number theory.
+
+The truncation error from using only zeros with γ ≤ *T* is O(*x* log² *x* / *T*) in *J*, i.e. a relative error that falls like 1/*T* and grows only logarithmically with *x*. With *T* ≈ 70 (the 17 zeros a 50×300 surface yields) the leading li(*x*) term already carries most of the count; the zeros supply the oscillation around it.
+
+**Why not ψ(*x*)/log *x*.** A tempting shortcut is the explicit formula for Chebyshev's ψ(*x*) followed by π(*x*) ≈ ψ(*x*)/log *x*. That approximation drops the *x*/log² *x* term of π(*x*) and reduces the whole pipeline to the prime number theorem's leading order, *x*/log *x*. Its error is ≈ 1/log *x* — 7.8% at 10⁶, 14% at 10³ — *regardless of which zeros are supplied*: the exact ψ(*x*) divided by log *x* gives the same numbers as the geometric zeros or no zeros at all. Any pipeline that ends with this step is measuring the conversion, not the surface. Section 4 reports both conversions side by side.
 
 ---
 
@@ -102,14 +110,14 @@ Pipeline (prime-free at every step):
   3.  Extract spectral params t from λ = ¼ + t²
   4.  Form candidate zeros γ_candidate = 2t
   5.  For each candidate: Newton's method on Z(t) → true zero γ
-  6.  Chebyshev explicit formula with {γ} → π(x)
+  6.  Riemann's explicit formula with {γ} → J(x) → π(x)
 
   Input:  truncation height Y    Output: π(x) for any x
 ```
 
 ### 3.1 Discretisation
 
-We work in coordinates (*x*, *u*) where *y* = e^*u*. The domain is *x* ∈ (0, ½), *u* ∈ (*u*\_min, log *Y*), with *u*\_min chosen so that the arc *x*² + e^(2*u*) = 1 falls within the grid. A non-uniform grid clusters points near both boundaries for better resolution. The hyperbolic Laplacian becomes:
+The code works in coordinates (*x*, *u*) where *y* = e^*u*. The domain is *x* ∈ (0, ½), *u* ∈ (*u*\_min, log *Y*), with *u*\_min chosen so that the arc *x*² + e^(2*u*) = 1 falls within the grid. A non-uniform grid clusters points near both boundaries for better resolution. The hyperbolic Laplacian becomes:
 
 > −Δ\_hyp = −(∂²\_*u* − ∂\_*u*) − e^(2*u*) ∂²\_*x*
 
@@ -127,13 +135,17 @@ For each candidate γ₀ from the surface:
 2. **Bisect:** 60 bisection steps to narrow the bracket to 10⁻⁹
 3. **Newton polish:** 20 Newton steps until |Δ*t*| < 10⁻¹², yielding true zero to machine precision
 
-Approximately 60–70% of geometric candidates fail to bracket a zero within the default search radius (they land too far from any true zero, or between two zeros without a sign change in the search window). The remaining ~15–20 converged zeros are sufficient for a proof-of-concept but limit accuracy at large *x*.
+Approximately 60–70% of geometric candidates fail to bracket a zero within the default search radius (they land too far from any true zero, or between two zeros without a sign change in the search window). The remaining ~15–20 converged zeros are enough for the prime-counting stage (§4).
 
 The entire refinement step takes ~10–100ms regardless of the number of candidates, since *Z*(*t*) evaluations are cheap.
 
 ### 3.3 Prime Counting
 
-With refined zeros in hand, the Chebyshev explicit formula is evaluated directly. Each query (for a given *x*) takes approximately 0.01ms — orders of magnitude faster than building a sieve — since it involves only a short trigonometric sum over the stored zeros. The zeros are computed once and reused for all subsequent queries.
+With refined zeros in hand, *J*(*x*) is evaluated from the formula in §2.4 using `scipy.special.expi` for li(*x*) and `scipy.special.exp1` at complex argument for the zero sum (Re Ei(*z*) = −Re E₁(−*z*)). The tail integral is Σ\_{*k*≥1} E₁(2*k* log *x*), which converges in a handful of terms. The recursion for π(*x*) descends through *x*^(1/*k*) until the argument drops below 2 — about 20 levels at *x* = 10⁶. A query costs ~2 ms with 17 zeros; the zeros are computed once and reused.
+
+### 3.4 Optional Global Scan
+
+To test how accuracy depends on zero count, the script also walks *Z*(*t*) along the critical line from *t* = 10 to 250 in steps of 0.05, brackets every sign change, and refines it (`scan_zeros`). It finds 108 zeros in ~40 ms and is equally prime-free. The surface remains the only *geometric* source of zeros; the scan is a purely analytic cross-check.
 
 ---
 
@@ -141,29 +153,31 @@ With refined zeros in hand, the Chebyshev explicit formula is evaluated directly
 
 ### 4.1 Accuracy
 
-Accuracy is measured against exact prime counts from the Sieve of Eratosthenes. The geometric method (without Newton refinement) achieves approximately 7–20% error. With Newton refinement, individual zero quality improves dramatically but the prime counting error is limited by the number of zeros (~15–20 from a typical surface solve). The bottleneck is zero count, not zero precision.
+Accuracy is measured against exact prime counts from the Sieve of Eratosthenes. Two conversions from zeros to π(*x*) are shown: the shortcut π ≈ ψ(*x*)/log *x*, and Riemann's formula (§2.4). Both use the same 17 Newton-refined surface zeros. A third column uses the 108 zeros from the global scan (§3.4).
 
-| *x* | π(*x*) exact | Geometric | Geo error | + Newton | Newton error |
+| *x* | π(*x*) exact | ψ/log *x*, 17 zeros | Riemann, 17 zeros | Riemann, 108 zeros | li(*x*) alone |
 |---:|---:|---:|---:|---:|---:|
-| 100 | 25 | ~20 | ~19% | ~21 | ~17% |
-| 1,000 | 168 | ~144 | ~14% | ~144 | ~14% |
-| 10,000 | 1,229 | ~1,088 | ~11% | ~1,088 | ~11% |
-| 100,000 | 9,592 | ~8,682 | ~9.5% | ~8,689 | ~9.4% |
-| 1,000,000 | 78,498 | ~72,356 | ~7.8% | ~72,369 | ~7.8% |
+| 100 | 25 | 21 (17.1%) | 25.3 (1.04%) | 25.0 (0.19%) | 30.1 (20.5%) |
+| 1,000 | 168 | 144 (14.1%) | 168.0 (0.01%) | 167.6 (0.24%) | 177.6 (5.7%) |
+| 10,000 | 1,229 | 1,088 (11.5%) | 1,229.9 (0.07%) | 1,229.7 (0.06%) | 1,246.1 (1.4%) |
+| 100,000 | 9,592 | 8,689 (9.4%) | 9,591.0 (0.01%) | 9,589.7 (0.02%) | 9,629.8 (0.39%) |
+| 1,000,000 | 78,498 | 72,369 (7.8%) | 78,514.6 (0.02%) | 78,502.8 (0.01%) | 78,627.5 (0.17%) |
 
-*Table 1. Representative results with Nx=50, Nu=300, Y=50. Exact values depend on hardware and eigenvalue solver internals.*
+*Table 1. Nx=50, Nu=300, Y=50; 48 candidate eigenvalues, 17 converged. Errors in parentheses are relative to the exact count.*
+
+Three things are visible. First, the ψ/log *x* column is the prime number theorem's *x*/log *x* to within a few counts, independent of the zeros. Second, with Riemann's formula the same 17 geometric zeros recover π(*x*) to 0.25% or better everywhere and 0.1% or better for *x* ≥ 10⁴, beating li(*x*) at every tested *x*. Third, the 0.01% entries in the 17-zero column at 10³ and 10⁵ are partly fortunate — the oscillatory sum happens to be small there, and 108 zeros does slightly worse — so the fair summary is the bound, not the best case. Where zero count clearly matters is small *x*: at *x* = 100 going from 17 to 108 zeros cuts the error five-fold.
 
 ### 4.2 Speed
 
-The sieve rebuilds from scratch on every call, so its cost scales with *x*. The geometric method front-loads all cost into a one-time setup (surface build + Newton refinement), after which each prime query is essentially free.
+The sieve rebuilds from scratch on every call, so its cost scales with *x*. The geometric method front-loads all cost into a one-time setup (surface build + Newton refinement), after which each query is a fixed-cost analytic evaluation.
 
-| Method | *x* = 10k | *x* = 100k | *x* = 1M | Notes |
-|--------|---:|---:|---:|------|
-| Sieve (exact) | ~0.05ms | ~0.6ms | ~6ms | Rebuilds each call |
-| Li(*x*) approximation | ~0.05ms | ~0.1ms | ~0.1ms | No zeros needed |
-| Geometric query | ~0.01ms | ~0.01ms | ~0.01ms | After ~1.5s setup |
+| Method | *x* = 1M, per call | Notes |
+|--------|---:|------|
+| Sieve (exact) | ~6.5 ms | Rebuilds each call |
+| Li(*x*) | ~0.01 ms | No zeros; 0.17% error |
+| Riemann query, 17 zeros | ~2 ms | After ~1 s setup; 0.02% error |
 
-*Table 2. Query times per call (approximate). Break-even vs. the sieve at x = 1M occurs at approximately 200 queries.*
+*Table 2. Break-even vs. the sieve at x = 1M occurs at roughly 150–300 queries depending on hardware.*
 
 ---
 
@@ -177,36 +191,41 @@ This is not merely a computational curiosity. The connection between the modular
 
 ### 5.2 Limitations
 
-**Accuracy is limited by zero count.** The surface typically produces ~15–20 usable zeros (out of ~50 candidates). The explicit formula error scales as O(√*x* / log *x*) for a fixed zero count. Increasing accuracy requires either a finer grid (which yields more eigenvalues) or a systematic method for generating candidates beyond the surface's spectral range.
+**Accuracy is limited by zero count, but only mildly at these *x*.** The surface typically produces ~15–20 usable zeros (out of ~50 candidates), i.e. zeros up to γ ≈ 70. The leading li(*x*) term carries most of the count; the zeros contribute the oscillation, whose truncation error falls like 1/*T*. More geometric zeros need a larger *Y* and a finer grid in the cusp; the scan of §3.4 shows what additional zeros buy, but they are not geometric in origin.
 
 **Newton convergence is not guaranteed.** Approximately 60–70% of geometric candidates fail to bracket a zero within the default search radius of 2.0. The surface eigenvalues are rough approximations via the scattering phase condition, and many land too far from any true zero for the bisection to find a bracket.
 
-**The Dirichlet truncation is not the pseudo-Laplacian.** Colin de Verdière's rigorous results relate the pseudo-Laplacian eigenvalues to zeta zeros. Our code uses the simpler Dirichlet wall construction, for which the relationship is approximate and mediated by the scattering phase. The γ ≈ 2*t* identification is empirical at the accuracy level of this implementation.
+**The Dirichlet truncation is not the pseudo-Laplacian.** Colin de Verdière's rigorous results relate the pseudo-Laplacian eigenvalues to zeta zeros. The code here uses the simpler Dirichlet wall construction, for which the relationship is approximate and mediated by the scattering phase. The γ ≈ 2*t* identification is empirical at the accuracy level of this implementation.
 
-**This is not a new algorithm for production prime counting.** State-of-the-art methods (Lagarias–Miller–Odlyzko, Deléglise–Rivat) achieve exact counts in sub-linear time. The geometric method trades exactness for a demonstration that primes can be extracted from geometry alone.
+**This is not a new algorithm for production prime counting.** State-of-the-art methods (Lagarias–Miller–Odlyzko, Deléglise–Rivat) achieve exact counts in sub-linear time, and Riemann's formula with tabulated zeros is a textbook analytic method. The geometric method's contribution is provenance: the zeros feeding the formula came from a Laplacian, not from a table.
 
 ### 5.3 Open directions
 
-The primary open question is whether accuracy can be systematically improved to match conventional analytic methods. Two directions are natural: (1) using the surface eigenvalues as seeds for a global zero-finding pass along the critical line, collecting all zeros up to some height *T* rather than just those near geometric candidates; (2) increasing the grid resolution and truncation height to produce more candidate zeros from the surface itself.
+With the conversion fixed, the interesting question is how far the *geometric* zero supply can be pushed: increasing *Y* and the cusp resolution to raise the highest converged γ, and understanding why 60–70% of candidates fail to bracket (whether the failures are grid artefacts or a genuine feature of Dirichlet truncation versus the pseudo-Laplacian). A second direction is to quantify the Dirichlet-wall eigenvalue offsets against the scattering-phase prediction directly, rather than through prime counts.
 
 ---
 
 ## 6. Code
 
-The full implementation is in `geometric_prime_counter_v2.py`. It is self-contained: a single Python 3 script with no dependencies beyond numpy and scipy.
+The full implementation is in `geometric_prime_counter_v3.py`. It is self-contained: a single Python 3 script with no dependencies beyond numpy and scipy.
 
 ```bash
 pip install numpy scipy
-python geometric_prime_counter_v2.py
+python geometric_prime_counter_v3.py
 ```
 
-The three main functions are:
+The main functions are:
 
 - `build_surface(Nx, Nu, Y)` — discretise the modular surface and return eigenvalues and candidate zeros
 - `refine_all(candidates)` — Newton-refine a list of zero candidates via the Riemann-Siegel *Z* function
-- `count_primes(x, zeros)` — estimate π(*x*) via the Chebyshev explicit formula
+- `scan_zeros(t_max)` — optional prime-free sweep of *Z*(*t*) collecting all zeros below *t*\_max
+- `riemann_J(x, zeros)` — Riemann's *J*(*x*) from a list of zeros
+- `count_primes(x, zeros)` — π(*x*) from *J* by the prime-power recursion
+- `count_primes_psi(x, zeros)` — the shortcut conversion ψ(*x*)/log *x*, included for comparison
 
-All three are independently usable. In particular, `count_primes()` can be called with any list of zeta zeros — geometric, Newton-refined, or from a lookup table — making it easy to benchmark the geometric zeros against known values.
+All are independently usable. `count_primes()` accepts any list of zeta zeros — geometric, scanned, or tabulated — so the geometric zeros can be benchmarked against known values.
+
+An earlier version of this note (`geometric_prime_counter_v2.py`, April 2026) used the ψ(*x*)/log *x* conversion and reported 7–17% errors; the diagnostic `psi_vs_riemann_diagnostic.py` that isolated the cause is kept alongside it.
 
 ---
 
@@ -217,10 +236,11 @@ All three are independently usable. In particular, `count_primes()` can be calle
 3. B. Riemann, *Über die Anzahl der Primzahlen unter einer gegebenen Grösse*, Monatsberichte der Berliner Akademie (1859).
 4. C. L. Siegel, *Über Riemanns Nachlass zur analytischen Zahlentheorie*, Quellen und Studien zur Geschichte der Mathematik **2** (1932) 45–80.
 5. M. V. Berry and J. P. Keating, *The Riemann zeros and eigenvalue asymptotics*, SIAM Review **41** (1999) 236–266.
-6. S. A. Hartnoll and M. Yang, *The conformal primon gas at the end of time*, JHEP **07** (2025) 281. [arXiv:2502.02661](https://arxiv.org/abs/2502.02661).
+6. H. M. Edwards, *Riemann's Zeta Function*, Academic Press (1974); Dover reprint (2001). Chapter 1 gives the derivation of the formula for *J*(*x*).
+7. S. A. Hartnoll and M. Yang, *The conformal primon gas at the end of time*, JHEP **07** (2025) 281. [arXiv:2502.02661](https://arxiv.org/abs/2502.02661).
 
 ---
 
-## Acknowledgments
+## AI-assisted preparation
 
-This work was developed through human-AI collaboration. The author provided the physical intuition and mathematical framing; Claude (Anthropic) assisted with implementation, numerical verification, and document preparation.
+Large-language-model assistance (Claude, Anthropic) was used during this research as a tool for checking derivations, drafting text, and writing verification code, under the sole direction of the author, who takes full responsibility for the entire content. All exact values and identities were verified independently of the tool by machine computation as described above, and every numerical claim is reproducible from the released scripts.
