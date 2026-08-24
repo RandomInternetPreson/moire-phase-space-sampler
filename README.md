@@ -10,6 +10,8 @@ Current Interesting Literature:
 
 - [Displacement Spacetime](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/docs) - [paper-link](https://zenodo.org/records/21446044)
 
+- [Geometric Prime Counting via the Modular Surface](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/Geometric_Prime_Counter) - [paper-link](https://zenodo.org/records/22073845)
+
 - [Displacement-Phase Modulated Gravitation and the Neutron Star Mass Gap](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/dst_mass_gap) - [paper-link](https://zenodo.org/records/21446160)
 
 
