@@ -1,3 +1,10 @@
+Current Relevant Links:
+
+[The exact price of local realism in CHSH experiments: a measurement-dependence-detection trade-off surface, a moiré phase-locking mechanism that saturates it, and an unmeasured fringe in the fourfold coincidence sum](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/DST_Bell_MI/Exact_Price_Source_Material)
+
+
+
+(everything below is WIP)
 # Moiré Quantum Phase-Space Reconstructor
 
 This repo documents an observation, the math that follows from it, a working simulation, and Python code to reproduce all results. The core claim is modest and specific. The implications are left to the reader.
