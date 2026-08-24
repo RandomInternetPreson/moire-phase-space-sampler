@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Settings-torus scan of the fourfold coincidence sum}
+\rhead{A. Alai}
+\cfoot{\thepage}
+\setlength{\parskip}{4pt}
+\begin{document}
+
+\begin{center}
+{\Large\bfseries An unmeasured observable in two-channel Bell experiments}\\[3pt]
+{\large Proposal for a settings-torus scan of the fourfold coincidence sum}\\[5pt]
+Aaron Alai (ORCID \href{https://orcid.org/0000-0003-4704-7271}{0000-0003-4704-7271})\\
+August 2026 $\cdot$ companion to \href{https://arxiv.org/abs/2608.18886}{arXiv:2608.18886}
+\end{center}
+
+\section*{The observable}
+In a two-channel polarization Bell experiment with analyzer settings $(a,b)$, the fourfold coincidence sum
+\[
+R_4(a,b) = R_{++}+R_{+-}+R_{-+}+R_{--}
+\]
+is predicted flat by quantum mechanics under fair sampling, and has long been recognised as the natural fair-sampling diagnostic. Its angular dependence has never been bounded below the percent level: the landmark two-channel experiment reported the sum only as ``typically $\sim$80\,s$^{-1}$'', the percent-level setting-dependent anomalies in the Innsbruck raw data were attributed to pair-identification procedures rather than bounded, and the modern high-efficiency tests adopted the Eberhard/CH form --- a rigorous sidestep that leaves the observable unmeasured. Full record: arXiv:2608.18886, \S9.
+
+Two results in arXiv:2608.18886 bear on this sum. First, a general one: no local model that reproduces the singlet correlation exactly through the detection channel alone can also have an angle-independent coincidence rate (Proposition~1); some angular modulation is forced. Second, a specific one: for the detection profile solved in the paper (moir\'e phase locking, MPL, at full detection share) the modulation is a $\cos 4(a-b)$ fringe of peak-to-peak relative amplitude $12.4\%$, leading harmonic exceeding its first overtone $\approx 6{:}1$. Hybrid models paying partly through measurement dependence show proportionally reduced amplitude; the trade-off is quantified by linear programming along that family ($\delta_f<1\%$ forces $\geq 68\%$ of Hall's measurement-dependence floor; $\delta_f<0.5\%$ forces $\geq 80\%$).
+
+\textbf{Why no existing dataset bounds it.} The fringe vanishes identically at the CHSH angles: $\cos(2k\cdot 45^\circ)=\cos(2k\cdot 135^\circ)$ for every harmonic $k$, so $R_4(22.5^\circ)=R_4(67.5^\circ)$ exactly, term by term (arXiv:2608.18886, Theorem~2). Four-point CHSH experiments --- including the loophole-free tests --- are mathematically blind to the observable. Only a full settings scan sees it.
+
+\section*{The measurement}
+Scan the full settings torus $(a,b)$ --- e.g.\ $24\times 24$ points --- and Fourier-analyse $\log R_4(a,b)$. Any local apparatus response factorizes as $A(a)B(b)$ and after the logarithm is additive: it occupies only the Fourier axes, at any amplitude, harmonic content, or drift phase. The physical signal $\cos 4(a-b)$ is irreducibly joint and occupies the anti-diagonal pixels $(k,-k)$. The estimator is therefore self-vetoing against factorizable systematics. Because the fringe has known (zero) phase, the estimator is the signed projection onto the $(2,-2)$ pixel; a magnitude estimator would be biased positive under noise and is not used. The signed projection assumes the relative zero of the two analyzers is calibrated: a relative offset $\delta$ rotates signal into the quadrature and costs a factor $\cos 4\delta$ (0.3\% at $\delta = 1^\circ$). The quadrature (imaginary) component of the same pixel must be null-consistent in every dataset, signal or none, and therefore serves as a built-in systematic check.
+
+In simulation with 3\% apparatus ripple and Poisson noise at $10^6$ counts per point, a null input is recovered as $(0.00\pm 0.01)\%$ and the estimator is linear from 0.2\% through the full 12.4\%. Poisson-limited $5\sigma$ sensitivity at $\delta_f=0.1\%$, measured against the null distribution, is reached at $\sim 4\times 10^5$ counts per point ($\sim 2.3\times10^8$ pairs); the paper quotes the deliberately conservative figure of $\sim$7 hours at $5\times10^4$ pairs/s, or $\sim$20 minutes at $10^6$ pairs/s, and that is the figure to plan against. Controls: randomized visiting order and heralded-singles normalization against source drift; interleaved reference points against slow systematics; linear-regime detector rates; quadrature null check at the signal pixel.
+
+\textbf{Requirements.} A standard polarization-entangled source, independently rotatable two-channel analyzers, and coincidence rates $\gtrsim 5\times 10^4$ pairs/s. No loophole-free rigour is needed: the observable is a rate map, not an inequality violation.
+
+\section*{Outcomes}
+Every branch is publishable:
+\begin{enumerate}[nosep]
+\item \textbf{Flatness at 0.1\%} --- the first sub-percent bound on a diagnostic left unmeasured for four decades. Through the trade-off surface of arXiv:2608.18886, it forces any local account of the singlet to carry $\gtrsim 95\%$ of Hall's measurement-dependence floor, making measurement dependence the governing framework for local realism.
+\item \textbf{A fringe of the predicted shape} --- a flat-rate prediction of quantum mechanics fails.
+\item \textbf{A fringe of a different shape} --- the detection sector is excluded as constructed, and a joint $(a,b)$ dependence that no factorizable apparatus model can produce is characterised.
+\end{enumerate}
+
+\section*{Materials}
+Paper: \href{https://arxiv.org/abs/2608.18886}{arXiv:2608.18886} (trade-off surface, mechanism, Theorem~2, protocol \S10).\\
+Scripts, including the sensitivity simulation above (\texttt{protocol\_sensitivity.py}): \href{https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/DST_Bell_MI/Exact_Price_Source_Material}{\texttt{Exact\_Price\_Source\_Material}} folder of the \texttt{moire-phase-space-sampler} repository (GitHub, user \texttt{RandomInternetPreson}).
+
+\medskip
+\noindent Aaron Alai $\cdot$ ORCID 0000-0003-4704-7271 $\cdot$ correspondence via the arXiv listing for 2608.18886.
+\end{document}
