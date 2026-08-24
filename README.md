@@ -16,7 +16,7 @@
 
 - [Displacement-Phase Modulated Gravitation and the Neutron Star Mass Gap](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/dst_mass_gap) - [paper-link](https://doi.org/10.5281/zenodo.21446160)
 
-- Superseded: Measurement Independence and the Geometry of S² [ai.viXra.org:2604.0075](https://ai.vixra.org/abs/2604.0075) claimed a numerical link between Hall's 13.81% bound and a DST coupling; the exact floors in arXiv:2608.00124 replaced it. It remains public as a record of a wrong turn.
+- Superseded: Measurement Independence and the Geometry of S² [ai.viXra.org:2604.0075](https://ai.vixra.org/abs/2604.0075) claimed a numerical link between Hall's 13.81% bound and a DST coupling; the exact floors in [arXiv:2608.00124](https://arxiv.org/abs/2608.00124) replaced it. It remains public as a record of a wrong turn.
 
 ---
 
