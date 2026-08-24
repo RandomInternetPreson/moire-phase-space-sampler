@@ -1,6 +1,19 @@
-Current Relevant Links:
+Current Relevant Literature:
 
-[The exact price of local realism in CHSH experiments: a measurement-dependence-detection trade-off surface, a moiré phase-locking mechanism that saturates it, and an unmeasured fringe in the fourfold coincidence sum](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/DST_Bell_MI/Exact_Price_Source_Material)
+- [The exact price of local realism in CHSH experiments: a measurement-dependence-detection trade-off surface, a moiré phase-locking mechanism that saturates it, and an unmeasured fringe in the fourfold coincidence sum](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/DST_Bell_MI/Exact_Price_Source_Material) - [paper-link](https://arxiv.org/abs/2608.18886)
+
+- [Exact minimum measurement dependence for faithful local deterministic models of multipartite GHZ-Mermin correlations](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/DST_Bell_MI/Price_of_Locality_Source_Material) - [paper-link](https://arxiv.org/abs/2608.00124)  
+
+- [The Price of Locality](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/DST_Bell_MI/Price_of_Locality_Source_Material) - [paper-link](https://zenodo.org/records/21445609)
+
+Current Interesting Literature:
+
+- [Displacement Spacetime](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/docs) - [paper-link](https://zenodo.org/records/21446044)
+
+- [Displacement-Phase Modulated Gravitation and the Neutron Star Mass Gap](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/dst_mass_gap) - [paper-link](https://zenodo.org/records/21446160)
+
+
+
 
 
 
