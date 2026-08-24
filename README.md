@@ -6,7 +6,7 @@
 
 - [Geometric Prime Counting via the Modular Surface](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/Geometric_Prime_Counter) - [paper-link](https://doi.org/10.5281/zenodo.22073845)
 
-# *Exploratory and framework material*:
+## *Exploratory and framework material*:
 
 - Author's note about DST: Displacement Spacetime (DST) is the speculative framework that motivated the questions above (exact minimum measurement dependence and exact price of local realism in CHSH experiments). DST required that perfect measurement independence fail by some small amount, which raised the question of exactly how small that amount must be — the arXiv papers answer it with proofs that stand entirely on their own. DST also suggested the geometric mechanism explored in the CHSH paper. The distinction matters: DST was the tool for the journey, and none of the standalone results are evidence that DST is real. It is best thought of as a plum pudding model — useful for provoking the right experiments, held without conviction.
   
