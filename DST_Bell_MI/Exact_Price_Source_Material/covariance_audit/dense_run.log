@@ -1,0 +1,7 @@
+
+=== NSH=32  mode=random  seed=0  NANG=161 ===
+  evolving 506880 trajectories (5 tau snapshots)...
+  done in 15047s
+  banks checkpointed to banks_nsh32_random0_nang161_nw2048.npz
+  saved rho_nsh32_random0_eps0.01_nang161.json
+  eps=0.01  MD/floor=  1.000   active atoms 656/15360   top-12 carry 0.10
