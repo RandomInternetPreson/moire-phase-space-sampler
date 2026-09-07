@@ -4,7 +4,7 @@
 
 - [Exact minimum measurement dependence for faithful local deterministic models of multipartite GHZ-Mermin correlations](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/DST_Bell_MI/Price_of_Locality_Source_Material) - [paper-link](https://arxiv.org/abs/2608.00124)
 
-- [Geometric Prime Counting via the Modular Surface](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/Geometric_Prime_Counter) - [paper-link](https://doi.org/10.5281/zenodo.22073845)
+- [Prime-Free Prime Counting, and a Negative Result on Geometric Provenance](https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/Geometric_Prime_Counter) - [paper-link](https://doi.org/10.5281/zenodo.22559209)
 
 ---
 
