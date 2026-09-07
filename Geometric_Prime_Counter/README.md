@@ -1,5 +1,5 @@
 # Prime-Free Prime Counting, and a Negative Result on Geometric Provenance
-https://doi.org/10.5281/zenodo.22073845
+DOI (all versions): [10.5281/zenodo.22073844](https://doi.org/10.5281/zenodo.22073844) · this version (v4): [10.5281/zenodo.22559209](https://doi.org/10.5281/zenodo.22559209) · v3: [10.5281/zenodo.22073845](https://doi.org/10.5281/zenodo.22073845)
 
 **A prime-free pipeline: Riemann–Siegel zeros → Riemann's J(x) → π(x) — and controlled tests showing that a truncated modular surface does not supply the zeros**
 
