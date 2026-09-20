@@ -42,5 +42,5 @@ simulation, and reference output data — is in:
 See the README there for a script-by-script map from each paper section to the
 claims it verifies.
 
-`Visualizer_WIP/` is an exploratory visualization not referenced by the paper.
+`Interactive_Visualizer` is an exploratory visualization not referenced by the paper.
 [Click here to view the live Visualizer](https://randominternetpreson.github.io/moire-phase-space-sampler/DST_Bell_MI/Exact_Price_Source_Material/Interactive_Visualizer/moire_garden_v14.html)
