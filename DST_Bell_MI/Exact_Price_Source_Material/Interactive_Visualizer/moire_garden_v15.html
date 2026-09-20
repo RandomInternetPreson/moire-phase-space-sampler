@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Moiré Garden — a map of relative phase (v14)</title>
+<style>
+body{margin:0;background:#0b0e12;color:#d8d5cc;font-family:Georgia,serif;overflow-x:hidden}
+#hdr{text-align:center;padding:14px 0 4px}
+#hdr h1{font-size:22px;font-weight:normal;letter-spacing:2px;margin:0;color:#9FE1CB}
+#hdr p{font-size:13px;color:#888780;margin:4px 0 0;font-style:italic}
+#tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:5px;padding:10px 0}
+.tab{background:#12161c;border:1px solid #26302c;color:#B4B2A9;padding:6px 9px;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit;white-space:nowrap}
+.tab.on{background:#0F3D30;color:#9FE1CB;border-color:#1D9E75}
+#stage{display:block;margin:6px auto;background:#0d1117;border:1px solid #1c2128;border-radius:8px}
+#bar{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;padding:8px;font-size:12px;color:#B4B2A9}
+#bar label{display:flex;align-items:center;gap:6px}
+#bar input[type=range]{width:120px;accent-color:#1D9E75}
+#bar button{background:#1a1f26;border:1px solid #3a4a44;color:#9FE1CB;padding:5px 12px;border-radius:5px;cursor:pointer;font-family:inherit;font-size:12px}
+#cap{max-width:940px;margin:2px auto 24px;font-size:13px;color:#9a978e;line-height:1.6}
+#cap .lead{color:#c9c6bd}
+.v{color:#AFA9EC}.t{color:#5DCAA5}.e{color:#F0997B}
+#cap .nar{display:block;margin-top:10px;padding:8px 12px;border-left:2px solid #26302c;color:#8fa79c;font-style:italic}
+#cap .nar b{font-style:normal;color:#9FE1CB}
+#hdr .tier{font-size:11px;color:#6f7a76;font-style:normal;margin-top:6px}
+#bar .reg{color:#F0997B;min-width:190px}
+</style>
+</head>
+<body>
+<div id="hdr"><h1>THE MOIRÉ GARDEN</h1>
+<p>a map of relative phase, run live on the equations it earned — v14</p>
+<p class="tier">Exploratory visualization (sandbox tier). Standalone results: arXiv:2608.18886 · arXiv:2608.00124. Nothing on this page is required by either paper.</p></div>
+<div id="tabs"></div>
+<canvas id="stage" width="1100" height="600"></canvas>
+<div id="bar"></div>
+<div id="cap"></div>
+<script>
+"use strict";
+const cv=document.getElementById('stage'),cx=cv.getContext('2d');
+const W=cv.width,H=cv.height,TAU=Math.PI*2;
+const COL={teal:'#5DCAA5',teal2:'#1D9E75',vio:'#AFA9EC',vio2:'#7F77DD',emb:'#D85A30',embL:'#F0997B',dim:'#888780',bg:'#0d1117'};
+const H_M=[0,0.025,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],
+H_V=[1.17451,1.17372,1.17106,1.16496,1.15789,1.15012,1.14180,1.13300,1.12377,1.11414,1.10414,1.09379,1.08311,1.07211,1.06081,1.04922,1.03735,1.02521,1.01281,1.00016,1.00008,1];
+function hInterp(m){let i=1;while(i<H_M.length-1&&H_M[i]<m)i++;
+ const t=(m-H_M[i-1])/(H_M[i]-H_M[i-1]);return H_V[i-1]+t*(H_V[i]-H_V[i-1]);}
+function Dm(m){m=Math.max(0,Math.min(1,m));return Math.sqrt(m)*hInterp(m);}
+function clear(){cx.fillStyle=COL.bg;cx.fillRect(0,0,W,H);}
+function txt(s,x,y,c,sz,al){cx.fillStyle=c||COL.dim;cx.font=(sz||13)+'px Georgia';cx.textAlign=al||'left';cx.fillText(s,x,y);}
+const tabsEl=document.getElementById('tabs'),barEl=document.getElementById('bar'),capEl=document.getElementById('cap');
+let scenes=[],cur=0,frame=0;
+function slider(lbl,min,max,step,val,cb){const l=document.createElement('label');
+ l.innerHTML=lbl+' ';const i=document.createElement('input');i.type='range';
+ i.min=min;i.max=max;i.step=step;i.value=val;const o=document.createElement('span');
+ o.textContent=val;o.style.minWidth='34px';o.style.color='#9FE1CB';
+ i.oninput=()=>{o.textContent=(+i.value).toFixed(step<1?(step<0.1?2:1):0);cb(+i.value);};
+ l.appendChild(i);l.appendChild(o);barEl.appendChild(l);return i;}
+function button(lbl,cb){const b=document.createElement('button');b.textContent=lbl;b.onclick=cb;barEl.appendChild(b);return b;}
+function setScene(k){cur=k;barEl.innerHTML='';capEl.innerHTML=scenes[k].cap;
+ scenes[k].ui();document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',i===k));}
+
+/* ================= SCENE 1 : THE WALKWAY ================= */
+(function(){
+let dth=22.5,rj=0.02,drift=0.6,pan=0,mode=0;
+function regime(r){return r<0.01?'cold crystal (zero-point floor ≈ 0.005)':r<0.03?'crystal at room temperature (calcite ≈ 0.02)':r<0.08?'hot solid':r<0.15?'melting — Lindemann threshold ≈ 0.1':r<0.35?'liquid':'gas — no persistent cells';}
+let dither=false;
+let FW=220,FH=120;
+let field=new Float32Array(FW*FH);
+const off=document.createElement('canvas');off.width=FW;off.height=FH;
+let octx=off.getContext('2d');let idata=octx.createImageData(FW,FH);
+function setRes(w){FW=w|0;FH=Math.round(FW*120/220);
+ field=new Float32Array(FW*FH);off.width=FW;off.height=FH;
+ octx=off.getContext('2d');idata=octx.createImageData(FW,FH);}
+function lat(u,p,ph){return 0.5+0.5*Math.cos(TAU*u/p+ph);}
+function fieldAt(x,y){
+ const th=dth*Math.PI/180,jp=rj*TAU;
+ const c1=Math.cos(Math.PI/4),s1=Math.sin(Math.PI/4);
+ const ct=Math.cos(th+Math.PI/4),st=Math.sin(th+Math.PI/4);
+ const j1=jp*Math.sin(0.05*x+frame*0.02),j2=jp*Math.sin(0.04*y-frame*0.017+2);
+ const dp=TAU*pan/26;
+ const P=lat(x*c1+y*s1,14,j1)*lat(-x*s1+y*c1,14,-j1);
+ const A=lat(x*ct+y*st,26,j2+dp)*lat(-x*st+y*ct,26,j2+dp);
+ return P*A;}
+function computeField(){
+ for(let iy=0;iy<FH;iy++)for(let ix=0;ix<FW;ix++){
+  const x=(ix-FW/2)*(1100/FW),y=(iy-FH/2)*(600/FH);
+  field[iy*FW+ix]=fieldAt(x,y);}}
+function fence(pitch,ang,phase,color,lw,alpha,jit){
+ cx.save();cx.beginPath();cx.rect(0,0,W-250,H);cx.clip();
+ cx.translate((W-250)/2,H/2);cx.rotate(ang);cx.globalAlpha=alpha;
+ cx.strokeStyle=color;cx.lineWidth=lw;
+ const R=Math.hypot(W,H);
+ for(const dir of [Math.PI/4,-Math.PI/4]){
+  cx.save();cx.rotate(dir);
+  for(let u=-R;u<R;u+=pitch){
+   const j=jit*Math.sin(u*0.13+frame*0.02+phase);
+   cx.beginPath();cx.moveTo(u+phase%pitch+j,-R);cx.lineTo(u+phase%pitch+j,R);cx.stroke();}
+  cx.restore();}
+ cx.globalAlpha=1;cx.restore();}
+scenes.push({name:'1 · the walkway',
+cap:'<span class=lead>This picture is a map of relative phase, not a photograph of a room.</span> Every point on the plane is a possible relationship between two lattices. The plane is the register; the lab floor is elsewhere.<br><br>Take a photon, and the atoms of a polarizer, to be phase relationships between two things. The <span class=v>large mesh is the photon</span> — not one photon but every position a photon’s phase relationship could occupy, drawn at once. The <span class=t>small mesh is the polarizer’s lattice</span>, itself built of phase relationships. Where the two overlap, the beat between them is the photon’s state against that polarizer. <b>Nodes</b> grades every crossing by how strongly the two meshes agree: <span class=e>ember — the two lock</span>; a photon at an ember node is always registered. <span class=v>Violet — the two neither lock nor anti-lock</span>: the undecided register, m = |cos 2(λ−a)| → 0, where a photon slides past the polarizer unregistered, because in phase space the photon has become part of the thing it is meeting. The contiguous violet lines are lines of constant relative phase. They are not paths and nothing travels along them; their orientation is fixed by Δθ alone and survives every amount of jitter.<br><br><b>Relative angle Δθ</b> turns one mesh against the other; the beat wavelength p/(2 sin(Δθ/2)) is printed above. <b>Drift</b> slides the photon mesh across the fixed polarizer mesh at a constant rate — the detuning v of Eq. (4) in arXiv:2608.18886 — and the pattern translates by the lever arm while the census at right does not move: rates are flat under drift, and only Δθ changes them. <b>Jitter / pitch</b> displaces the fence lines by that fraction of their spacing, as one long-wavelength displacement wave (a single phonon, not incoherent noise). The scale is logarithmic because every solid you will ever put in a beam sits near the bottom of it: a calcite polarizer at 300 K has jitter/pitch ≈ 0.02, zero-point motion floors it near 0.005, and solids melt near 0.1 (Lindemann). The violet diamond shape that emerges from overlaying all possible positions of the photon’s phase is the default condition of matter, not a low-temperature exception; above ≈ 0.1 the slider describes liquids and gases, which have no persistent violet diamond cells and therefore no orientation to hand a photon. The <b>histogram</b> is the census of node strengths, and that census is the rate observable: how it moves with Δθ is what the fourfold-sum fringe of tab 5 measures, and what quantum mechanics says never moves.<span class=nar><b>Narrative — the walkway.</b> A pedestrian bridge over a busy road, chain-link fence on both sides, seen from a restaurant at its height. From the table you do not see two fences; you see the pattern the two make together, and as you move along the room the pattern moves with you, the same pattern from every seat. That is a person looking at a relationship between two things and seeing neither thing. The Garden is that lunch with the fences named: in this narrative the two fences are the two meshes and the walk along the room is the drift slider, and the relationship you saw over lunch is the object the physics is about.</span>',
+ui(){slider('relative angle Δθ',0,90,0.5,dth,v=>dth=v);
+ slider('node grid resolution',120,520,1,FW,v=>setRes(v));
+ const ls=slider('jitter / pitch (log scale)',-3,0,0.01,Math.log10(rj),v=>{rj=Math.pow(10,v);});
+ const lo_=ls.nextSibling;const rg=document.createElement('span');rg.className='reg';
+ const upd=()=>{lo_.textContent=rj.toFixed(3);rg.textContent=regime(rj);};ls.addEventListener('input',upd);upd();barEl.appendChild(rg);
+ slider('drift',0,2,0.05,drift,v=>drift=v);
+ const db=button('sample dither: OFF (grid census)',()=>{dither=!dither;
+  db.textContent='sample dither: '+(dither?'ON (fair sampling)':'OFF (grid census)');});
+ button('nodes ⇄ lines',()=>mode=1-mode);},
+step(){pan+=drift;},
+draw(){clear();computeField();
+ if(!window._gTH){const samp=[];
+  for(let i=0;i<field.length;i+=13)samp.push(field[i]);
+  samp.sort((a,b)=>a-b);
+  window._gTH={lo:samp[Math.floor(samp.length*0.10)],
+   med:samp[Math.floor(samp.length*0.5)],
+   hi:samp[Math.floor(samp.length*0.92)]};}
+ const lo=window._gTH.lo,med=window._gTH.med,hi=window._gTH.hi;
+ if(mode===0){
+  for(let i=0;i<field.length;i++){const v=field[i],k=4*i;
+   if(v>=hi){idata.data[k]=188;idata.data[k+1]=84;idata.data[k+2]=52;}
+   else if(v<=lo){idata.data[k]=168;idata.data[k+1]=148;idata.data[k+2]=236;}
+   else if(v<med){idata.data[k]=24;idata.data[k+1]=92;idata.data[k+2]=78;}
+   else{idata.data[k]=46;idata.data[k+1]=148;idata.data[k+2]=118;}
+   idata.data[k+3]=255;}
+  octx.putImageData(idata,0,0);
+  cx.imageSmoothingEnabled=true;
+  cx.drawImage(off,0,0,W-250,H);
+ } else {
+  cx.globalCompositeOperation='lighter';
+  fence(14,0,0,COL.teal2,1.0,0.5,rj*14);
+  fence(26,dth*Math.PI/180,pan,COL.vio2,1.6,0.45,rj*26);
+  cx.globalCompositeOperation='source-over';
+ }
+ const cN=[0,0,0,0];
+ if(dither){
+  for(let i=0;i<6000;i++){
+   const x=(Math.random()-0.5)*1100,y=(Math.random()-0.5)*600;
+   const v=fieldAt(x,y);
+   cN[v>=hi?0:(v<=lo?3:(v<med?2:1))]++;}
+ } else {
+  for(let i=0;i<field.length;i+=5){const v=field[i];
+   cN[v>=hi?0:(v<=lo?3:(v<med?2:1))]++;}
+ }
+ const tot=cN[0]+cN[1]+cN[2]+cN[3];
+ let hm=1;for(const c of cN)hm=Math.max(hm,c);
+ const hx=W-230,hy=90,hw=190,hh=380;
+ txt('node color populations',hx,hy-14,COL.dim,13);
+ txt('(these four counts ARE the',hx,hy+hh+22,COL.dim,11);
+ txt('rate observable)',hx,hy+hh+38,COL.dim,11);
+ cx.strokeStyle='#26302c';cx.strokeRect(hx,hy,hw,hh);
+ const names=['ember','light teal','dark teal','violet'];
+ const cols=['rgb(188,84,52)','rgb(46,148,118)','rgb(24,92,78)','rgb(168,148,236)'];
+ for(let b=0;b<4;b++){const y=hy+30+b*92;
+  const w=cN[b]/hm*(hw-16);
+  cx.fillStyle=cols[b];cx.fillRect(hx+8,y,Math.max(w,2),54);
+  txt(names[b]+'  '+(100*cN[b]/tot).toFixed(1)+'%',hx+8,y+70,cols[b],12);}
+
+ txt('ember = the two fences lock (always registered)',hx,hy-34,COL.embL,11);
+ const beat=dth>0.5?(14/(2*Math.sin(dth*Math.PI/360))).toFixed(0):'∞';
+ txt('beat wavelength ≈ '+beat+' px   ·   Δθ = '+dth.toFixed(1)+'°   ·   jitter/pitch = '+rj.toFixed(3)+' — '+regime(rj)+'   ·   view: '+(mode?'lines':'nodes')+'   ·   v14',20,30,COL.teal,13);}});
+})();
+
+/* ================= SCENE 2 : THE JOINT BEAT ================= */
+(function(){
+let v=7,kap=1.0,tauMean=3.0,tauSpread=0.6,pairIdx=0,view=0;
+const k1=0.22,k2=1.21;
+const pairs=[[0,22.5],[0,67.5],[45,22.5],[45,67.5]];
+const N=420;let walkers=[],hist=new Float32Array(72);
+function U(l,a,b){const A=2*(l-a),B=2*(l+Math.PI/2-b);
+ return -kap*(k1*Math.cos(A)+k1*Math.cos(B)+0.5*k2*Math.cos(A+B));}
+function dU(l,a,b){const A=2*(l-a),B=2*(l+Math.PI/2-b);
+ return kap*(k1*2*(Math.sin(A)+Math.sin(B))+k2*2*Math.sin(A+B));}
+function spawn(){walkers=[];hist.fill(0);
+ for(let i=0;i<N;i++)walkers.push({lam:Math.random()*Math.PI,
+  tau:tauMean*(1+tauSpread*(Math.random()*2-1)),age:0,frozen:false});}
+spawn();
+const GW=140,GH=76;let G=new Float32Array(GW*GH);
+function buildField(){const a=pairs[pairIdx][0]*Math.PI/180,b=(pairs[pairIdx][1]+90)*Math.PI/180;
+ const q=TAU/64;
+ for(let iy=0;iy<GH;iy++)for(let ix=0;ix<GW;ix++){
+  const x=ix*7.8,y=iy*7.8;
+  G[iy*GW+ix]=(0.5+0.5*Math.cos(q*(x*Math.cos(a)+y*Math.sin(a))))*
+              (0.5+0.5*Math.cos(q*(x*Math.cos(b)+y*Math.sin(b))));}}
+buildField();
+scenes.push({name:'2 · the joint beat',
+cap:'<span class=lead>The joint beat: the pattern the two analyzers make together, and what that pattern does to a hidden phase.</span> In Eq. (4) of arXiv:2608.18886 the pair’s hidden phase λ does not evolve under Alice’s fence alone or Bob’s alone; it evolves under one function U(λ) whose shape is fixed by both settings at once — the standing beat pattern of the apparatus. This tab shows that one function two ways. <b>Ring</b>: the register λ on [0, π), with <span class=t>Alice’s axis in teal</span> and <span class=v>Bob’s in violet</span>; the violet curve inside the ring is U(λ) itself, drawn so that dips toward the centre are locks, the places where v − U′ = 0 and a phase that arrives there stops. <b>Field</b>: the same two fences overlaid on a plane at their setting angles, so you can see the beat they make; the profile along the bottom is U(λ), the register slice through that beat. Cycle the setting pair and both views change together, because both are the apparatus.<br><br><b>The phases.</b> Each teal dot is one pair’s λ, drawn uniformly at birth and then run deterministically, dλ/dt = v − U′(λ), for a frozen flight time τ. No noise anywhere: nothing shakes the dots, nothing rolls dice. A phase in the running regime moves fast where v − U′ is large and slow where the joint beat holds it back, so it spends more time near the dips — the residence-time law. A phase whose v is smaller than the beat’s steepest slope is captured at a lock and stops early. When a phase’s τ runs out it freezes where it stands and is added to the census — the ember bars. That census depends on (a, b) because U does; that dependence is measurement dependence, and it is the entire price the mechanism pays. <b>Drift v</b> is the detuning between the pair’s pattern and the apparatus’s; <b>κ</b> scales the joint beat; <b>τ</b> and its spread set how long the phases run before they freeze. Here every station offset is zero, so what you see is the terrain alone. Tab 6 adds the frozen offsets ξ<sub>A</sub>, ξ<sub>B</sub> per event — the variety that turns this terrain into the quantum statistics.<br><br><b>A record.</b> The first version of this tab drove the phases with a thermal noise bath and drew particles streaming through the field along its lanes. Both are gone: the finished mechanism has no bath, and the field is a map of relative phase, not a room — the walkers are values of λ, and the lanes are lines of constant relative phase, not routes. The old tab reached about 44% of Hall’s floor; removing the bath is what let tab 6 pay the floor exactly.',
+ui(){slider('drift v (the detuning)',0,12,0.1,v,x=>v=x);
+ slider('joint-beat strength κ',0,3,0.01,kap,x=>kap=x);
+ slider('flight time τ (mean)',0.5,8,0.1,tauMean,x=>tauMean=x);
+ slider('flight-time spread',0,1,0.02,tauSpread,x=>tauSpread=x);
+ button('cycle setting pair',()=>{pairIdx=(pairIdx+1)%4;buildField();spawn();});
+ button('release new cohort',()=>spawn());
+ button('ring ⇄ field',()=>view=1-view);},
+step(){const a=pairs[pairIdx][0]*Math.PI/180,b=pairs[pairIdx][1]*Math.PI/180;
+ const dt=0.004;
+ for(let s=0;s<6;s++)for(const w of walkers){if(w.frozen)continue;
+  let l=w.lam+(v-dU(w.lam,a,b))*dt;l%=Math.PI;if(l<0)l+=Math.PI;w.lam=l;
+  w.age+=dt;if(w.age>=w.tau){w.frozen=true;hist[Math.floor(w.lam/Math.PI*72)%72]+=1;}}},
+draw(){clear();
+ const a=pairs[pairIdx][0],b=pairs[pairIdx][1],ar=a*Math.PI/180,br=b*Math.PI/180;
+ let nf=0;for(const w of walkers)if(w.frozen)nf++;
+ if(view===0){
+  const cxx=W/2,cy=H/2,R=200;
+  cx.strokeStyle='#1c2128';cx.lineWidth=1;cx.beginPath();cx.arc(cxx,cy,R,0,TAU);cx.stroke();
+  /* the two analyzer axes on the register */
+  for(const [ang,c,lab] of [[a,COL.teal,'Alice a='+a+'°'],[b+90,COL.vio,'Bob b='+b+'°']]){
+   const t=ang*Math.PI/90;cx.strokeStyle=c;cx.globalAlpha=0.5;cx.lineWidth=2;
+   cx.beginPath();cx.moveTo(cxx-Math.cos(t)*(R+26),cy-Math.sin(t)*(R+26));
+   cx.lineTo(cxx+Math.cos(t)*(R+26),cy+Math.sin(t)*(R+26));cx.stroke();cx.globalAlpha=1;
+   txt(lab,cxx+Math.cos(t)*(R+50)-24,cy+Math.sin(t)*(R+50),c,12);}
+  /* the joint beat U(λ) drawn inside the ring: dips toward the centre are locks */
+  cx.strokeStyle=COL.vio2;cx.lineWidth=1.6;cx.globalAlpha=0.9;cx.beginPath();
+  for(let i=0;i<=180;i++){const l=i/180*Math.PI,t=2*l,r=R-52-38*U(l,ar,br);
+   const X=cxx+Math.cos(t)*r,Y=cy+Math.sin(t)*r;i?cx.lineTo(X,Y):cx.moveTo(X,Y);}
+  cx.closePath();cx.stroke();cx.globalAlpha=1;
+  txt('U(λ): the joint beat of both analyzers',cxx-105,cy-118,COL.vio,12);
+  txt('dips toward the centre = locks (v − U′ = 0)',cxx-105,cy-102,COL.dim,11);
+  /* census of the frozen */
+  let mx=1;for(let i=0;i<72;i++)mx=Math.max(mx,hist[i]);
+  for(let i=0;i<72;i++){if(!hist[i])continue;const t=(i+0.5)/72*TAU;const h=hist[i]/mx*70;
+   cx.strokeStyle=COL.emb;cx.globalAlpha=0.85;cx.lineWidth=5;
+   cx.beginPath();cx.moveTo(cxx+Math.cos(t)*R,cy+Math.sin(t)*R);
+   cx.lineTo(cxx+Math.cos(t)*(R+h),cy+Math.sin(t)*(R+h));cx.stroke();}
+  cx.globalAlpha=1;
+  /* the running phases */
+  for(const w of walkers){if(w.frozen)continue;const t=w.lam*2;
+   cx.fillStyle=COL.teal;cx.globalAlpha=0.7;
+   cx.beginPath();cx.arc(cxx+Math.cos(t)*(R-14),cy+Math.sin(t)*(R-14),2.1,0,TAU);cx.fill();}
+  cx.globalAlpha=1;
+  txt('teal dots: hidden phases λ still running · ember: where they froze',20,36,COL.dim,13);
+ } else {
+  for(let iy=0;iy<GH;iy++)for(let ix=0;ix<GW;ix++){
+   const g=G[iy*GW+ix];
+   cx.fillStyle='rgb('+Math.round(8+22*g)+','+Math.round(16+70*g)+','+Math.round(20+62*g)+')';
+   cx.fillRect(ix*7.86,iy*7.9,8,8);}
+  /* the register slice: U(λ) as a profile along the bottom */
+  const gx=40,gw=W-80,gy=H-60,gh=44;
+  cx.fillStyle='rgba(13,17,23,0.75)';cx.fillRect(gx-10,gy-gh-14,gw+20,gh+40);
+  cx.strokeStyle=COL.vio2;cx.lineWidth=1.6;cx.beginPath();
+  for(let i=0;i<=200;i++){const l=i/200*Math.PI;const X=gx+i/200*gw,Y=gy-gh*(0.5+0.42*U(l,ar,br));
+   i?cx.lineTo(X,Y):cx.moveTo(X,Y);}cx.stroke();
+  txt('λ = 0',gx,gy+14,COL.dim,10);txt('λ = π',gx+gw-26,gy+14,COL.dim,10);
+  txt('U(λ) — the same joint beat, read as a profile along the register',gx,gy-gh-2,COL.vio,11);
+  txt('the standing beat pattern of the apparatus: Alice’s fence at a, Bob’s at b — the two lattices whose overlap is U',20,36,COL.dim,13);
+ }
+ txt('setting pair: a='+a+'°, b='+b+'°   ·   frozen '+nf+' / '+N+'   ·   no noise: every trajectory is deterministic',20,H-16,COL.dim,12);}});
+})();
+
+/* ================= SCENE 3 : THE DECISION ================= */
+(function(){
+let aDeg=0,auto=true;const phots=[];let nDet=0,nTot=0,nUp=0,nDn=0;
+scenes.push({name:'3 · the decision',
+cap:'<span class=lead>One photon, one analyzer, the hidden phase visible.</span> Each photon carries a <span class=t>needle: its phase λ</span>. At an analyzer set to a, the alignment is m = |cos 2(λ−a)|. Needles near the analyzer’s axis (m near 1) are always registered and deflect along that axis — teal one way, ember the other. Needles near the <b>edge</b>, 45° off, are the undecided register: under the solved law D(m) = √m·h(m) they <span class=e>slide past unregistered</span>. Rotate a and watch: <i>which</i> photons are registered changes; <i>how many</i> does not. The hidden phases arrive uniformly, so the singles counters cannot move — no-signaling, on camera. Nothing Alice does with her dial reaches Bob’s counters; everything in tab 4 lives in the pairings.<br><br>Read this tab with one caveat now on record. The needle here is <b>static</b>: λ reaches the analyzer unchanged from birth. That is the Sec. 5 model of arXiv:2608.18886, and it reproduces the pair statistics at η ≈ 0.80 with zero measurement dependence — but as a single-photon account it fails Malus’s law (one photon through two sequential polarizers) by about 5%, because the singlet forces D ~ √m at the edge while Malus forces D ~ m (repository: <i>malus_check.py</i>). The mechanism of tab 6 does not leave λ static: the lock rewrites it. This tab shows the sliding edge; tab 6 shows what a fence does to the phase that meets it.',
+ui(){slider('analyzer angle a',0,180,1,aDeg,v=>aDeg=v);
+ button('toggle photon stream',()=>auto=!auto);
+ button('reset counters',()=>{nDet=0;nTot=0;nUp=0;nDn=0;});},
+step(){if(auto&&frame%4===0){phots.push({x:60,y:H/2,vx:6,vy:0,lam:Math.random()*Math.PI,st:0,m:0,a:1,w:0});}
+ const ar=aDeg*Math.PI/180;
+ for(const p of phots){
+  if(p.st===0){p.x+=p.vx;
+   if(p.x>=W/2-40){
+    p.m=Math.abs(Math.cos(2*(p.lam-ar)));nTot++;
+    if(Math.random()<Dm(p.m)){nDet++;
+     const sg=Math.sign(Math.cos(2*(p.lam-ar)))||1;
+     if(sg>0)nUp++;else nDn++;
+     p.st=sg;p.vx=5.2*Math.abs(Math.cos(ar))+1.5;p.vy=-5.2*Math.sin(ar)*sg-(sg>0?2.4:-2.4)*Math.cos(ar);}
+    else {p.st=9;p.vx=1.2;}}}
+  else if(p.st===9){p.w+=0.35;p.x+=p.vx;p.y+=Math.sin(p.w)*1.6;p.a-=0.012;}
+  else {p.x+=p.vx;p.y+=p.vy;}}
+ while(phots.length&&(phots[0].x>W+20||phots[0].a<=0))phots.shift();},
+draw(){clear();const ax=W/2-40;const ar=aDeg*Math.PI/180;
+ cx.save();cx.translate(ax,H/2);cx.rotate(ar);
+ for(let u=-260;u<260;u+=28){cx.fillStyle=u/28%2?'#1a2530':'#101821';
+  cx.fillRect(-9,u,18,28);}
+ cx.strokeStyle=COL.vio2;cx.lineWidth=2;cx.strokeRect(-9,-260,18,520);cx.restore();
+ txt('analyzer axis',ax+Math.sin(ar)*270,H/2-Math.cos(ar)*270-6,COL.vio,11,'center');
+ for(const p of phots){
+  const bright=p.st===0?0.9:(p.st===9?Math.max(0,p.a):0.45+0.55*p.m);
+  cx.globalAlpha=bright;
+  const c=p.st===9?COL.dim:(p.st===1?COL.teal:(p.st===-1?COL.emb:'#c9c6bd'));
+  cx.fillStyle=c;cx.beginPath();cx.arc(p.x,p.y,4,0,TAU);cx.fill();
+  cx.strokeStyle=c;cx.lineWidth=1.6;
+  cx.beginPath();
+  cx.moveTo(p.x-8*Math.cos(p.lam),p.y+8*Math.sin(p.lam));
+  cx.lineTo(p.x+8*Math.cos(p.lam),p.y-8*Math.sin(p.lam));cx.stroke();
+  cx.globalAlpha=1;}
+ const gx=W-320,gy=90,gw=270,gh=150;
+ txt('D(m) = √m · h(m)',gx,gy-12,COL.teal,14);
+ cx.strokeStyle='#26302c';cx.strokeRect(gx,gy,gw,gh);
+ cx.beginPath();for(let i=0;i<=100;i++){const m=i/100;
+  const X=gx+m*gw,Y=gy+gh-Dm(m)*gh*0.92;i?cx.lineTo(X,Y):cx.moveTo(X,Y);}
+ cx.strokeStyle=COL.teal;cx.lineWidth=2.2;cx.stroke();cx.lineWidth=1;
+ txt('edge: slides past',gx,gy+gh+16,COL.embL,11);
+ txt('center: always seen',gx+150,gy+gh+16,COL.dim,11);
+ txt('η ≈ '+(nTot?(nDet/nTot).toFixed(3):'—')+'   (theory ceiling 0.801)',20,30,COL.teal,15);
+ txt('+1: '+nUp+'    −1: '+nDn+'    slid past: '+(nTot-nDet),20,52,COL.dim,13);
+ txt('rotate a: routes change, counters do not — no-signaling, live',20,74,COL.embL,12);}});
+})();
+
+/* ================= SCENE 4 : THE CONVERGENCE ================= */
+(function(){
+let bins=61,sumE,cntE,Sacc=0,Scnt=0,speed=400;
+function reset(){sumE=new Float32Array(bins);cntE=new Float32Array(bins);Sacc=0;Scnt=0;}
+reset();
+const bell=[[0,22.5,1],[0,67.5,-1],[45,22.5,1],[45,67.5,1]];
+function pairE(dl){const lam=Math.random()*Math.PI;
+ const a=Math.random()*Math.PI, b=a+dl;   // absolute analyzer angles
+ const ca=Math.cos(2*(lam-a)),cb=Math.cos(2*(lam+Math.PI/2-b));
+ if(Math.random()<Dm(Math.abs(ca))&&Math.random()<Dm(Math.abs(cb)))
+  return Math.sign(ca)*Math.sign(cb)||1;return 0;}
+scenes.push({name:'4 · the convergence',
+cap:'<span class=lead>Pairs from one source, one shared λ, two local sign rules, one local detection law each. Nothing communicates.</span> Each side decides by the sign of cos 2(λ − setting) and is registered or slides by D(m). Count only pairs where both were registered, and the surviving coincidences trace the <span class=t>quantum cosine</span> — here to a few tenths of a percent from a 22-point interpolation of the solved profile; the exact profile lands at 10<sup>−11</sup> — while the CHSH ticker climbs to <span class=e>2√2 = 2.8284</span>.<br><br><b>The bill.</b> A local account of this curve pays in one of two currencies or a mixture: a ceiling on detection efficiency (η ≈ 0.80 for the pure-detection profile), or measurement dependence in the phase distribution (Hall’s floor, M = (√2 − 1)/3 ≈ 0.138), with every mixture priced by the surface M(S, η) of Sec. 3 and certified in exact arithmetic at the quantum point and six rational points. Two facts have narrowed the dial since the paper’s first version: pure detection cannot also deliver flat coincidence rates (Proposition 1), and pure detection with a static phase is excluded as a single-photon account by Malus’s law (tab 3). What survives lives toward the measurement-dependence end — which tab 6 pays exactly.',
+ui(){slider('pairs per frame',50,2000,50,speed,v=>speed=v);
+ button('reset counters',reset);},
+step(){for(let k=0;k<speed;k++){
+  const bi=Math.floor(Math.random()*bins);const dl=bi/(bins-1)*Math.PI;
+  const e=pairE(dl);if(e!==0){sumE[bi]+=e;cntE[bi]++;}
+  const b4=bell[Math.floor(Math.random()*4)];
+  const e4=pairE((b4[1]-b4[0])*Math.PI/180);
+  if(e4!==0){Sacc+=b4[2]*e4*4;Scnt++;}}},
+draw(){clear();const gx=90,gy=60,gw=W-360,gh=H-150;
+ cx.strokeStyle='#26302c';cx.strokeRect(gx,gy,gw,gh);
+ cx.setLineDash([5,5]);cx.beginPath();
+ for(let i=0;i<=200;i++){const d=i/200*Math.PI;
+  const X=gx+i/200*gw,Y=gy+gh/2-(-Math.cos(2*d))*gh/2*0.92;
+  i?cx.lineTo(X,Y):cx.moveTo(X,Y);}
+ cx.strokeStyle=COL.vio2;cx.stroke();cx.setLineDash([]);
+ for(let i=0;i<bins;i++){if(cntE[i]<8)continue;
+  const d=i/(bins-1),E=sumE[i]/cntE[i];
+  const X=gx+d*gw,Y=gy+gh/2-E*gh/2*0.92;
+  cx.fillStyle=COL.teal;cx.beginPath();cx.arc(X,Y,3.2,0,TAU);cx.fill();}
+ txt('E(Δ) — dots: this local universe · dashed: quantum mechanics',gx,gy-14,COL.dim,13);
+ txt('0°',gx-4,gy+gh+20);txt('90°',gx+gw/2-10,gy+gh+20);txt('180°',gx+gw-16,gy+gh+20);
+ const S=Scnt?Math.abs(Sacc/Scnt):0;
+ txt('CHSH',W-230,140,COL.dim,15);
+ txt(S.toFixed(4),W-230,185,COL.embL,38);
+ txt('target  2.8284',W-230,215,COL.vio,14);
+ txt('pairs: '+(Scnt+Array.from(cntE).reduce((a,b)=>a+b,0)).toLocaleString(),W-230,245,COL.dim,12);
+ txt('local bound (no sliding): 2.0000',W-230,275,COL.dim,12);}});
+})();
+
+/* ================= SCENE 5 : THE PIXEL ================= */
+(function(){
+const NA=24;let counts=new Float32Array(NA*NA),eps=2.0,mode=0,Fmag=null;
+const f=[],g=[];for(let i=0;i<NA;i++){const a=i*Math.PI/NA;
+ f.push(1+0.03*Math.cos(2*a+1.1)+0.012*Math.cos(4*a+0.4));
+ g.push(1+0.025*Math.cos(2*a+2.3)+0.015*Math.cos(4*a+1.7));}
+function accumulate(n){for(let k=0;k<n;k++){
+ const i=Math.floor(Math.random()*NA),j=Math.floor(Math.random()*NA);
+ const d=(i-j)*Math.PI/NA;
+ const mu=f[i]*g[j]*(1+eps/100*(Math.cos(4*d)+0.17*Math.cos(8*d)));
+ counts[i*NA+j]+=mu*(1+0.15*(Math.random()*2-1));}}
+function dft(){const L=new Float32Array(NA*NA);
+ for(let i=0;i<NA*NA;i++)L[i]=Math.log(counts[i]+1e-9);
+ Fmag=new Float32Array(NA*NA);
+ for(let ka=0;ka<NA;ka++)for(let kb=0;kb<NA;kb++){let re=0,im=0;
+  for(let i=0;i<NA;i++)for(let j=0;j<NA;j++){
+   const ph=-TAU*(ka*i+kb*j)/NA;re+=L[i*NA+j]*Math.cos(ph);im+=L[i*NA+j]*Math.sin(ph);}
+  Fmag[ka*NA+kb]=Math.hypot(re,im)/(NA*NA);}}
+scenes.push({name:'5 · the pixel',
+cap:'<span class=lead>The experiment nobody ran.</span> Scan the full settings torus (a, b), 24 × 24, and count <b>total</b> coincidences — all four outcome combinations summed. Quantum mechanics says that total is flat. Apparatus response factorizes, η_A(a)·η_B(b), and after the logarithm it is additive, so it lives on the <b>rows and columns</b> of the Fourier plane. The physical signal cos 4(a−b) is irreducibly joint and lives on the anti-diagonal, at (k_a, k_b) = <span class=e>(±2, ∓2)</span>, with its overtone at (±4, ∓4) about six times fainter. Orientation follows Fig. 5 of the paper: k_a increases upward, k_b to the right.<br><br><b>Why four decades missed it.</b> The hiding theorem: cos(2k·45°) = cos(2k·135°) for every harmonic k, so the fringe vanishes identically at 22.5° and 67.5°, and every four-point CHSH experiment is mathematically blind to it. The practical scans were blind too: the fourfold sum is the <i>denominator</i> of E(a, b), the number every design normalizes away; and in a single-analyzer scan cos 4(a−b) is indistinguishable from a polarization-dependent efficiency η_B(b), the most common systematic in optics. Only the full torus with the log-Fourier veto separates them. Aspect logged the sum as “typically 80/s”; a 1998 analysis noted the missing error bar; a 2003 proposal was never run. Slide ε to zero and the pixel goes dark — that darkness is quantum mechanics’ claim. Twenty minutes at 10<sup>6</sup> pairs/s tests it at 0.1%.',
+ui(){slider('fringe ε (%)',0,3,0.1,eps,v=>{eps=v;counts.fill(0);mode=0;});
+ button('transform ⇄',()=>{if(mode===0){dft();mode=1;}else mode=0;});
+ button('reset',()=>{counts.fill(0);mode=0;});},
+step(){if(mode===0)accumulate(3000);},
+draw(){clear();const sz=Math.min(W,H)-130,px=sz/NA,ox=(W-sz)/2,oy=70;
+ if(mode===0){let mx=1e-9;for(const c of counts)mx=Math.max(mx,c);
+  for(let i=0;i<NA;i++)for(let j=0;j<NA;j++){
+   const v=counts[i*NA+j]/mx;
+   cx.fillStyle='rgb('+Math.round(10+30*v)+','+Math.round(20+140*v)+','+Math.round(25+105*v)+')';
+   cx.fillRect(ox+j*px,oy+(NA-1-i)*px,px-1,px-1);}
+  txt('total coincidence rate over the settings torus (a, b) — accumulating',ox,oy-16,COL.dim,13);
+  txt('Alice ↑   Bob →   fringe ε = '+eps.toFixed(1)+'%   (hidden inside: 3% apparatus ripple + noise)',ox,oy+sz+24,COL.dim,12);}
+ else{let mx=1e-9;for(let i=0;i<NA*NA;i++){const ka=Math.floor(i/NA),kb=i%NA;
+   if(ka===0&&kb===0)continue;mx=Math.max(mx,Fmag[i]);}
+  for(let ka=0;ka<NA;ka++)for(let kb=0;kb<NA;kb++){
+   const sa=(ka+NA/2)%NA,sb=(kb+NA/2)%NA;
+   let v=(ka===0&&kb===0)?1:Fmag[ka*NA+kb]/mx;v=Math.pow(v,0.4);
+   cx.fillStyle='rgb('+Math.round(8+70*v)+','+Math.round(12+90*v)+','+Math.round(20+180*v)+')';
+   cx.fillRect(ox+sb*px,oy+(NA-1-sa)*px,px-1,px-1);}
+  const pulse=3+2*Math.sin(frame*0.1);
+  for(const [ka,kb] of [[2,-2],[-2,2]]){
+   const sa=((ka%NA)+NA+NA/2)%NA,sb=((kb%NA)+NA+NA/2)%NA;
+   cx.strokeStyle=COL.emb;cx.lineWidth=2.5;
+   cx.strokeRect(ox+sb*px-pulse,oy+(NA-1-sa)*px-pulse,px+2*pulse,px+2*pulse);}
+  txt('log-Fourier plane — apparatus on the axes, physics at (k_a, k_b) = (±2, ∓2)',ox,oy-16,COL.dim,13);
+  txt('k_a (Alice) ↑',ox-70,oy+sz/2,COL.dim,12);txt('k_b (Bob) →',ox+sz/2-30,oy+sz+44,COL.dim,12);
+  txt('the pixel hardware cannot reach  ·  truth ε = '+eps.toFixed(1)+'%  ·  QM predicts: dark',ox,oy+sz+24,COL.embL,13);}}});
+})();
+
+
+/* ================= SCENE 6 : THE CENSUS ================= */
+(function(){
+let v=15,variety=1.0,pairIdx=0;
+const pairs=[[0,22.5],[0,67.5],[45,22.5],[45,67.5]];
+const N=420;
+let walkers=[], hist=new Float32Array(90);
+function dU(l,A,B){
+ const p1=4*A+2*B+Math.PI, p2=4*A-2*B-Math.PI;
+ return 0.42*12*Math.sin(6*l-p1)+0.31*4*Math.sin(2*l-p2)
+       +0.9*16*Math.sin(8*l-2*A-6*B-3*Math.PI);}
+function spawn(){
+ walkers=[];
+ const a=pairs[pairIdx][0]*Math.PI/180, b=pairs[pairIdx][1]*Math.PI/180;
+ for(let i=0;i<N;i++){
+  const xa=variety*(Math.random()*Math.PI);
+  const xb=variety*(Math.random()*Math.PI);
+  const tau=0.4+variety*Math.random()*5.6+(1-variety)*2.6;
+  walkers.push({lam:Math.random()*Math.PI, xa, xb,
+   A:a+xa, B:b+xb, tau, age:0, y:30+Math.random()*(H-120),
+   frozen:false});}
+}
+spawn();
+scenes.push({name:'6 · the census',
+cap:'<span class=lead>Moiré phase locking, whole: the census.</span> Every dot is one pair event. Each carries a <b>frozen inheritance</b> drawn once at birth: a private offset for each station (ξ_A, ξ_B) and a private flight time τ. Then — <b>no noise, no dice</b> — λ drifts deterministically through its own beat terrain, dλ/dt = v − U′(λ), until its clock runs out and it <span class=e>freezes where it stands</span>. The histogram is the census of the frozen, and <i>that census is the quantum statistics</i>. Cycle the setting pair: the whole census reorganizes, because every private terrain belongs to the apparatus.<br><br>Drag <b>variety → 0</b>: every event identical, the census collapses to a spike — dead, classical, mute. Slide it back and the arcs return. <b>Frozen variety is the resource</b> — not noise; a different frozen hand for every throw. What are the offsets offsets <i>of</i>? The paper leaves the formation of ρ open. The ontology’s proposal: both photons are born into one lab lattice, and its texture is what ξ_A, ξ_B, τ are frozen samples of — setting-independent, nonuniform, joint, as ρ must be. This tab is a 3-term sketch. The full 23-term mechanism with a 1024-offset ensemble attains Hall’s floor to twelve significant digits at 1% fidelity on 161 angles (Sec. 7 of arXiv:2608.18886 v3); its residual fingerprint is a softening of the correlation extremes between the Bell angles.',
+ui(){slider('drift v (the detuning)',4,26,0.5,v,x=>v=x);
+ slider('variety (the frozen spread)',0,1,0.02,variety,x=>{variety=x;});
+ button('cycle setting pair',()=>{pairIdx=(pairIdx+1)%4;hist.fill(0);spawn();});
+ button('release new cohort',()=>{spawn();});},
+step(){const dt=0.004;
+ let allFrozen=true;
+ for(const w of walkers){
+  if(w.frozen)continue;
+  allFrozen=false;
+  for(let s=0;s<5;s++){
+   w.lam+=(v-dU(w.lam,w.A,w.B))*dt;
+   w.age+=dt;
+   if(w.age>=w.tau){w.frozen=true;
+    const bi=Math.floor(((w.lam%Math.PI+Math.PI)%Math.PI)/Math.PI*90)%90;
+    hist[bi]+=1;break;}}}
+ if(allFrozen){for(let i=0;i<90;i++)hist[i]*=0.93;spawn();}},
+draw(){clear();
+ const a=pairs[pairIdx][0],b=pairs[pairIdx][1];
+ const PW=W-260;
+ for(let g=0;g<=6;g++){const x=g/6*PW;
+  cx.strokeStyle='#1a1f24';cx.beginPath();cx.moveTo(x,20);cx.lineTo(x,H-90);cx.stroke();
+  txt((g*30)+'\u00b0',x-8,H-72,COL.dim,10);}
+ let nf=0;
+ for(const w of walkers){
+  const x=((w.lam%Math.PI+Math.PI)%Math.PI)/Math.PI*PW;
+  if(w.frozen){nf++;
+   cx.fillStyle=COL.emb;cx.globalAlpha=0.85;
+   cx.beginPath();cx.arc(x,w.y,2.6,0,TAU);cx.fill();
+  }else{
+   cx.fillStyle=COL.teal;cx.globalAlpha=0.55+0.3*Math.min(1,w.age/w.tau);
+   cx.beginPath();cx.arc(x,w.y,2.0,0,TAU);cx.fill();}
+ }
+ cx.globalAlpha=1;
+ let hm=1;for(const h of hist)hm=Math.max(hm,h);
+ for(let i=0;i<90;i++){
+  const x=i/90*PW, hgt=hist[i]/hm*54;
+  cx.fillStyle=COL.emb;cx.globalAlpha=0.8;
+  cx.fillRect(x,H-64-hgt,PW/90-1,hgt);}
+ cx.globalAlpha=1;
+ const hx=W-235,hy=60;
+ txt('THE CENSUS',hx,hy-24,COL.embL,14);
+ txt('frozen: '+nf+' / '+N,hx,hy,COL.dim,12);
+ txt('variety: '+(variety*100).toFixed(0)+'%',hx,hy+20,COL.dim,12);
+ let s=0;for(let i=0;i<90;i++)s+=hist[i];
+ let tv=0;for(let i=0;i<90;i++)tv+=Math.abs(hist[i]/(s||1)-1/90);
+ txt('dist. from uniform (proxy): '+(tv/2).toFixed(3),hx,hy+40,COL.dim,12);
+ txt('certified floor \u2248 0.138',hx,hy+60,COL.dim,11);
+ txt(variety<0.15?'variety gone \u2014 the magic is dead':'frozen variety at work',
+     hx,hy+92,variety<0.15?'#b06060':COL.teal,12);
+ txt('setting pair: a='+a+'\u00b0, b='+b+'\u00b0   \u00b7   each dot: private offsets + private clock, drawn ONCE   \u00b7   no dice anywhere',20,H-16,COL.dim,12);}});
+})();
+
+
+/* ================= SCENE 7 : THE LOAN (mirror on a spring) ================= */
+(function(){
+let M=1,per=240,gam=0.0,t=0,run=true;
+function kappa(){return 1.5/Math.sqrt(M);}
+function V(tt){const w=TAU/per;return Math.exp(-kappa()*kappa()*(1-Math.cos(w*tt)))*Math.exp(-gam*tt/per);}
+function VP(tt){const tG=per*6/Math.pow(M,1.5);return V(tt)*Math.exp(-tt/tG);}
+scenes.push({name:'7 · the loan',
+cap:'<span class=lead>The loan: a photon, a mirror on a spring, and the record the mirror holds.</span> The mirror-on-a-cantilever interferometer (Marshall, Simon, Penrose and Bouwmeester, 2003): a photon takes one of two arms; in one arm it reflects from a tiny mirror on a spring and kicks it. The mirror’s displacement from rest is a <b>record</b> of which arm the photon took, and while that record exists the two arms cannot be brought back into one pattern — interference visibility falls. The mirror is an oscillator, so it comes back: at a full period it stands where it started, the record is gone, and visibility revives. In the dictionary this is a <b>symmetry loan</b>: the photon lends its kick to the mirror and the mirror returns it. Borrow, repay, no record — the same sentence that makes an ordinary mirror (tab 1’s ember) cost nothing and a wobbling mirror cost everything. What decides coherence is never whether something moved; it is whether a record was written and whether it was erased.<br><br><b>The trace.</b> Solid teal is the mechanism’s visibility, V(t) = exp[−κ²(1 − cos ωt)], with κ the kick measured against the mirror’s zero-point motion (κ = 1.5/√mass here, so heavier mirrors take shallower dips). It revives fully at every period, at every mass. Dashed ember is a Penrose-type overlay in which revival decays on a gravitational timescale that shortens with mass (schematic ∝ mass<sup>−1.5</sup>). Slide the mass up and the two curves separate: that separation is the registered wager of casebook 3.11 — <b>full revival at all masses</b> — with its kill condition drawn. The <b>environment</b> slider is ordinary decoherence, a loss per period that degrades both curves equally; it is apparatus, not mechanism. The visibility formula itself is the 2003 result, a re-derivation; the mesh’s content is the reading (loan and record) and the mass-independence claim. This tab is single-photon and toll-free: nothing here pays Hall’s floor.<span class=nar><b>Narrative — Solvay, 1927.</b> Einstein’s objection to Bohr was a recoiling slit: measure the recoil, learn the path, lose the fringes. Bohr’s answer was that the recoil’s own uncertainty washes the fringes out. Neither of them had a slit that came back. The spring is what turns the argument into an experiment: it makes the record temporary, and a temporary record is a loan. In this narrative the recoiling slit is the mirror and the debate is the trace above — and the debate ends where the mirror returns to rest.</span>',
+ui(){slider('mirror mass (relative)',1,100,1,M,x=>M=x);
+ slider('cantilever period (frames)',120,480,10,per,x=>per=x);
+ slider('environment (loss per period)',0,1,0.01,gam,x=>gam=x);
+ button('release photon (t = 0)',()=>{t=0;});
+ button('pause ⇄ run',()=>run=!run);},
+step(){if(run)t+=1;},
+draw(){clear();
+ const w=TAU/per,ph=w*t,k=kappa();
+ const A=70*Math.min(1,k/1.5);const x=A*(1-Math.cos(ph));
+ /* cavity: fixed mirror, photon arm, moving mirror on a spring */
+ const y0=300,xf=110,xm=520+x;
+ cx.strokeStyle=COL.dim;cx.lineWidth=6;cx.beginPath();cx.moveTo(xf,y0-90);cx.lineTo(xf,y0+90);cx.stroke();
+ cx.strokeStyle=COL.vio;cx.lineWidth=6;cx.beginPath();cx.moveTo(xm,y0-90);cx.lineTo(xm,y0+90);cx.stroke();
+ cx.strokeStyle='#3a4a44';cx.lineWidth=2;cx.beginPath();cx.moveTo(xm+3,y0);
+ for(let i=1;i<=12;i++){cx.lineTo(xm+3+i*((700-xm)/12),y0+(i%2?-14:14));}cx.lineTo(700,y0);cx.stroke();
+ cx.strokeStyle='#3a4a44';cx.lineWidth=6;cx.beginPath();cx.moveTo(702,y0-40);cx.lineTo(702,y0+40);cx.stroke();
+ /* the photon: one arm of the interferometer, disc drawn as its pattern between the mirrors */
+ cx.strokeStyle=COL.teal;cx.globalAlpha=0.7;cx.lineWidth=1.2;
+ for(let i=0;i<=40;i++){const X=xf+6+i*((xm-xf-12)/40);const yy=y0+26*Math.sin(TAU*(i/40*6-frame*0.02));
+  i?cx.lineTo(X,yy):(cx.beginPath(),cx.moveTo(X,yy));}cx.stroke();cx.globalAlpha=1;
+ txt('fixed mirror',xf-34,y0+112,COL.dim,11);txt('mirror on a spring',xm-46,y0+112,COL.vio,11);
+ txt('photon (one arm)',xf+120,y0-72,COL.teal,11);
+ /* rest position marker */
+ cx.strokeStyle='#26302c';cx.setLineDash([3,4]);cx.beginPath();cx.moveTo(520,y0-100);cx.lineTo(520,y0+100);cx.stroke();cx.setLineDash([]);
+ txt('rest',512,y0-106,COL.dim,10);
+ /* the record meter */
+ const rec=x/(2*A||1);
+ txt('record written in the mirror: displacement from rest',110,150,COL.dim,12);
+ cx.strokeStyle='#26302c';cx.strokeRect(110,160,600,14);
+ cx.fillStyle=rec>0.05?COL.emb:COL.teal2;cx.fillRect(110,160,600*rec,14);
+ txt(rec<0.05?'mirror at rest: no record — the loan is repaid':'mirror displaced: which-arm record exists — symmetry on loan',110,192,rec<0.05?COL.teal:COL.embL,12);
+ /* visibility trace */
+ const gx=760,gy=140,gw=300,gh=180;
+ cx.strokeStyle='#26302c';cx.strokeRect(gx,gy,gw,gh);
+ txt('interference visibility V(t)',gx,gy-12,COL.dim,12);txt('1',gx-10,gy+6,COL.dim,10);txt('0',gx-10,gy+gh,COL.dim,10);
+ const span=3*per;
+ for(const [fn,col,dash] of [[VP,COL.embL,[5,4]],[V,COL.teal,[]]]){cx.strokeStyle=col;cx.lineWidth=1.8;cx.setLineDash(dash);cx.beginPath();
+  for(let i=0;i<=300;i++){const tt=i/300*span;const X=gx+i/300*gw,Y=gy+gh-fn(tt)*gh;i?cx.lineTo(X,Y):cx.moveTo(X,Y);}cx.stroke();}
+ cx.setLineDash([]);
+ for(let n=1;n<=3;n++){const X=gx+n/3*gw;cx.strokeStyle='#26302c';cx.beginPath();cx.moveTo(X,gy);cx.lineTo(X,gy+gh);cx.stroke();txt(n+'T',X-6,gy+gh+14,COL.dim,10);}
+ const tt=t%span;cx.fillStyle=COL.vio;cx.beginPath();cx.arc(gx+tt/span*gw,gy+gh-V(tt)*gh,4,0,TAU);cx.fill();
+ txt('solid: mechanism / QM — full revival at every period, every mass',gx,gy+gh+36,COL.teal,11);
+ txt('dashed: Penrose-type collapse — revival decays with mass (schematic)',gx,gy+gh+52,COL.embL,11);
+ txt('κ = '+k.toFixed(2)+'   ·   V now = '+V(tt).toFixed(3)+'   ·   t = '+(tt/per).toFixed(2)+' periods',gx,gy+gh+76,COL.dim,12);
+ txt('The mirror borrows the kick and returns it. While it holds the loan there is a record and no interference; when it comes home the record is gone.',110,H-30,COL.dim,12);}});
+})();
+
+/* ================= SCENE 8 : THE TWO OPENINGS (drawn, not run) ================= */
+(function(){
+let d=3.0,p=1.0,rate=8,ww=false;
+const NB=120;let bins=new Float32Array(NB),total=0,probe=0;
+function sinc(x){return Math.abs(x)<1e-9?1:Math.sin(x)/x;}
+function delta(u){return TAU*1.6*d*u/p;}
+function dens(u){const env=Math.pow(sinc(Math.PI*1.1*u/p),2);return env*(ww?1:(0.5+0.5*Math.cos(delta(u))));}
+scenes.push({name:'8 · the two openings',
+cap:'<span class=lead>How this explains light.</span> There are no particles and there are no waves; there are phase relationships. A photon’s phase relationship exists in full from the moment it is made — it is the thing that moves. It does not send a wave ahead to feel out the openings, and no wave has to know in advance where a particle will go, because there is no second object to inform: one relationship, born whole, unrolls at the speed of light and meets whatever it meets. Where the standard telling has a wave that guides a particle, this picture has one thing seen two ways — its pattern, which is where a landing <i>can</i> happen, and its bulge, which is where a landing <i>does</i>. The difficulty that haunted pilot-wave theory — how the front of the wave knows what the particle will do — does not arise, because nothing is in front of anything.<br><br><b>What the two openings do.</b> An opening lets the photon’s pattern through. Two openings let it through twice, so at each point of the screen the photon meets <i>two copies of its own fence</i> at a relative phase δ that depends on where on the screen you look. The left panel shows that register at the last landing: <span class=t>teal, the copy through opening 1</span>; <span class=v>violet, the copy through opening 2</span>; their agreement is (1 + cos δ)/2. The right panel is the screen — the census of where bulges landed, one photon at a time (Tonomura 1989 built exactly this picture from single electrons). The fringe is the two copies seen through each other: 1 + cos δ = 2 cos²(δ/2). Born’s square is not a rule imposed on an amplitude; it is what correlating a structure with its own shifted copy produces (tab 1’s census, tab 5’s autocorrelations — the same operation). Turn on the <b>which-way record</b>: a lock at one opening fixes the pattern to one copy, the second copy is gone, the beat is gone, and the screen shows only the single-opening envelope. Same record rule as tab 7, from the other side. Separation sets the fringe spacing; the photon’s own pitch — its wavelength, the beat between the two things that make it — sets the scale.<br><br><b>Drawn, not run.</b> This tab draws the autocorrelation statement and samples landings from it. It does not integrate a mechanism, because the record has none for position: Eq. (4) of arXiv:2608.18886 evolves a polarization phase, not a coordinate. Where the bulge goes, as dynamics, is an open item (casebook §5) and is stated here as one. Single-photon, toll-free: nothing on this tab pays Hall’s floor.',
+ui(){slider('opening separation d',1,6,0.1,d,x=>{d=x;bins.fill(0);total=0;});
+ slider('pitch of the photon’s own fence (its wavelength)',0.6,1.6,0.02,p,x=>{p=x;bins.fill(0);total=0;});
+ slider('landings per frame',1,40,1,rate,x=>rate=x);
+ const b=button('which-way record: OFF',()=>{ww=!ww;b.textContent='which-way record: '+(ww?'ON (one opening locked)':'OFF');bins.fill(0);total=0;});
+ button('reset screen',()=>{bins.fill(0);total=0;});},
+step(){for(let i=0;i<rate;i++){for(let tries=0;tries<40;tries++){const u=Math.random()*2-1;if(Math.random()<dens(u)){bins[Math.floor((u+1)/2*NB)]++;total++;probe=u;break;}}}},
+draw(){clear();
+ /* left: the register at the last landing — two copies of one fence at relative phase delta(u) */
+ const lx=60,ly=110,lw=420,lh=380;
+ cx.strokeStyle='#26302c';cx.strokeRect(lx,ly,lw,lh);
+ const pitch=22,off=ww?0:(delta(probe)/TAU)*pitch;
+ cx.save();cx.beginPath();cx.rect(lx,ly,lw,lh);cx.clip();
+ cx.lineWidth=2;
+ for(let X=lx-pitch;X<lx+lw+pitch;X+=pitch){cx.strokeStyle=COL.teal2;cx.globalAlpha=0.7;cx.beginPath();cx.moveTo(X,ly);cx.lineTo(X,ly+lh);cx.stroke();}
+ for(let X=lx-pitch;X<lx+lw+pitch;X+=pitch){cx.strokeStyle=COL.vio2;cx.globalAlpha=ww?0.15:0.7;cx.beginPath();cx.moveTo(X+off,ly);cx.lineTo(X+off,ly+lh);cx.stroke();}
+ cx.globalAlpha=1;cx.restore();
+ const agree=ww?0:0.5+0.5*Math.cos(delta(probe));
+ txt('the register at the last landing: the photon’s pattern through opening 1 (teal) and opening 2 (violet)',lx,ly-14,COL.dim,11);
+ txt('relative phase δ = '+(ww?'— (one copy only)':(((delta(probe)%TAU)+TAU)%TAU/TAU*360).toFixed(0)+'°')+'   ·   agreement (1 + cos δ)/2 = '+(ww?'—':agree.toFixed(2)),lx,ly+lh+20,COL.teal,12);
+ txt('agreement is the landing density. The fringe is the two copies seen through each other: 1 + cos δ = 2 cos²(δ/2).',lx,ly+lh+40,COL.dim,11);
+ /* right: the screen — a census of landings */
+ const gx=560,gy=110,gw=480,gh=380;
+ cx.strokeStyle='#26302c';cx.strokeRect(gx,gy,gw,gh);
+ let mx=1;for(let i=0;i<NB;i++)mx=Math.max(mx,bins[i]);
+ for(let i=0;i<NB;i++){const h=bins[i]/mx*(gh-20);cx.fillStyle=COL.emb;cx.fillRect(gx+i/NB*gw,gy+gh-h,gw/NB-1,h);}
+ cx.strokeStyle=COL.teal;cx.lineWidth=1.2;cx.globalAlpha=0.6;cx.beginPath();let dm=0;for(let i=0;i<=200;i++)dm=Math.max(dm,dens(i/200*2-1));
+ for(let i=0;i<=200;i++){const u=i/200*2-1;const X=gx+i/200*gw,Y=gy+gh-dens(u)/dm*(gh-20);i?cx.lineTo(X,Y):cx.moveTo(X,Y);}cx.stroke();cx.globalAlpha=1;
+ txt('the screen: where the bulge landed, one photon at a time  ·  landings: '+total.toLocaleString(),gx,gy-14,COL.dim,12);
+ txt(ww?'which-way record ON: pattern locked to one opening — no second copy, no beat, envelope only':'which-way record OFF: two copies, one beat — the fringe',gx,gy+gh+20,ww?COL.embL:COL.teal,12);
+ txt('DRAWN, NOT RUN: the density is the autocorrelation statement; no positional mechanism is being integrated (open item, casebook §5).',60,H-24,COL.embL,11);}});
+})();
+
+/* ================= SCENE 9 : THE SHARED PHASE (entanglement) ================= */
+(function(){
+let dDeg=22.5,shared=true,n=0,sum=0,rateN=30,last=null;
+function Esaw(D){return -(1-4*D/Math.PI);}
+scenes.push({name:'9 · the shared phase',
+cap:'<span class=lead>What entanglement is, under this hypothesis: two photons occupying one point of the space of relative phase.</span> Two things cannot occupy the same point of real space. Two photons <i>can</i> occupy the same point of the register — carry the same hidden phase λ — and when they do, every fence they meet reads the same λ from two places. That co-occupancy is entanglement. It is not two objects influencing each other across a gap; it is one relationship read twice.<br><br><b>The tab.</b> Left: one register, <span class=t>Alice’s fence at a</span>, <span class=v>Bob’s at b</span>, and the pair’s λ — one dot, drawn uniformly at birth from a single pump event, occupied by both photons. Alice reads sgn cos 2(λ − a); Bob reads the same λ against his own angle with the singlet’s quarter-turn folded in, −sgn cos 2(λ − b). Right: the measured correlation E at the chosen Δ, accumulating, against three curves. With one shared λ this sign model gives the sawtooth E = −(1 − 4Δ/π) — real correlation, S = 2 at best. Press <b>births</b> to draw two independent phases instead: E collapses to zero at every angle — not blurred, not weakened, none. Proximity buys nothing, timing buys nothing; a shared draw buys everything. The executed record says the same: photons from neighbouring atoms in Aspect’s calcium beam, emitted in the same window into the same polarizers, are the uncorrelated accidentals.<br><br><b>Distance.</b> The strip at the bottom is the lab. Six metres of air, four hundred metres of fibre, or 1.3 km of anything: the shared λ was written at birth, the photon has no internal clock, and nothing between the stations changes E. Entangled ions are shuttled between trap zones routinely and stay entangled; a shared phase is <i>made</i> by a shared channel and <i>carried</i> by the particles, and only a record — decoherence — erodes it afterward. <b>The gap</b> between the teal sawtooth and the violet cosine is the whole content of Bell’s theorem: a shared λ alone reaches S = 2, and the quantum 2√2 costs more. What it costs is priced exactly — measurement dependence at Hall’s floor (√2 − 1)/3, or detection at η ≈ 0.80, or the mixture on the surface M(S, η) — and tabs 4 and 6 pay it. This tab shows the free part and where the free part ends.<span class=nar><b>Narrative — the crystal in the truck.</b> Suppose you could catch one photon of a pair in a crystal, put the crystal in a truck, and drive across the country before releasing it in front of a polarizer you turn by hand. Its partner, released the same way a thousand miles back, still reads the mirror image. The drive did nothing, because the drive is not where the relationship lives. In this narrative the truck is the strip at the bottom of the tab, and the polarizer you turn by hand is the Δ slider.</span>',
+ui(){slider('relative angle Δ = b − a (°)',0,90,0.5,dDeg,x=>{dDeg=x;n=0;sum=0;});
+ const b=button('births: SHARED phase (one draw)',()=>{shared=!shared;n=0;sum=0;b.textContent='births: '+(shared?'SHARED phase (one draw)':'INDEPENDENT (two draws)');});
+ button('reset',()=>{n=0;sum=0;});},
+step(){const a=0,bb=dDeg*Math.PI/180;
+ for(let i=0;i<rateN;i++){const lA=Math.random()*Math.PI,lB=shared?lA:Math.random()*Math.PI;
+  const oA=Math.cos(2*(lA-a))>=0?1:-1,oB=-(Math.cos(2*(lB-bb))>=0?1:-1);
+  sum+=oA*oB;n++;if(i===0)last={lA,lB,oA,oB};}},
+draw(){clear();
+ const a=0,bb=dDeg*Math.PI/180;
+ /* left: one register, two fences, one (or two) phase */
+ const cxx=270,cy=290,R=160;
+ cx.strokeStyle='#1c2128';cx.lineWidth=1;cx.beginPath();cx.arc(cxx,cy,R,0,TAU);cx.stroke();
+ for(const [ang,c,lab] of [[a,COL.teal,'Alice’s fence, a = 0°'],[bb,COL.vio,'Bob’s fence, b = '+dDeg.toFixed(1)+'°']]){
+  const tt=2*ang;cx.strokeStyle=c;cx.globalAlpha=0.55;cx.lineWidth=2;cx.beginPath();
+  cx.moveTo(cxx-Math.cos(tt)*(R+22),cy-Math.sin(tt)*(R+22));cx.lineTo(cxx+Math.cos(tt)*(R+22),cy+Math.sin(tt)*(R+22));cx.stroke();cx.globalAlpha=1;
+  txt(lab,cxx+Math.cos(tt)*(R+46)-40,cy+Math.sin(tt)*(R+46)+(ang===0?-8:14),c,12);}
+ if(last){const tA=2*last.lA,tB=2*last.lB;
+  cx.fillStyle=COL.teal;cx.beginPath();cx.arc(cxx+Math.cos(tA)*R,cy+Math.sin(tA)*R,7,0,TAU);cx.fill();
+  cx.fillStyle=COL.vio;cx.beginPath();cx.arc(cxx+Math.cos(tB)*R,cy+Math.sin(tB)*R,shared?4:7,0,TAU);cx.fill();
+  txt('Alice reads '+(last.oA>0?'+':'−')+'   Bob reads '+(last.oB>0?'+':'−'),cxx-70,cy-40,COL.dim,13);
+  txt(shared?'one λ, two readings':'two λ, no relation',cxx-58,cy-22,shared?COL.teal:COL.embL,12);}
+ txt(shared?'the pair’s hidden phase λ — one point on the register, occupied by both photons':'two photons, two independent phases',60,80,COL.dim,12);
+ /* right: E(Δ) */
+ const gx=600,gy=110,gw=440,gh=300;
+ cx.strokeStyle='#26302c';cx.strokeRect(gx,gy,gw,gh);
+ const Y=e=>gy+gh/2-e*gh/2;
+ cx.strokeStyle='#26302c';cx.beginPath();cx.moveTo(gx,Y(0));cx.lineTo(gx+gw,Y(0));cx.stroke();
+ for(const [fn,col,dash,lab,yy] of [[D=>-Math.cos(2*D),COL.vio,[5,4],'quantum cosine −cos 2Δ (tabs 4 and 6 pay for this)',gy+gh+52],[Esaw,COL.teal,[],'this sign model with one shared λ: E = −(1 − 4Δ/π), the sawtooth, S = 2',gy+gh+36]]){
+  cx.strokeStyle=col;cx.lineWidth=1.6;cx.setLineDash(dash);cx.beginPath();
+  for(let i=0;i<=90;i++){const D=i/90*Math.PI/2;const X=gx+i/90*gw;i?cx.lineTo(X,Y(fn(D))):cx.moveTo(X,Y(fn(D)));}cx.stroke();cx.setLineDash([]);txt(lab,gx,yy,col,11);}
+ txt('independent births: E = 0 at every Δ — no correlation, no violation, not blurred, none',gx,gy+gh+68,COL.embL,11);
+ const E=n?sum/n:0;const X=gx+dDeg/90*gw;
+ cx.fillStyle=COL.emb;cx.beginPath();cx.arc(X,Y(E),6,0,TAU);cx.fill();
+ txt('measured E('+dDeg.toFixed(1)+'°) = '+E.toFixed(3)+'   over '+n.toLocaleString()+' pairs',gx,gy-14,COL.embL,12);
+ txt('E = +1',gx-40,gy+6,COL.dim,10);txt('E = −1',gx-40,gy+gh,COL.dim,10);txt('Δ = 0°',gx,gy+gh+14,COL.dim,10);txt('Δ = 90°',gx+gw-34,gy+gh+14,COL.dim,10);
+ /* bottom strip: the lab, with nothing between the stations */
+ const sy=H-58;
+ cx.strokeStyle='#26302c';cx.setLineDash([2,6]);cx.beginPath();cx.moveTo(140,sy);cx.lineTo(960,sy);cx.stroke();cx.setLineDash([]);
+ cx.fillStyle=COL.teal;cx.fillRect(120,sy-14,10,28);cx.fillStyle=COL.vio;cx.fillRect(970,sy-14,10,28);
+ cx.fillStyle=COL.emb;cx.beginPath();cx.arc(550,sy,5,0,TAU);cx.fill();
+ txt('Alice',105,sy+36,COL.teal,11);txt('Bob',965,sy+36,COL.vio,11);txt('source: one draw of λ',490,sy+36,COL.embL,11);
+ txt('6 m of air (Aspect 1982) · 400 m of fibre (Weihs 1998) · 1.3 km (Hensen 2015) — nothing on this line changes the correlation',300,sy-22,COL.dim,11);}});
+})();
+
+
+/* ================= SCENE 10 : THE SHARED MODE (two trapped ions) ================= */
+(function(){
+let modeSel=1,eps=0,nbar=0.1,t=0,run=true,T=360,sep=0;
+/* motional displacement along the gate loop: alpha(t) = A0 (1 - e^{i d t}), d = 1+eps in loop units; closes at d t = 2π */
+function alpha(tt){const d=1+eps,th=TAU*d*tt/T;return [1-Math.cos(th),-Math.sin(th)];}
+function alpha2(tt){const a=alpha(tt);return a[0]*a[0]+a[1]*a[1];}
+function phi(tt){const d=1+eps,th=TAU*d*tt/T;return (Math.PI/4)*(th-Math.sin(th))/TAU;} /* geometric phase = area swept; π/4 at closure */
+function coh(tt){return Math.exp(-0.5*alpha2(tt)*(2*nbar+1));}                         /* overlap of the two spin-branch motional states */
+function conc(tt){return coh(tt)*Math.abs(Math.sin(2*phi(tt)));}
+scenes.push({name:'10 · the shared mode',
+cap:'<span class=lead>The shared mode: two ions, one oscillation, and a loan that writes a shared phase.</span> Two ions sit in an electric trap (an RF Paul trap confines them; a small magnetic field sets the axis their spins are read against). Because they repel and are confined together, their motion has two shared modes: <b>centre-of-mass</b>, where both move side by side, and <b>stretch</b>, where they move oppositely, in and out about the midplane. Either mode is one oscillation that both ions feel — in the dictionary, one fence that two phase relationships beat against. That shared fence is the <i>channel</i>. Two ions sitting in a trap are not entangled; the channel is what a gate uses to write a shared phase into them, and this tab runs that writing.<br><br><b>The gate (Mølmer–Sørensen).</b> A laser detuned near the mode pushes the mode differently for different joint spin states, so the mode’s position in its own phase space (x, p) is displaced along a loop — a different loop for each spin branch. The displacement is a <b>record</b>: while the mode is away from rest it holds which-branch information, and the spin branches lose coherence by exactly the overlap of the two motional states, exp[−|α|²(2n̄ + 1)/2]. Meanwhile the area swept by the loop accumulates as a geometric phase between the branches. At the gate time the loop <b>closes</b>: the mode is back at rest, the record is gone, coherence is restored, and the accumulated phase — π/4 — is left in the spins alone. That is the symmetry loan of tab 7 with the ions’ shared oscillation as the mirror: borrow a spin-dependent displacement, return it, keep only the phase. Set a <b>detuning error</b> and the loop misses closure: the motion keeps a record, coherence stays lost, and the entanglement written falls. Raise the <b>motional temperature</b> n̄ and every unit of open displacement costs more coherence — which is why the ions are cooled first, and why the stretch mode is preferred in practice (it heats less). The formulas here are the 1999 gate and its 2000–2003 realizations — re-derivations; the mesh’s reading is the mapping: shared mode = shared fence = the channel that writes one λ into two particles; closed loop = repaid loan = entanglement carried by the spins with no record in the motion.<br><br><b>After the gate.</b> Press <b>shuttle</b>: the ions separate and the entanglement meter does not move. The shared phase was written through the mode and is carried by the ions; the mode is no longer involved. Entangled ions are transported between trap zones routinely (the QCCD architecture), were separated by a quarter-millimetre with their entanglement intact and then mapped onto their own separated motion (Jost 2009), and were the first system to violate CHSH with the detection loophole closed (Rowe 2001, S = 2.25). Symmetry against the ensemble is required at the moment the phase is written and irrelevant afterward — the same sentence as tab 9’s truck. This is a two-particle tab, so the toll applies: a CHSH test on these ions pays Hall’s floor like any other; what the tab shows is the <i>writing</i> of the shared phase, not the paying of the bill.',
+ui(){const b=button('mode: STRETCH (in–out about the midplane)',()=>{modeSel=1-modeSel;b.textContent='mode: '+(modeSel?'STRETCH (in–out about the midplane)':'CENTRE-OF-MASS (side by side)');});
+ slider('detuning error (loop fails to close)',-0.3,0.3,0.01,eps,x=>{eps=x;});
+ slider('motional temperature n̄',0,3,0.05,nbar,x=>nbar=x);
+ button('run gate (t = 0)',()=>{t=0;sep=0;});
+ button('shuttle the ions apart',()=>{sep=1;});
+ button('pause ⇄ run',()=>run=!run);},
+step(){if(run){t+=1;}},
+draw(){clear();
+ const tg=Math.min(t,T);                      /* laser on for one intended gate time T, then off */
+ const laserOn=t<T;
+ const a=alpha(tg),A2=alpha2(tg),C=coh(tg),ph=phi(tg),cc=conc(tg);
+ /* left: the trap, two ions, the shared mode */
+ const x0=280,y0=300,d0=70+sep*125,w=modeSel?Math.sqrt(3)*0.11:0.11,amp=14;
+ const m=Math.sin(w*frame);
+ const xa=modeSel?x0-d0-amp*m:x0-d0+amp*m, xb=modeSel?x0+d0+amp*m:x0+d0+amp*m;
+ cx.strokeStyle='#1c2128';cx.lineWidth=1;cx.strokeRect(60,190,440,220);
+ cx.strokeStyle='#26302c';cx.setLineDash([3,5]);cx.beginPath();cx.moveTo(x0,200);cx.lineTo(x0,400);cx.stroke();cx.setLineDash([]);
+ txt('midplane',x0-24,186,COL.dim,10);
+ cx.strokeStyle='#26302c';cx.beginPath();cx.moveTo(xa,y0);cx.lineTo(xb,y0);cx.stroke();
+ for(const [X,c,lab] of [[xa,COL.teal,'ion A'],[xb,COL.vio,'ion B']]){cx.fillStyle=c;cx.beginPath();cx.arc(X,y0,9,0,TAU);cx.fill();txt(lab,X-14,y0+30,c,11);}
+ txt('two ions in an electric trap; a magnetic field sets their axis',70,178-14,COL.dim,11);
+ txt(modeSel?'stretch mode: the ions move oppositely, in and out about the midplane':'centre-of-mass mode: the ions move together, side by side',70,430,COL.dim,11);
+ txt(sep?'shuttled apart after the gate — the shared phase travels with them':(laserOn?'gate laser on: the mode is being displaced, spin-dependently':'gate laser off'),70,450,sep?COL.teal:(laserOn?COL.embL:COL.dim),12);
+ if(laserOn){cx.strokeStyle=COL.emb;cx.globalAlpha=0.35;cx.lineWidth=3;for(const X of [xa,xb]){cx.beginPath();cx.moveTo(X,200);cx.lineTo(X,y0-12);cx.stroke();}cx.globalAlpha=1;}
+ /* right-top: the mode's own phase space, the loop */
+ const px=640,py=250,R=70;
+ cx.strokeStyle='#26302c';cx.beginPath();cx.moveTo(px-110,py);cx.lineTo(px+110,py);cx.moveTo(px,py-110);cx.lineTo(px,py+110);cx.stroke();
+ txt('the shared mode’s phase space (x, p)',px-105,py-122,COL.dim,12);
+ cx.strokeStyle=COL.vio2;cx.setLineDash([4,4]);cx.beginPath();cx.arc(px+R,py,R,0,TAU);cx.stroke();cx.setLineDash([]);
+ cx.strokeStyle=COL.emb;cx.lineWidth=2.2;cx.beginPath();
+ for(let i=0;i<=200;i++){const tt=i/200*tg;const q=alpha(tt);const X=px+q[0]*R,Y=py+q[1]*R;i?cx.lineTo(X,Y):cx.moveTo(X,Y);}cx.stroke();
+ cx.fillStyle=COL.emb;cx.beginPath();cx.arc(px+a[0]*R,py+a[1]*R,5,0,TAU);cx.fill();
+ cx.fillStyle=COL.teal;cx.beginPath();cx.arc(px,py,4,0,TAU);cx.fill();txt('start / rest',px+6,py+16,COL.teal,10);
+ txt('dashed: the loop the gate should trace   ·   ember: where the mode has been',px-105,py+128,COL.dim,11);
+ /* right-bottom: meters */
+ const gx=800,gy=160,gw=250;
+ const meter=(y,lab,val,col,txtv)=>{txt(lab,gx,y-6,COL.dim,11);cx.strokeStyle='#26302c';cx.strokeRect(gx,y,gw,12);cx.fillStyle=col;cx.fillRect(gx,y,gw*Math.max(0,Math.min(1,val)),12);txt(txtv,gx+gw+8,y+11,col,11);};
+ meter(gy,'record in the motion  |α|²  (which-branch information in the mode)',Math.min(1,A2/4),A2>0.02?COL.emb:COL.teal2,A2.toFixed(3));
+ meter(gy+50,'coherence between spin branches  exp[−|α|²(2n̄+1)/2]',C,COL.teal,C.toFixed(3));
+ meter(gy+100,'geometric phase written into the spins  φ  (target π/4)',ph/(Math.PI/4),COL.vio,(ph/Math.PI).toFixed(3)+' π');
+ meter(gy+150,'entanglement written (concurrence)  =  coherence × |sin 2φ|',cc,COL.embL,cc.toFixed(3));
+ const S=2*Math.sqrt(1+cc*cc);
+ txt('CHSH available to a pure state of this concurrence: S = 2√(1+c²) = '+S.toFixed(3)+'   (Rowe 2001 measured 2.25)',560,H-84,COL.dim,11);
+ txt(laserOn?'t = '+(t/T).toFixed(2)+' of the intended gate time':(A2<0.02?'gate done: loop closed — the motion holds no record; the spins hold the phase':'gate done: loop did NOT close — the motion keeps a record; entanglement is degraded'),560,H-62,laserOn?COL.dim:(A2<0.02?COL.teal:COL.embL),12);
+ txt('The mode borrows a spin-dependent displacement and returns it. A closed loop is a repaid loan: no record in the motion, a shared phase in the spins.',60,H-24,COL.dim,12);}});
+})();
+
+scenes.forEach((s,i)=>{const t=document.createElement('div');t.className='tab';
+ t.textContent=s.name;t.onclick=()=>setScene(i);tabsEl.appendChild(t);});
+setScene(0);
+(function loop(){frame++;const s=scenes[cur];s.step();s.draw();requestAnimationFrame(loop);})();
+</script>
+</body>
+</html>
