@@ -1,0 +1,25 @@
+size 6 core +IIZX, +IZXZ, +ZYYZ, -ZYXY, +XZZX, +XIYY: plain construction faithful=False F=1/5; tightened: m'=5 lower=1/5, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 6 core +IIZX, +IZXZ, +XZZX, +XIYY, -YXYZ, +YXXY: plain construction faithful=False F=1/5; tightened: m'=5 lower=1/5, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 6 core +IIZX, +IZYY, +ZYYZ, -ZYXY, +XZZX, +XIXZ: plain construction faithful=False F=1/5; tightened: m'=5 lower=1/5, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 6 core +IIZX, +IZYY, +XZZX, +XIXZ, -YXYZ, +YXXY: plain construction faithful=False F=1/5; tightened: m'=5 lower=1/5, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 6 core +ZXZI, +ZYYZ, +XZII, +XZZX, +YYIX, -YXYZ: plain construction faithful=False F=1/5; tightened: m'=5 lower=1/5, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 6 core +ZXZI, -ZYXY, +XZII, +XZZX, +YYIX, +YXXY: plain construction faithful=False F=1/5; tightened: m'=5 lower=1/5, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 6 core +ZXIX, +ZYYZ, +XZII, +XZZX, +YYZI, -YXYZ: plain construction faithful=False F=1/5; tightened: m'=5 lower=1/5, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 6 core +ZXIX, -ZYXY, +XZII, +XZZX, +YYZI, +YXXY: plain construction faithful=False F=1/5; tightened: m'=5 lower=1/5, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZXZ, +ZXZI, +ZXIX, +ZYYZ, -ZYXY, +XZZX, +XIYY: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZXZ, +ZXZI, +ZXIX, +XZZX, +XIYY, -YXYZ, +YXXY: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZXZ, +ZXZI, +ZYYZ, +XZZX, +XIXZ, +YYIX, -YXYZ: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZXZ, +ZXZI, -ZYXY, +XZZX, +XIXZ, +YYIX, +YXXY: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZXZ, +ZXIX, +ZYYZ, +XZZX, +XIXZ, +YYZI, -YXYZ: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZXZ, +ZXIX, -ZYXY, +XZZX, +XIXZ, +YYZI, +YXXY: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZXZ, +ZYYZ, -ZYXY, +XZZX, +XIYY, +YYZI, +YYIX: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZXZ, +XZZX, +XIYY, +YYZI, +YYIX, -YXYZ, +YXXY: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZYY, +ZXZI, +ZXIX, +ZYYZ, -ZYXY, +XZZX, +XIXZ: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZYY, +ZXZI, +ZXIX, +XZZX, +XIXZ, -YXYZ, +YXXY: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZYY, +ZXZI, +ZYYZ, +XZZX, +XIYY, +YYIX, -YXYZ: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZYY, +ZXZI, -ZYXY, +XZZX, +XIYY, +YYIX, +YXXY: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZYY, +ZXIX, +ZYYZ, +XZZX, +XIYY, +YYZI, -YXYZ: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZYY, +ZXIX, -ZYXY, +XZZX, +XIYY, +YYZI, +YXXY: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZYY, +ZYYZ, -ZYXY, +XZZX, +XIXZ, +YYZI, +YYIX: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+size 7 core +IZYY, +XZZX, +XIXZ, +YYZI, +YYIX, -YXYZ, +YXXY: plain construction faithful=False F=1/6; tightened: m'=6 lower=1/6, feasible=True, faithful=True, F=1/4; LP=1/4 exact-upper=1/4
+assertion passed on all 24 cores where the plain construction is not faithful: tightened faithful with F = 1/4

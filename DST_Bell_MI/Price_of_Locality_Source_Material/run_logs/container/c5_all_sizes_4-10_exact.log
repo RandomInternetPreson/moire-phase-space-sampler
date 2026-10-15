@@ -1,0 +1,7 @@
+C5 size 4: 60 cores; lower {'1/3'}; feasible 60; faithful 60; F {'1/3': 60}; exact 60 [1s]
+C5 size 5: 180 cores; lower {'1/4'}; feasible 180; faithful 180; F {'1/4': 180}; exact 180 [3s]
+C5 size 6: 572 cores; lower {'1/5'}; feasible 572; faithful 572; F {'1/5': 572}; exact 572 [10s]
+C5 size 7: 1980 cores; lower {'1/6'}; feasible 1980; faithful 1980; F {'1/6': 1980}; exact 1980 [41s]
+C5 size 8: 5220 cores; lower {'1/7'}; feasible 5220; faithful 5220; F {'1/7': 5220}; exact 5220 [148s]
+C5 size 9: 9640 cores; lower {'1/8'}; feasible 9640; faithful 9640; F {'1/8': 9640}; exact 9640 [306s]
+C5 size 10: 8912 cores; lower {'1/9'}; feasible 8912; faithful 8912; F {'1/9': 8912}; exact 8912 [234s]

@@ -1,0 +1,24 @@
+core: +IIZX, +IZXZ, +ZYYZ, -ZYXY, +XZZX, +XIYY
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/5 ; LP value = 1/4
+assertion passed: certified bound == 1/4
+core: +IIZX, +IZXZ, +XZZX, +XIYY, -YXYZ, +YXXY
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/5 ; LP value = 1/4
+assertion passed: certified bound == 1/4
+core: +IIZX, +IZYY, +ZYYZ, -ZYXY, +XZZX, +XIXZ
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/5 ; LP value = 1/4
+assertion passed: certified bound == 1/4
+core: +IIZX, +IZYY, +XZZX, +XIXZ, -YXYZ, +YXXY
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/5 ; LP value = 1/4
+assertion passed: certified bound == 1/4
+core: +ZXZI, +ZYYZ, +XZII, +XZZX, +YYIX, -YXYZ
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/5 ; LP value = 1/4
+assertion passed: certified bound == 1/4
+core: +ZXZI, -ZYXY, +XZII, +XZZX, +YYIX, +YXXY
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/5 ; LP value = 1/4
+assertion passed: certified bound == 1/4
+core: +ZXIX, +ZYYZ, +XZII, +XZZX, +YYZI, -YXYZ
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/5 ; LP value = 1/4
+assertion passed: certified bound == 1/4
+core: +ZXIX, -ZYXY, +XZII, +XZZX, +YYZI, +YXXY
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/5 ; LP value = 1/4
+assertion passed: certified bound == 1/4

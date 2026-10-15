@@ -1,0 +1,25 @@
+core: +IIZX, +IZXZ, +ZYYZ, -ZYXY, +XZZX, +XIYY
+LP: 0.2500000000000038 [9s]
+EXACT: F_min >=  1/4  > 1/(k-1) = 1/5
+core: +IIZX, +IZXZ, +XZZX, +XIYY, -YXYZ, +YXXY
+LP: 0.25000000000000233 [8s]
+EXACT: F_min >=  1/4  > 1/(k-1) = 1/5
+core: +IIZX, +IZYY, +ZYYZ, -ZYXY, +XZZX, +XIXZ
+LP: 0.25000000000000455 [9s]
+EXACT: F_min >=  1/4  > 1/(k-1) = 1/5
+core: +IIZX, +IZYY, +XZZX, +XIXZ, -YXYZ, +YXXY
+LP: 0.25000000000005235 [9s]
+EXACT: F_min >=  1/4  > 1/(k-1) = 1/5
+core: +ZXZI, +ZYYZ, +XZII, +XZZX, +YYIX, -YXYZ
+LP: 0.25000000000000466 [9s]
+den 5000: dual feasible exactly: True; certified lower bound on F = 1/4
+EXACT: F_min >=  1/4  > 1/(k-1) = 1/5
+core: +ZXZI, -ZYXY, +XZII, +XZZX, +YYIX, +YXXY
+LP: 0.24999999999999778 [6s]
+EXACT: F_min >=  1/4  > 1/(k-1) = 1/5
+core: +ZXIX, +ZYYZ, +XZII, +XZZX, +YYZI, -YXYZ
+LP: 0.24999999999998965 [8s]
+EXACT: F_min >=  1/4  > 1/(k-1) = 1/5
+core: +ZXIX, -ZYXY, +XZII, +XZZX, +YYZI, +YXXY
+LP: 0.2500000000000032 [10s]
+EXACT: F_min >=  1/4  > 1/(k-1) = 1/5

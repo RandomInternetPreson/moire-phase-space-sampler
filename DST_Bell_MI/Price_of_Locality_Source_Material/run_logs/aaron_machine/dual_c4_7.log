@@ -1,0 +1,211 @@
+core: +IZXZ, +ZXZI, +ZXIX, +ZYYZ, -ZYXY, +XZZX, +XIYY
+LP: 0.25000000000000694 [60s]
+dual obj (float): 0.2499999999999743
+den 6: dual feasible exactly: False; certified lower bound on F = 7/24
+den 12: dual feasible exactly: False; certified lower bound on F = 43/168
+den 24: dual feasible exactly: False; certified lower bound on F = 175267/690690
+den 48: dual feasible exactly: False; certified lower bound on F = 116759267/468548640
+den 60: dual feasible exactly: False; certified lower bound on F = 9593897/38433780
+den 120: dual feasible exactly: False; certified lower bound on F = 39056389/156249360
+den 240: dual feasible exactly: False; certified lower bound on F = 625354933/2501525520
+den 480: dual feasible exactly: False; certified lower bound on F = 1/4
+den 1200: dual feasible exactly: False; certified lower bound on F = 1/4
+den 5000: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZXZ, +ZXZI, +ZXIX, +XZZX, +XIYY, -YXYZ, +YXXY
+LP: 0.24999999999999184 [52s]
+dual obj (float): 0.2500000000000022
+den 6: dual feasible exactly: False; certified lower bound on F = 3/20
+den 12: dual feasible exactly: False; certified lower bound on F = 2911/11088
+den 24: dual feasible exactly: False; certified lower bound on F = 23507/92820
+den 48: dual feasible exactly: False; certified lower bound on F = 172079/687312
+den 60: dual feasible exactly: False; certified lower bound on F = 21841/87210
+den 120: dual feasible exactly: False; certified lower bound on F = 1594867/6376020
+den 240: dual feasible exactly: False; certified lower bound on F = 231602753/926076720
+den 480: dual feasible exactly: False; certified lower bound on F = 948682499/3795143345
+den 1200: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZXZ, +ZXZI, +ZYYZ, +XZZX, +XIXZ, +YYIX, -YXYZ
+LP: 0.24999999999999958 [61s]
+dual obj (float): 0.25000000000000083
+den 6: dual feasible exactly: False; certified lower bound on F = 4/15
+den 12: dual feasible exactly: False; certified lower bound on F = 67/264
+den 24: dual feasible exactly: False; certified lower bound on F = 239/952
+den 48: dual feasible exactly: False; certified lower bound on F = 817/3264
+den 60: dual feasible exactly: False; certified lower bound on F = 817/3264
+den 120: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZXZ, +ZXZI, -ZYXY, +XZZX, +XIXZ, +YYIX, +YXXY
+LP: 0.25 [66s]
+dual obj (float): 0.24999999999999362
+den 6: dual feasible exactly: False; certified lower bound on F = 19/60
+den 12: dual feasible exactly: False; certified lower bound on F = 8/33
+den 24: dual feasible exactly: False; certified lower bound on F = 151/608
+den 48: dual feasible exactly: False; certified lower bound on F = 1/4
+den 60: dual feasible exactly: False; certified lower bound on F = 1/4
+den 120: dual feasible exactly: False; certified lower bound on F = 179/714
+den 240: dual feasible exactly: False; certified lower bound on F = 5516729/22072845
+den 480: dual feasible exactly: False; certified lower bound on F = 12680767/50721006
+den 1200: dual feasible exactly: False; certified lower bound on F = 392447/1569792
+den 5000: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZXZ, +ZXIX, +ZYYZ, +XZZX, +XIXZ, +YYZI, -YXYZ
+LP: 0.2500000000000022 [65s]
+dual obj (float): 0.24999999999999506
+den 6: dual feasible exactly: False; certified lower bound on F = 3/20
+den 12: dual feasible exactly: False; certified lower bound on F = 103/420
+den 24: dual feasible exactly: False; certified lower bound on F = 1315/5244
+den 48: dual feasible exactly: False; certified lower bound on F = 288048047/1157166120
+den 60: dual feasible exactly: False; certified lower bound on F = 2373914503/9462069540
+den 120: dual feasible exactly: False; certified lower bound on F = 1116399013/4468353120
+den 240: dual feasible exactly: False; certified lower bound on F = 4469031863/17877688416
+den 480: dual feasible exactly: False; certified lower bound on F = 45435653/181736352
+den 1200: dual feasible exactly: False; certified lower bound on F = 7683604297/30734305056
+den 5000: dual feasible exactly: False; certified lower bound on F = 29745070855/118980244992
+den 20000: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZXZ, +ZXIX, -ZYXY, +XZZX, +XIXZ, +YYZI, +YXXY
+LP: 0.24999999999999467 [64s]
+dual obj (float): 0.25000000000000006
+den 6: dual feasible exactly: False; certified lower bound on F = 3/20
+den 12: dual feasible exactly: False; certified lower bound on F = 19/77
+den 24: dual feasible exactly: False; certified lower bound on F = 1/4
+den 48: dual feasible exactly: False; certified lower bound on F = 7715/30932
+den 60: dual feasible exactly: False; certified lower bound on F = 478871/1908060
+den 120: dual feasible exactly: False; certified lower bound on F = 12882310087/51666190968
+den 240: dual feasible exactly: False; certified lower bound on F = 931459039059917/3724909970062920
+den 480: dual feasible exactly: False; certified lower bound on F = 2436091505/9744237776
+den 1200: dual feasible exactly: False; certified lower bound on F = 7315250423/29261202096
+den 5000: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZXZ, +ZYYZ, -ZYXY, +XZZX, +XIYY, +YYZI, +YYIX
+LP: 0.2499999999999974 [75s]
+dual obj (float): 0.2500000000000042
+den 6: dual feasible exactly: False; certified lower bound on F = 1/8
+den 12: dual feasible exactly: False; certified lower bound on F = 1007/3696
+den 24: dual feasible exactly: False; certified lower bound on F = 919/3696
+den 48: dual feasible exactly: False; certified lower bound on F = 44829/178640
+den 60: dual feasible exactly: False; certified lower bound on F = 44829/178640
+den 120: dual feasible exactly: False; certified lower bound on F = 1742503/6980880
+den 240: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZXZ, +XZZX, +XIYY, +YYZI, +YYIX, -YXYZ, +YXXY
+LP: 0.25000000000000006 [57s]
+dual obj (float): 0.25000000000000633
+den 6: dual feasible exactly: False; certified lower bound on F = 19/60
+den 12: dual feasible exactly: False; certified lower bound on F = 19/77
+den 24: dual feasible exactly: False; certified lower bound on F = 25387/100320
+den 48: dual feasible exactly: False; certified lower bound on F = 145373957/583658350
+den 60: dual feasible exactly: False; certified lower bound on F = 17046843/68142100
+den 120: dual feasible exactly: False; certified lower bound on F = 3723559/14890200
+den 240: dual feasible exactly: False; certified lower bound on F = 29433628017/117788568898
+den 480: dual feasible exactly: False; certified lower bound on F = 562510393/2249773890
+den 1200: dual feasible exactly: False; certified lower bound on F = 16380185743/65520920790
+den 5000: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZYY, +ZXZI, +ZXIX, +ZYYZ, -ZYXY, +XZZX, +XIXZ
+LP: 0.2500000000000003 [66s]
+dual obj (float): 0.25
+den 6: dual feasible exactly: False; certified lower bound on F = 19/60
+den 12: dual feasible exactly: False; certified lower bound on F = 35/144
+den 24: dual feasible exactly: False; certified lower bound on F = 68129/267444
+den 48: dual feasible exactly: False; certified lower bound on F = 22363203/89904185
+den 60: dual feasible exactly: False; certified lower bound on F = 12949/51920
+den 120: dual feasible exactly: False; certified lower bound on F = 286669925/1146953808
+den 240: dual feasible exactly: False; certified lower bound on F = 10519/42075
+den 480: dual feasible exactly: False; certified lower bound on F = 31177765/124714788
+den 1200: dual feasible exactly: False; certified lower bound on F = 691764076/2767049961
+den 5000: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZYY, +ZXZI, +ZXIX, +XZZX, +XIXZ, -YXYZ, +YXXY
+LP: 0.2500000000000063 [56s]
+dual obj (float): 0.24999999999999456
+den 6: dual feasible exactly: False; certified lower bound on F = 7/30
+den 12: dual feasible exactly: False; certified lower bound on F = 35/144
+den 24: dual feasible exactly: False; certified lower bound on F = 961/3864
+den 48: dual feasible exactly: False; certified lower bound on F = 5722745/22996536
+den 60: dual feasible exactly: False; certified lower bound on F = 7173461/28867992
+den 120: dual feasible exactly: False; certified lower bound on F = 99386129/397655280
+den 240: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZYY, +ZXZI, +ZYYZ, +XZZX, +XIYY, +YYIX, -YXYZ
+LP: 0.25000000000000167 [67s]
+dual obj (float): 0.25000000000000155
+den 6: dual feasible exactly: False; certified lower bound on F = 1/6
+den 12: dual feasible exactly: False; certified lower bound on F = 11/42
+den 24: dual feasible exactly: False; certified lower bound on F = 4003/15960
+den 48: dual feasible exactly: False; certified lower bound on F = 432041/1710800
+den 60: dual feasible exactly: False; certified lower bound on F = 982805/3900624
+den 120: dual feasible exactly: False; certified lower bound on F = 346208068/1386560511
+den 240: dual feasible exactly: False; certified lower bound on F = 12770400338/51066788223
+den 480: dual feasible exactly: False; certified lower bound on F = 1/4
+den 1200: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZYY, +ZXZI, -ZYXY, +XZZX, +XIYY, +YYIX, +YXXY
+LP: 0.24999999999999895 [57s]
+dual obj (float): 0.24999999999998668
+den 6: dual feasible exactly: False; certified lower bound on F = 19/60
+den 12: dual feasible exactly: False; certified lower bound on F = 239/924
+den 24: dual feasible exactly: False; certified lower bound on F = 12763/51680
+den 48: dual feasible exactly: False; certified lower bound on F = 1237/4960
+den 60: dual feasible exactly: False; certified lower bound on F = 1201133/4806240
+den 120: dual feasible exactly: False; certified lower bound on F = 61869/247520
+den 240: dual feasible exactly: False; certified lower bound on F = 1054501/4218720
+den 480: dual feasible exactly: False; certified lower bound on F = 29283991/117127680
+den 1200: dual feasible exactly: False; certified lower bound on F = 410807663/1643235840
+den 5000: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZYY, +ZXIX, +ZYYZ, +XZZX, +XIYY, +YYZI, -YXYZ
+LP: 0.2499999999999972 [66s]
+dual obj (float): 0.249999999999985
+den 6: dual feasible exactly: False; certified lower bound on F = 19/60
+den 12: dual feasible exactly: False; certified lower bound on F = 235/924
+den 24: dual feasible exactly: False; certified lower bound on F = 6179/25080
+den 48: dual feasible exactly: False; certified lower bound on F = 82876259/331620300
+den 60: dual feasible exactly: False; certified lower bound on F = 1198803/4798640
+den 120: dual feasible exactly: False; certified lower bound on F = 2991565/11961108
+den 240: dual feasible exactly: False; certified lower bound on F = 3693845/14774514
+den 480: dual feasible exactly: False; certified lower bound on F = 56347777/225398730
+den 1200: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZYY, +ZXIX, -ZYXY, +XZZX, +XIYY, +YYZI, +YXXY
+LP: 0.250000000000013 [69s]
+dual obj (float): 0.24999999999994993
+den 6: dual feasible exactly: False; certified lower bound on F = 19/60
+den 12: dual feasible exactly: False; certified lower bound on F = 1223/4620
+den 24: dual feasible exactly: False; certified lower bound on F = 1307/5244
+den 48: dual feasible exactly: False; certified lower bound on F = 65387/262260
+den 60: dual feasible exactly: False; certified lower bound on F = 73853/295740
+den 120: dual feasible exactly: False; certified lower bound on F = 405191/1618200
+den 240: dual feasible exactly: False; certified lower bound on F = 5272243/21086975
+den 480: dual feasible exactly: False; certified lower bound on F = 211159411/844697700
+den 1200: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZYY, +ZYYZ, -ZYXY, +XZZX, +XIXZ, +YYZI, +YYIX
+LP: 0.25000000000000017 [65s]
+dual obj (float): 0.25000000000000233
+den 6: dual feasible exactly: False; certified lower bound on F = 1/8
+den 12: dual feasible exactly: False; certified lower bound on F = 184/693
+den 24: dual feasible exactly: False; certified lower bound on F = 463223/1847560
+den 48: dual feasible exactly: False; certified lower bound on F = 3874163/15456672
+den 60: dual feasible exactly: False; certified lower bound on F = 3874163/15456672
+den 120: dual feasible exactly: False; certified lower bound on F = 5244927/20968640
+den 240: dual feasible exactly: False; certified lower bound on F = 158556583205/634349912196
+den 480: dual feasible exactly: False; certified lower bound on F = 233994728103293/936000756163200
+den 1200: dual feasible exactly: False; certified lower bound on F = 6813789573/27255307520
+den 5000: dual feasible exactly: False; certified lower bound on F = 3971284649667/15885141838592
+den 20000: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4
+core: +IZYY, +XZZX, +XIXZ, +YYZI, +YYIX, -YXYZ, +YXXY
+LP: 0.25000000000000644 [70s]
+dual obj (float): 0.2500000000000069
+den 6: dual feasible exactly: False; certified lower bound on F = 3/10
+den 12: dual feasible exactly: False; certified lower bound on F = 1153/4620
+den 24: dual feasible exactly: False; certified lower bound on F = 829/3360
+den 48: dual feasible exactly: False; certified lower bound on F = 185515/747684
+den 60: dual feasible exactly: False; certified lower bound on F = 580147/2312604
+den 120: dual feasible exactly: False; certified lower bound on F = 1/4
+den 240: dual feasible exactly: False; certified lower bound on F = 1/4
+den 480: dual feasible exactly: False; certified lower bound on F = 1/4
+den 1200: dual feasible exactly: True; certified lower bound on F = 1/4
+CERTIFIED: F_min >= 1/4 (exact); 1/(k-1) = 1/6 ; LP value = 1/4

@@ -1,0 +1,5 @@
+C4 chain N = 15 rank = 7
+kernel dim 8
+minimal contradictions by size: {4: 8, 5: 8, 6: 8, 7: 16}
+circuits by size: {3: 5, 4: 15, 5: 12, 6: 16, 7: 40, 8: 24}
+census matches the counts quoted in the paper; total cores = 40

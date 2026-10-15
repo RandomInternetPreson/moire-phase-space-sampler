@@ -1,0 +1,39 @@
+P:\exactpriceupdates\3\PoL_v9_bundle_3\bundle3\scripts>python exact_certificates_fwht_v2.py --upto 22
+P:\exactpriceupdates\3\PoL_v9_bundle_3\bundle3\scripts\exact_certificates_fwht_v2.py:32: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+  complementary pair (S, [n] \ S) has overlap g (identical densities).
+n= 3: N=      4, Hmin=     1, m=      3 (s=3/4), |ground|=       8, g=      6, min-overlap=      4  lower=1/3 [full set, m=3]  upper=1/3  == R/(2(R+1)) = 1/3   [0.0s]
+n= 4: N=      8, Hmin=     2, m=      6 (s=3/4), |ground|=       8, g=      6, min-overlap=      4  lower=1/3 [embedded Mermin_3, m'=3 of N'=4]  upper=1/3  == R/(2(R+1)) = 1/3   [0.0s]
+n= 5: N=     16, Hmin=     6, m=     10 (s=5/8), |ground|=      32, g=     20, min-overlap=     12  lower=2/5 [full set, m=10]  upper=2/5  == R/(2(R+1)) = 2/5   [0.0s]
+n= 6: N=     32, Hmin=    12, m=     20 (s=5/8), |ground|=      32, g=     20, min-overlap=     12  lower=2/5 [embedded Mermin_5, m'=10 of N'=16]  upper=2/5  == R/(2(R+1)) = 2/5   [0.0s]
+n= 7: N=     64, Hmin=    28, m=     36 (s=9/16), |ground|=     128, g=     72, min-overlap=     40  lower=4/9 [full set, m=36]  upper=4/9  == R/(2(R+1)) = 4/9   [0.0s]
+n= 8: N=    128, Hmin=    56, m=     72 (s=9/16), |ground|=     128, g=     72, min-overlap=     40  lower=4/9 [embedded Mermin_7, m'=36 of N'=64]  upper=4/9  == R/(2(R+1)) = 4/9   [0.0s]
+n= 9: N=    256, Hmin=   120, m=    136 (s=17/32), |ground|=     512, g=    272, min-overlap=    144  lower=8/17 [full set, m=136]  upper=8/17  == R/(2(R+1)) = 8/17   [0.0s]
+n=10: N=    512, Hmin=   240, m=    272 (s=17/32), |ground|=     512, g=    272, min-overlap=    144  lower=8/17 [embedded Mermin_9, m'=136 of N'=256]  upper=8/17  == R/(2(R+1)) = 8/17   [0.0s]
+n=11: N=   1024, Hmin=   496, m=    528 (s=33/64), |ground|=    2048, g=   1056, min-overlap=    544  lower=16/33 [full set, m=528]  upper=16/33  == R/(2(R+1)) = 16/33   [0.0s]
+n=12: N=   2048, Hmin=   992, m=   1056 (s=33/64), |ground|=    2048, g=   1056, min-overlap=    544  lower=16/33 [embedded Mermin_11, m'=528 of N'=1024]  upper=16/33  == R/(2(R+1)) = 16/33   [0.0s]
+n=13: N=   4096, Hmin=  2016, m=   2080 (s=65/128), |ground|=    8192, g=   4160, min-overlap=   2112  lower=32/65 [full set, m=2080]  upper=32/65  == R/(2(R+1)) = 32/65   [0.1s]
+n=14: N=   8192, Hmin=  4032, m=   4160 (s=65/128), |ground|=    8192, g=   4160, min-overlap=   2112  lower=32/65 [embedded Mermin_13, m'=2080 of N'=4096]  upper=32/65  == R/(2(R+1)) = 32/65   [0.1s]
+n=15: N=  16384, Hmin=  8128, m=   8256 (s=129/256), |ground|=   32768, g=  16512, min-overlap=   8320  lower=64/129 [full set, m=8256]  upper=64/129  == R/(2(R+1)) = 64/129   [0.2s]
+n=16: N=  32768, Hmin= 16256, m=  16512 (s=129/256), |ground|=   32768, g=  16512, min-overlap=   8320  lower=64/129 [embedded Mermin_15, m'=8256 of N'=16384]  upper=64/129  == R/(2(R+1)) = 64/129   [0.3s]
+n=17: N=  65536, Hmin= 32640, m=  32896 (s=257/512), |ground|=  131072, g=  65792, min-overlap=  33024  lower=128/257 [full set, m=32896]  upper=128/257  == R/(2(R+1)) = 128/257   [1.4s]
+n=18: N= 131072, Hmin= 65280, m=  65792 (s=257/512), |ground|=  131072, g=  65792, min-overlap=  33024  lower=128/257 [embedded Mermin_17, m'=32896 of N'=65536]  upper=128/257  == R/(2(R+1)) = 128/257   [1.7s]
+n=19: N= 262144, Hmin=130816, m= 131328 (s=513/1024), |ground|=  524288, g= 262656, min-overlap= 131584  lower=256/513 [full set, m=131328]  upper=256/513  == R/(2(R+1)) = 256/513   [17.2s]
+n=20: N= 524288, Hmin=261632, m= 262656 (s=513/1024), |ground|=  524288, g= 262656, min-overlap= 131584  lower=256/513 [embedded Mermin_19, m'=131328 of N'=262144]  upper=256/513  == R/(2(R+1)) = 256/513   [20.6s]
+n=21: N=1048576, Hmin=523776, m= 524800 (s=1025/2048), |ground|= 2097152, g=1049600, min-overlap= 525312  lower=512/1025 [full set, m=524800]  upper=512/1025  == R/(2(R+1)) = 512/1025   [90.9s]
+n=22: N=2097152, Hmin=1047552, m=1049600 (s=1025/2048), |ground|= 2097152, g=1049600, min-overlap= 525312  lower=512/1025 [embedded Mermin_21, m'=524800 of N'=1048576]  upper=512/1025  == R/(2(R+1)) = 512/1025   [108.1s]
+
+ALL VALUES CERTIFIED EXACTLY, Lemma-11 counts asserted at every n (integer WHT + Fractions; no floating point)
+
+P:\exactpriceupdates\3\PoL_v9_bundle_3\bundle3\scripts>python core_census_v1.py "C4 chain"
+C4 chain N = 15 rank = 7
+kernel dim 8
+minimal contradictions by size: {4: 8, 5: 8, 6: 8, 7: 16}
+circuits by size: {3: 5, 4: 15, 5: 12, 6: 16, 7: 40, 8: 24}
+census matches the counts quoted in the paper; total cores = 40
+
+P:\exactpriceupdates\3\PoL_v9_bundle_3\bundle3\scripts>python core_census_v1.py "C5 ring"
+C5 ring N = 31 rank = 9
+kernel dim 22
+minimal contradictions by size: {4: 60, 5: 180, 6: 572, 7: 1980, 8: 5220, 9: 9640, 10: 8912}
+circuits by size: {3: 15, 4: 105, 5: 288, 6: 1173, 7: 4210, 8: 10500, 9: 19280, 10: 18608}
+census matches the counts quoted in the paper; total cores = 26564

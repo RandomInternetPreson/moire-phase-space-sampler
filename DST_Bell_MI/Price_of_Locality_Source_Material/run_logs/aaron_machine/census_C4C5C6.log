@@ -1,0 +1,18 @@
+
+=== C4 chain: 16 stabilizers; minimal contradictions by size: {2: 0, 3: 0, 4: 8, 5: 8}   [0.0s]
+  size 4: 8 of 8 cores checked; s = {'3/4'}, Theorem-3 bound = {'1/3'}; construction feasible: 8, faithful (all marginals exact): 8, F values: {'1/3': 8}; EXACTLY CERTIFIED F_min = 1/(k-1): 8 of 8   [0.0s]
+    example core: +IZXZ, +IZYY, +ZYYZ, -ZYXY
+  size 5: 8 of 8 cores checked; s = {'4/5'}, Theorem-3 bound = {'1/4'}; construction feasible: 8, faithful (all marginals exact): 8, F values: {'1/4': 8}; EXACTLY CERTIFIED F_min = 1/(k-1): 8 of 8   [0.0s]
+    example core: +IIZX, +ZXZI, +ZYYZ, +YYIX, -YXYZ
+
+=== C5 ring: 32 stabilizers; minimal contradictions by size: {2: 0, 3: 0, 4: 60, 5: 180}   [0.1s]
+  size 4: 60 of 60 cores checked; s = {'3/4'}, Theorem-3 bound = {'1/3'}; construction feasible: 60, faithful (all marginals exact): 60, F values: {'1/3': 60}; EXACTLY CERTIFIED F_min = 1/(k-1): 60 of 60   [0.9s]
+    example core: +ZIIZX, +ZIZYY, +YZIZY, -YZZYX
+  size 5: 180 of 180 cores checked; s = {'4/5'}, Theorem-3 bound = {'1/4'}; construction feasible: 180, faithful (all marginals exact): 180, F values: {'1/4': 180}; EXACTLY CERTIFIED F_min = 1/(k-1): 180 of 180   [3.2s]
+    example core: +ZIIZX, +IIZXZ, +ZXZII, +XIXZZ, -XXXXX
+
+=== C6 ring: 64 stabilizers; minimal contradictions by size: {2: 0, 3: 0, 4: 360, 5: 1920}   [2.2s]
+  size 4: 360 of 360 cores checked; s = {'3/4'}, Theorem-3 bound = {'1/3'}; construction feasible: 360, faithful (all marginals exact): 280, F values: {'1/3': 360}; EXACTLY CERTIFIED F_min = 1/(k-1): 280 of 360   [193.3s]
+    example core: +ZIIIZX, +ZIIZYY, +YZIIZY, -YZIZYX
+  size 5: 1920 of 1920 cores checked; s = {'4/5'}, Theorem-3 bound = {'1/4'}; construction feasible: 1920, faithful (all marginals exact): 1616, F values: {'1/4': 1920}; EXACTLY CERTIFIED F_min = 1/(k-1): 1616 of 1920   [1055.9s]
+    example core: +ZIIIZX, +IIIZXZ, +ZYYZII, +XIYYZZ, -XYIYXX
