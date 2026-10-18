@@ -42,5 +42,11 @@ simulation, and reference output data — is in:
 See the README there for a script-by-script map from each paper section to the
 claims it verifies.
 
+`settings_torus_brief_and_code/` holds the two-page experimental brief and the protocol
+script. As of v4 (October 2026) the current files are `settings_torus_brief_v2_2.pdf/.tex`
+and `protocol_sensitivity_v2_2.py`; the August 2026 originals are kept alongside for the
+record. The v4 revisions follow an independent review; the brief and its README say what
+changed.
+
 `Interactive_Visualizer` is an exploratory visualization not referenced by the paper.
 [Click here to view the live Visualizer](https://randominternetpreson.github.io/moire-phase-space-sampler/DST_Bell_MI/Exact_Price_Source_Material/Interactive_Visualizer/moire_garden_v20.html)

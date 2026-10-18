@@ -47,4 +47,4 @@ a_est = 1/hn[0]  # if hn = c/(1+am): hn(0)=c, hn(1)=c/(1+a)=1
 print(f"  probe hn(m) ~ hn(0)/(1+a m): implied a = hn(0)-1 = {hn[0]-1:.5f}")
 pred = hn[0]/(1+(hn[0]-1)*HG)
 print(f"  max |hn - probe| = {np.max(np.abs(hn - pred)):.4f}")
-np.savez("/home/claude/sqrt_law_h.npz", m=HG, h=h)
+np.savez("sqrt_law_h.npz", m=HG, h=h)

@@ -109,5 +109,35 @@ for label, mv in [("h(0)", 0.0), ("h(1/2)", 0.5), ("h(1/4)", 0.25)]:
                 ["pi", "pi^2", "sqrt2", "pi*sqrt2"])
     print(f"  PSLQ {label} = {v:.12f}: {hit if hit else 'no small relation found'}")
 
-np.savez("/home/claude/h_spectral.npz", cheb=c, h0=h0)
+np.savez("h_spectral.npz", cheb=c, h0=h0)
 print("\nsaved h_spectral.npz")
+
+# ---------------------------------------------------------------------------
+# Exact-profile harmonics of the fourfold coincidence sum (Secs. 6, 9, 10).
+# R4(a,b) is the circular autocorrelation C_g(2*Delta) of g(x) = D(|cos x|),
+# period pi, so R4/mean = 1 + sum_k a_k cos(4k*Delta) with a_k = g_k^2/(2 g_0^2),
+# g_k the cos(2kx) Fourier coefficients of g. The sqrt endpoint singularity at
+# x = pi/2 is removed by the substitution x = (pi/2) cos^2 v.
+# ---------------------------------------------------------------------------
+from numpy.polynomial.legendre import leggauss
+_v, _w = leggauss(600)
+_v = (_v + 1.0)*np.pi/4; _w = _w*np.pi/4
+_x = (np.pi/2)*np.cos(_v)**2
+_dx = (np.pi/2)*2*np.sin(_v)*np.cos(_v)
+_g = np.sqrt(np.abs(np.cos(_x)))*h_of(c, np.abs(np.cos(_x)))
+_g0 = np.sum(_w*_dx*_g)/(np.pi/2)
+_gk = np.array([2*np.sum(_w*_dx*_g*np.cos(2*k*_x))/(np.pi/2) for k in range(1, 13)])
+a_k = (_gk**2/2)/_g0**2
+k = np.arange(1, 13)
+R4 = lambda d: 1 + np.sum(a_k*np.cos(4*k*d))
+print("\nexact-profile harmonics a_k of R4/mean = 1 + sum a_k cos(4k Delta):")
+for i, ak in enumerate(a_k, start=1):
+    print(f"  a_{i:<2d} = {ak:.6e}")
+print(f"  a_1/a_2            = {a_k[0]/a_k[1]:.3f}")
+print(f"  peak-to-peak       = {R4(0.0)-R4(np.pi/4):.4f}  (of the mean)")
+print(f"  R4(0)/R4(45 deg)   = {R4(0.0)/R4(np.pi/4):.4f}")
+print(f"  R4(22.5 deg)/mean  = {R4(np.pi/8):.4f}   (= R4(67.5 deg)/mean: {R4(3*np.pi/8):.4f})")
+print(f"  cross-ratio X      = {R4(0.0)*R4(0.0)/(R4(np.pi/4)**2):.4f}")
+print(f"  max-scale efficiency (mean click probability, h(1)=1) = {_g0:.4f}")
+np.save("fringe_harmonics.npy", a_k)
+print("saved fringe_harmonics.npy")

@@ -41,7 +41,12 @@ these two scripts *is* the certificate check.
 ### Section 5 — The exact detection sector
 - `solve_h_spectral.py` — solves the master equation Cf = cos·Cg in arc form
   (Chebyshev series for h, Gauss–Jacobi(1/2, 1/2) quadrature); residual 1.5e−12,
-  correlation match to −cos 2Δ at 4e−11, h(0)/h(1) = 1.17450854538894.
+  correlation match to −cos 2Δ at 4e−11, h(0)/h(1) = 1.17450854538894. Since v4 it
+  also emits the exact-profile harmonics of the fourfold sum, R4/mean =
+  1 + Σ a_k cos 4kΔ (a_1 = 0.0577, a_2 = 0.0098, a_3 = 0.0031; a_1/a_2 = 5.87;
+  12.4% peak-to-peak; R4(0°)/R4(45°) = 1.130; cross-ratio 1.278; R4(22.5°) = 0.991
+  of the mean), saved as `fringe_harmonics.npy`. Run `sqrt_law_test.py` first: the
+  solver warm-starts from its `sqrt_law_h.npz`.
 - `detection_profile_solve.py` — the direct solve for the smooth profile
   D(m) = sqrt(m)·h(m) with independent Monte Carlo verification.
 - `sqrt_law_test.py` — numerical verification of the sqrt(m) edge law (Lemma 1).
@@ -87,12 +92,17 @@ these two scripts *is* the certificate check.
   apparatus ripple confined to the log-Fourier axes, physical signal on the
   anti-diagonal pixels, null recovery (0.001 ± 0.015)% with Poisson noise at
   1e6 counts per point.
+- `../settings_torus_brief_and_code/protocol_sensitivity_v2_2.py` — the v4 protocol
+  script named in the paper: outcome-dependent channel efficiencies, Poisson singles,
+  the uncalibrated and singles-calibrated (2,−2) estimators, the two-setting
+  cross-ratio (Design A), the imbalance nulls including the equal-phase case, and the
+  coincidence-marginal check. See the README in that directory.
 
 ## data/ — reference outputs
 
 Saved outputs from the author's runs, so results can be diffed without re-running:
 - `exact_frontier.npz`, `price_surface.npz` — Sec. 3 LP values.
-- `detection_profile.npz`, `h_spectral.npz`, `sqrt_law_h.npz` — Sec. 5 solutions.
+- `detection_profile.npz`, `h_spectral.npz`, `sqrt_law_h.npz`, `fringe_harmonics.npy` — Sec. 5 solutions and the exact-profile harmonics.
 - `pearle_band_solution.npz` — Sec. 6 edge-band model.
 
 ## Note on provenance
@@ -102,4 +112,4 @@ The detection structure investigated here was originally suggested by a beat-pat
 
 
 ## 9/16/2026  Malus Check
-malus_check.py — Malus's law as an independent bound on the static detection sector (added Sept 16, 2026). The detection profile of Sec. 5 was solved against the singlet correlation only. This script asks whether the same profile reproduces Malus's law (transmission cos²θ) for one photon through two sequential polarizers, in the static-hidden-phase class of Sec. 5 (λ fixed per event; analyzer routes by sgn cos 2(λ−a); click probability D(m), m = |cos 2(λ−a)|). The paper does not define a compound station, so both natural completions are run: D applied once at the final detector with lossless polarizers (variant 1), and D applied at each polarizer (variant 2). Result: the solved profile D = √m h(m) deviates from cos²θ by up to 5.3% (variant 1, near 67.5°) and 7.4% (variant 2, near 31°), while reproducing the singlet exactly (E(22.5°) = −0.7071, S = 2√2) with the 12.4% fourfold-sum modulation. Conversely, D(m) = m reproduces Malus exactly in variant 1 — an analytic identity, ∫ cos 2(λ−θ) dλ over the overlap of the two pass-bands equals cos²θ — but yields a super-quantum singlet (E(22.5°) = −0.88, S ≈ 3.52) with 36% rate modulation. The incompatibility is an edge-exponent conflict: Lemma 1 forces D ~ √m at m → 0 for the singlet, while Malus's quadratic zero at 90° forces D ~ m in variant 1. Since Malus's law is measured far below the percent level, no static profile in this class is a faithful single-photon account; the α = 1 corner of the detection–measurement-dependence dial in Sec. 7 is closed by polarimetry independently of the fourfold-sum protocol, which tightens the flatness → measurement-dependence forcing of Sec. 8. This does not touch Hall's floor, Proposition 1, or the observable itself, and it says nothing about the dynamical mechanism of Sec. 7, in which λ is re-quenched at a lock; the sequential-polarizer prediction of that mechanism is the natural next computation. Reproduced bit-for-bit on two machines (single-instance derivation, cold-run on the 56-core workstation the same evening). Requires data/h_spectral.npz.
+malus_check.py — Malus's law as an independent bound on the static detection sector (added Sept 16, 2026). The detection profile of Sec. 5 was solved against the singlet correlation only. This script asks whether the same profile reproduces Malus's law (transmission cos²θ) for one photon through two sequential polarizers, in the static-hidden-phase class of Sec. 5 (λ fixed per event; analyzer routes by sgn cos 2(λ−a); click probability D(m), m = |cos 2(λ−a)|). The paper does not define a compound station, so both natural completions are run: D applied once at the final detector with lossless polarizers (variant 1), and D applied at each polarizer (variant 2). Result: the solved profile D = √m h(m) deviates from cos²θ by up to 5.3% (variant 1, near 67.5°) and 7.4% (variant 2, near 31°), while reproducing the singlet exactly (E(22.5°) = −0.7071, S = 2√2) with the 12.4% fourfold-sum modulation. Conversely, D(m) = m reproduces Malus exactly in variant 1 — an analytic identity, ∫ cos 2(λ−θ) dλ over the overlap of the two pass-bands equals cos²θ — but yields a super-quantum singlet (E(22.5°) = −0.88, S ≈ 3.52) with 36% rate modulation. The incompatibility is an edge-exponent conflict: Lemma 1 forces D ~ √m at m → 0 for the singlet, while Malus's quadratic zero at 90° forces D ~ m in variant 1. Since Malus's law is measured far below the percent level, no static profile in this class is a faithful single-photon account; the α = 1 corner of the detection–measurement-dependence dial in Sec. 7 is closed by polarimetry independently of the fourfold-sum protocol. (As of v4 the paper no longer claims that flatness forces measurement dependence — flat-rate local detection models outside the Sec. 5 class exist, Larsson 1999 — so this closes the solved profile's corner, not the detection route in general.) This does not touch Hall's floor, Proposition 1, or the observable itself, and it says nothing about the dynamical mechanism of Sec. 7, in which λ is re-quenched at a lock; the sequential-polarizer prediction of that mechanism is the natural next computation. Reproduced bit-for-bit on two machines (single-instance derivation, cold-run on the 56-core workstation the same evening). Requires data/h_spectral.npz.
