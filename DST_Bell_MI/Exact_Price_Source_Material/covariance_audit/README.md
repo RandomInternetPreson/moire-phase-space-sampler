@@ -75,6 +75,40 @@ https://doi.org/10.5281/zenodo.23537611 (version 1, 21 Oct 2026; concept DOI
 from the named input; each script asserts the stored floor price of its input
 before reporting.
 
+## Corrections and additions (21 Oct 2026, after two cold reads; deposit version 2)
+
+- Result A, statement (2): the sum term is cos(4(xi_A + xi_B) - phi), phase outside
+  the factor of 4; the preferred value of xi_A + xi_B is phi/4 ~ 40 deg (mod 90 deg)
+  in the pinned frame. Result A table: active atoms (weight > 0) random1 675,
+  strat0 684, strat1 669 (656 in the paper's Sec. 7 is the count at weight > 1e-6).
+  Result C control: MD - floor = 2e-14.
+- Result D: the NB = 32 run used 14 starts per class (uniform, rho*-marginals,
+  random0-11), not 20; "max slack" in the transcript is the excess over the eps band,
+  so the correlators miss their targets by eps + slack = 3-13% at eps = 0.01; at
+  eps = 0.05 the station-local classes pay 2.20 / 3.07 times the FLOOR (the binned
+  joint control hit its time limit there). The NB = 16 run (product_census_v2.py,
+  6 starts) is recorded in the author's notes only; its output was not retained.
+- Per-pixel null for the (2,-2) term (pixel_null_v1.py, same measure, 400 draws,
+  seed 20261015, independent re-pairing): |F(2,-2)| = 0.127 / 0.152 / 0.143 / 0.124
+  on random0 / random1 / strat0 / strat1 against null 95th percentiles
+  0.117 / 0.115 / 0.099 / 0.106 (p = 0.038, 0.005, 0.008, 0.023), phases
+  +14 / +45 / +50 / +48 deg. A weaker relative-phase term cos(4(xi_A - xi_B) - psi)
+  is present at about a third of the sum term. Transcript:
+  pixel_null_v1_run_2026-10-21.txt. Two-machine (container and author's machine,
+  identical to all printed digits).
+- Result F, sum/difference coordinates (product_census_v4.py, COORDS=sumdiff,
+  random0 banks, NB = 32, 14 starts per class, 17,655 s): at eps = 0.05 semi 1.965
+  (14/14 feasible), product 2.749 (12/14); at eps = 0.01 joint 1.107, no semi or
+  product census feasible from any start (targets missed by 1.7-3.0% and 2.2-3.9%).
+  Closer to separable than in station coordinates, but not separable: the
+  dominant (2,2)_AB pixel is the pure-S harmonic, the other four skeleton pixels
+  are cross terms in (S, D). A census depending on xi_A - xi_B alone is the
+  f(S) = const sub-case of the class that fails. Transcript and result file:
+  product_census_v4_sumdiff_random0_10_21_26.txt, product_census_v4_sumdiff_rho_nsh32_random0_eps0.01_nang161.json.
+- Deposit: version 2, https://doi.org/10.5281/zenodo.23540603 (concept DOI
+  10.5281/zenodo.23537610, cited by the paper, resolves to the latest version).
+  Note: census_structure_note_zenodo_v2.pdf replaces v1 in this folder.
+
 ## Result A — the floor-attaining census has a universal low-order skeleton
 
 Four independent 1024-offset solutions at the floor (dither_sweep_rho.py,
@@ -180,3 +214,5 @@ check_folders_v1.py (folder/hash audit). Solutions: the three new rho files
 Results: product_census_v3 outputs, A_breed_greedy/, VA_validate_greedy/,
 breedrun/logs/, pipeline_FINAL.txt, pipeline_status.txt. Transcripts as named
 above. Note: census_structure_note_zenodo_v1.pdf (the deposit note).
+
+
