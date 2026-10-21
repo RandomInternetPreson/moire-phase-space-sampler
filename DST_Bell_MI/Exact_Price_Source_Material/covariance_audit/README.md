@@ -62,3 +62,121 @@ banks, correlator signs, S_QM, min_md). dither_dense161.json and the
 eps = 0.02 / 0.10 rho files complete the record when the corresponding LPs
 finish (both values are forced to the floor: Hall's bound lower-bounds any
 eps, and monotonicity upper-bounds them by the eps = 0.01 value).
+
+
+# v5 supporting runs — census structure (October 15–21, 2026)
+
+Version 5 of arXiv:2608.18886 adds to Sec. 7 what the floor-attaining census
+looks like, that it is a function of the terrain while the price is not, and
+that it cannot be built from the two stations separately. The scripts, solutions
+and transcripts below are also deposited, with a short note, at
+https://doi.org/10.5281/zenodo.23537611 (version 1, 21 Oct 2026; concept DOI
+10.5281/zenodo.23537610). Every quoted number is produced by the named script
+from the named input; each script asserts the stored floor price of its input
+before reporting.
+
+## Result A — the floor-attaining census has a universal low-order skeleton
+
+Four independent 1024-offset solutions at the floor (dither_sweep_rho.py,
+NANG = 161, NSH = 32, eps = 0.01, SAVE_RHO = 1): random seeds 0 and 1 and
+stratified seeds 0 and 1 — rho_nsh32_{random0,random1,strat0,strat1}_eps0.01_nang161.json,
+each with MD/floor = 1.000 to twelve digits, sharing no offsets.
+census_structure_v2.py (v1 + phases of the top pixels) forms the weighted
+empirical measure over (xi_A, xi_B), its circular Fourier plane |F(k_a,k_b)|
+for |k| <= 6, and a 400-draw seeded permutation null (weights fixed, offsets
+re-paired). On all four: top pixel (2,2) at |F| = 0.373 / 0.352 / 0.349 / 0.384
+against a null 95th percentile of 0.17–0.18, with phase +156.5 / +161.1 /
++157.1 / +158.0 deg (spread 4.5 deg); second pixel (2,0) at 0.24–0.31; the
+anti-diagonal (k,-k) share at the null (z = +0.9 / -0.7 / -0.7 / -0.9), the
+diagonal (k,k) share at z = +5.8 / +6.2 / +5.8 / +7.1. So rho* is not a
+function of xi_A - xi_B alone; its dominant structure is cos 4(xi_A + xi_B - phi)
+with phi fixed to within 5 deg, plus a nonuniform xi_A marginal cos 4 xi_A.
+Transcripts: census_structure_v2_{random0,random1,strat0,strat1}_run_2026-10-21.txt
+(regenerated 21 Oct from the stored solutions; identical to the October 15–16
+runs). The (2,0) > (0,2) asymmetry is a property of the solve (a pinned at 0,
+b swept), not of the stations.
+
+## Result B — the terrain is not a product of two screens
+
+terrain_factor_v1.py on greedy_results.json (23 terms, v = 15.2339): a product
+of two real cosine screens predicts w_mn+ = w_mn- for every (m,n); observed
+ratios run 0.05 to 183; difference beats (k = m - n) carry 72% of the weight.
+A statement about the greedy-found terrain only. Transcript:
+terrain_factor_v1_run_2026-10-21.txt.
+
+## Result C — terrain perturbation: the census follows the terrain, the price does not
+
+flight_time_perturb_v1.py is flight_time.py with a PERTURB environment
+variable (identity when unset; module bit-identical to the original in that
+case); dither_sweep_perturb_v1.py is dither_sweep_rho.py driven by it, with
+tagged outputs. Two re-solves on the random0 offsets (NANG = 161, NSH = 32,
+eps = 0.01), matched control random0:
+- Run A, (2,2,+) term phase shifted +45 deg
+  (rho_perturb_2_2_1_shift_45_nsh32_random0_eps0.01_nang161.json):
+  MD - floor = 5e-8; the (2,2) census pixel moves by -38 deg (the sign the
+  convention sin(2k lambda - ph) dictates) and grows to 0.42.
+- Run B, (2,2,+) term removed
+  (rho_perturb_2_2_1_weight_0_nsh32_random0_eps0.01_nang161.json):
+  MD - floor = 3e-14; a (2,2) pixel persists at 0.31 at a different phase,
+  from harmonic mixing of the remaining terms.
+The floor is attained on all three terrains; the census skeleton is
+phase-locked to the terrain.
+
+## Result D — no station-local census reaches the floor
+
+product_census_v3.py tests, on the random0 banks
+(banks_nsh32_random0_nang161_nw2048.npz — the August banks, the matched pair
+of rho_nsh32_random0; self-check reproduces the stored price to twelve digits),
+whether a census of the form q(tau,s) f(xi_A) g(xi_B) ("product"), or one with
+xi_B independent of everything else ("semi"), reproduces the singlet
+correlators at tolerance eps, against a binned joint census as control.
+NB = 32 bins, 12 starts per class, eps = 0.05 and 0.01
+(product_census_v3_random0_NB32_oct_17_16.txt,
+product_census_v3_rho_nsh32_random0_eps0.01_nang161.json): joint 1.119x the
+floor at eps = 0.01 (the excess is the binning); semi 2.203 and product 3.069
+at eps = 0.05; no semi or product census feasible at eps = 0.01 (final
+correlator violations 2–15%). The NB = 16 run (joint 1.59 at eps = 0.01;
+station-local classes infeasible at eps <= 0.02, 2.2–3.0x the joint price where
+feasible) was made with product_census_v2.py and is recorded in the paper and
+the deposit note; v1 and v2 of the script are withdrawn (v1 had a normalization
+error; v3 = v2 + a time limit on the joint control LP, a SKIP_JOINT switch, and
+zero-mass columns dropped) and are not shipped. product_census_v4.py is v3 +
+COORDS=sumdiff (the sum/difference-coordinate test); its results are not part
+of v5.
+
+## Result E — a terrain bred to favour station-local censuses does not change this
+
+breed_product_v1.py breeds a terrain from greedy_results.json scored by the
+product-class price (breeding scale NSH = 8, NANG = 9, eps = 0.10);
+pipeline_v1.py / RUN_PIPELINE.bat run smoke -> breed -> validate unattended
+(pipeline_status.txt and pipeline_FINAL.txt record every transition). Run of
+18 Oct 2026 (14.1 h): breeding stopped after 5 rounds with no improving move,
+joint 1.631x, product 1.927x, ratio 1.18 ("promising" under the pre-registered
+rule, ratio <= 1.3); full-scale validation of the champion (NANG = 161, 1024
+random offsets, NB = 32, 12 starts): eps = 0.05 joint 1.261 / semi 2.492 /
+product 2.864; eps = 0.01 joint 1.591, semi and product infeasible. The bred
+terrain, its banks, its solution and its census test live in
+A_breed_greedy/ and VA_validate_greedy/ (the files there carry the same names
+as the paper's files but are the bred-terrain versions — compare by hash:
+the paper's greedy_results.json is sha256 e2d53682..., the bred champion
+e3c735a4...). Stage B (minimal start) was not run; the exclusion reads
+"from the greedy start".
+
+## Standing conclusion (as stated in v5, Sec. 7)
+
+On the paper's terrain, on four independent censuses, and on a terrain bred
+against the conclusion, no product census reproduces the singlet at
+eps <= 0.02, and where feasible it pays 2–3x the joint price: the frozen
+offsets of the two stations must be correlated at the source. Nothing here
+derives rho; the skeleton is what any derivation must produce.
+
+## Files added
+
+Scripts: census_structure_v1.py, census_structure_v2.py, terrain_factor_v1.py,
+flight_time_perturb_v1.py, dither_sweep_perturb_v1.py, product_census_v3.py,
+product_census_v4.py, breed_product_v1.py, pipeline_v1.py, RUN_PIPELINE.bat,
+check_folders_v1.py (folder/hash audit). Solutions: the three new rho files
+(random1, strat0, strat1), the two perturbation rho files, and their banks.
+Results: product_census_v3 outputs, A_breed_greedy/, VA_validate_greedy/,
+breedrun/logs/, pipeline_FINAL.txt, pipeline_status.txt. Transcripts as named
+above. Note: census_structure_note_zenodo_v1.pdf (the deposit note).
