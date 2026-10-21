@@ -1,0 +1,43 @@
+23 terms, v = 15.233850, total weight 8.0641
+
+1. +/- pairs present (product of two real screens predicts w+ = w-):
+   (m,n)   w(m+n)    w(m-n)    ratio w-/w+
+   (1,2)  0.4321   0.0213       0.05
+   (1,3)  0.0109   1.9905     182.96
+   (2,1)  0.4463   1.0219       2.29
+   (2,3)  0.0707   1.4381      20.35
+   (3,1)  0.3894   0.1239       0.32
+   (3,2)  0.0296   0.8563      28.90
+   (4,6)  0.0059   0.1002      17.08
+   total weight on sum beats (k=m+n): 2.2398   on difference beats (k=m-n): 5.8243   share difference 0.722
+
+2. sum beats (+): 14 terms, m in [1, 2, 3, 4, 5], n in [1, 2, 3, 5, 6], free params 9
+   log-space rms residual 1.018  (factor 2.77x); max |resid| 2.015 (factor 7.50x)
+      (1, 1, 1)  w=0.3360  rank1=0.9097  ratio=0.37
+      (1, 2, 1)  w=0.4321  rank1=0.4053  ratio=1.07
+      (1, 3, 1)  w=0.0109  rank1=0.0321  ratio=0.34
+      (2, 1, 1)  w=0.4463  rank1=0.4760  ratio=0.94
+      (2, 2, 1)  w=0.4035  rank1=0.2121  ratio=1.90
+      (2, 3, 1)  w=0.0707  rank1=0.0168  ratio=4.20
+      (3, 1, 1)  w=0.3894  rank1=0.1349  ratio=2.89
+      (3, 2, 1)  w=0.0296  rank1=0.0601  ratio=0.49
+      (3, 3, 1)  w=0.0033  rank1=0.0048  ratio=0.70
+      (1, 5, 1)  w=0.0957  rank1=0.0128  ratio=7.50
+      (4, 3, 1)  w=0.0120  rank1=0.0120  ratio=1.00
+      (5, 2, 1)  w=0.0035  rank1=0.0035  ratio=1.00
+      (2, 5, 1)  w=0.0009  rank1=0.0067  ratio=0.13
+      (4, 6, 1)  w=0.0059  rank1=0.0059  ratio=1.00
+
+2. difference beats (-): 9 terms, m in [1, 2, 3, 4, 5], n in [1, 2, 3, 6], free params 8
+   log-space rms residual 0.834  (factor 2.30x); max |resid| 1.021 (factor 2.78x)
+      (1, 2, -1)  w=0.0213  rank1=0.0592  ratio=0.36
+      (1, 3, -1)  w=1.9905  rank1=0.7167  ratio=2.78
+      (2, 1, -1)  w=1.0219  rank1=0.3679  ratio=2.78
+      (2, 3, -1)  w=1.4381  rank1=3.9941  ratio=0.36
+      (3, 1, -1)  w=0.1239  rank1=0.3441  ratio=0.36
+      (3, 2, -1)  w=0.8563  rank1=0.3083  ratio=2.78
+      (4, 6, -1)  w=0.1002  rank1=0.1002  ratio=1.00
+      (5, 1, -1)  w=0.1466  rank1=0.1466  ratio=1.00
+      (4, 2, -1)  w=0.1255  rank1=0.1255  ratio=1.00
+
+3. heaviest terms: (1, 3, -1):1.990, (2, 3, -1):1.438, (2, 1, -1):1.022, (3, 2, -1):0.856, (2, 1, 1):0.446, (1, 2, 1):0.432, (2, 2, 1):0.404, (3, 1, 1):0.389, (1, 1, 1):0.336, (5, 1, -1):0.147

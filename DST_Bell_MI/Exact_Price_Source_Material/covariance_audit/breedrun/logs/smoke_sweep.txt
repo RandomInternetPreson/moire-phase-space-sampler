@@ -1,0 +1,18 @@
+# 2026-10-18 08:58:31  dither_sweep_rho.py  env: {'NANG': 13, 'NSH_LIST': 4, 'NW': 128, 'TAUS': '0.5,1', 'EPS_LIST': 0.5, 'MODES': 'random', 'SEEDS': 0, 'SAVE_RHO': 1, 'REGISTER': 'paper'}
+
+=== NSH=4  mode=random  seed=0  NANG=13 ===
+  evolving 816 trajectories (2 tau snapshots)...
+  done in 3s
+  banks checkpointed to banks_nsh4_random0_nang13_nw128.npz
+  saved rho_nsh4_random0_eps0.5_nang13.json
+  eps=0.5   MD/floor=  3.099   active atoms 39/96   top-12 carry 0.85
+
+
+SUMMARY  (MD/floor)
+ NSH    mode seed    eps=0.5
+   4  random    0      3.099
+
+published (grid, NSH=16, [2,178]): 1.000 1.015 1.235 1.375
+A: off-lattice == grid (within ~0.03)  -> lattice is scaffolding
+B: off-lattice > grid                   -> aliasing in the table; v2 needed
+C: jumps across NSH                     -> tongue edges

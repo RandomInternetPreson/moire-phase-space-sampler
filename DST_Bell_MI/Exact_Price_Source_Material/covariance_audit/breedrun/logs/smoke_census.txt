@@ -1,0 +1,20 @@
+# 2026-10-18 08:58:36  run_census.py  env: {'NB_LIST': 4, 'EPS_LIST': '0.5', 'NSTART': 1, 'MAXIT': 2, 'SEED': 7, 'JOINT_TIME_LIMIT': 60}
+file: rho_nsh4_random0_eps0.5_nang13.json   atoms 96 = 6 (tau,scale) x 16 offsets   nang 13  register [2,178]
+check: MD of the stored rho* on these banks = 0.427914169523   (file says 0.427914169523; floor 0.138071187458)
+
+=== NB=4  eps=0.5 ===
+  joint   (binned, free)   : MD/floor = 3.8862   [0s]
+  semi     start uniform        : MD/floor = 4.1620   max slack 0.00e+00 feasible   2 rounds  [1s]
+  semi     start rho*-marginals : MD/floor = 4.1793   max slack 0.00e+00 feasible   2 rounds  [1s]
+  semi     start random0        : MD/floor = 4.1380   max slack 0.00e+00 feasible   2 rounds  [1s]
+  semi     RESULT: best feasible MD/floor = 4.1380 (start random0); |F(2,2)| = 0.132 vs product |F(2,0)||F(0,2)| = 0.045
+  product  start uniform        : MD/floor = 5.5463   max slack 0.00e+00 feasible   2 rounds  [1s]
+  product  start rho*-marginals : MD/floor = 6.1565   max slack 0.00e+00 feasible   2 rounds  [1s]
+  product  start random0        : MD/floor = 5.5900   max slack 0.00e+00 feasible   2 rounds  [1s]
+  product  RESULT: best feasible MD/floor = 5.5463 (start uniform); |F(2,2)| = 0.358 vs product |F(2,0)||F(0,2)| = 0.293
+
+SUMMARY (MD/floor; '-' = no feasible census in class)
+  NB    eps    joint     semi  product
+   4    0.5   3.8862   4.1380   5.5463
+
+reference: rho* on these banks MD/floor = 3.099229    total 7s

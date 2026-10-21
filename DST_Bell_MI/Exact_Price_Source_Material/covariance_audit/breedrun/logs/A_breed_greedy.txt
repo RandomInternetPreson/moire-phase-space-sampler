@@ -1,0 +1,62 @@
+# 2026-10-18 08:58:44  breed_product_v1.py  env: {'NSH': 8, 'NW': 1024, 'NANG': 9, 'EPS': 0.1, 'NSTART': 4, 'MAXIT': 15, 'MAXO': 6, 'ROUNDS': '8', 'START': 'greedy'}
+breed_product_v1  NSH=8 NANG=9 NW=1024 EPS=0.1 NSTART=4 MAXIT=15 MAXO=6 START=greedy cores=56
+start (22 terms, v=15.2339): joint 1.028 | product 3.536   [14s]
+  round 1 move 1/178 add (1, 4, 1) x0.3: joint 1.470 | product 2.821  <- new best
+  round 1 move 7/178 add (1, 5, -1) x0.3: joint 1.200 | product 2.658  <- new best
+  round 1 move 22/178 add (2, 5, 1) x0.3: joint 1.549 | product 2.596  <- new best
+  round 1 move 25/178  (383s)
+  round 1 move 31/178 add (2, 6, -1) x0.3: joint 1.519 | product 2.512  <- new best
+  round 1 move 50/178  (749s)
+  round 1 move 75/178  (1115s)
+  round 1 move 100/178  (1471s)
+  round 1 move 125/178  (1823s)
+  round 1 move 150/178  (2206s)
+  round 1 move 175/178  (2618s)
+round 1: add (2, 6, -1) x0.3 -> joint 1.519 | product 2.512  (23 terms, v=15.2339)  (2667s)
+  round 2 move 25/177  (359s)
+  round 2 move 50/177  (717s)
+  round 2 move 62/177 add (4, 4, 1) x0.7: joint 1.428 | product 2.347  <- new best
+  round 2 move 75/177  (1101s)
+  round 2 move 100/177  (1475s)
+  round 2 move 125/177  (1837s)
+  round 2 move 150/177  (2212s)
+  round 2 move 175/177  (2622s)
+round 2: add (4, 4, 1) x0.7 -> joint 1.428 | product 2.347  (24 terms, v=15.2339)  (2653s)
+  round 3 move 25/176  (305s)
+  round 3 move 50/176  (637s)
+  round 3 move 75/176  (965s)
+  round 3 move 82/176 add (5, 4, -1) x0.3: joint 1.380 | product 2.301  <- new best
+  round 3 move 100/176  (1297s)
+  round 3 move 125/176  (1617s)
+  round 3 move 150/176  (1918s)
+  round 3 move 175/176  (2204s)
+round 3: add (5, 4, -1) x0.3 -> joint 1.380 | product 2.301  (25 terms, v=15.2339)  (2215s)
+  round 4 move 25/175  (304s)
+  round 4 move 34/175 add (3, 4, -1) x0.3: joint 1.531 | product 2.241  <- new best
+  round 4 move 50/175  (632s)
+  round 4 move 75/175  (959s)
+  round 4 move 94/175 add (6, 1, -1) x0.3: joint 1.531 | product 2.002  <- new best
+  round 4 move 100/175  (1279s)
+  round 4 move 125/175  (1606s)
+  round 4 move 150/175  (1912s)
+  round 4 move 175/175  (2221s)
+round 4: add (6, 1, -1) x0.3 -> joint 1.531 | product 2.002  (26 terms, v=15.2339)  (2221s)
+  round 5 move 25/174  (329s)
+  round 5 move 50/174  (663s)
+  round 5 move 64/174 add (4, 5, -1) x0.3: joint 1.631 | product 1.927  <- new best
+  round 5 move 75/174  (993s)
+  round 5 move 100/174  (1384s)
+  round 5 move 125/174  (1723s)
+  round 5 move 150/174  (2045s)
+round 5: add (4, 5, -1) x0.3 -> joint 1.631 | product 1.927  (27 terms, v=15.2339)  (2359s)
+  round 6 move 25/173  (323s)
+  round 6 move 50/173  (651s)
+  round 6 move 75/173  (983s)
+  round 6 move 100/173  (1329s)
+  round 6 move 125/173  (1678s)
+  round 6 move 150/173  (1992s)
+round 6: no improving move (2289s) - PRODUCT-BRED CEILING
+
+final: joint 1.631 | product 1.927   champion in bred_product_champion.json (greedy_results.json format)
+Validate the champion at scale: copy it to a fresh folder as greedy_results.json and run dither_sweep_rho.py
+(NANG=161, NSH_LIST=32, MODES=random, SAVE_RHO=1) then product_census_v3.py on the rho file.

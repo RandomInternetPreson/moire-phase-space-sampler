@@ -1,0 +1,15 @@
+# 2026-10-18 08:54:53  breed_product_v1.py  env: {'NSH': 4, 'NW': 128, 'NANG': 5, 'EPS': 0.3, 'NSTART': 2, 'MAXIT': 3, 'MAXO': 2, 'ROUNDS': 1, 'START': 'greedy'}
+breed_product_v1  NSH=4 NANG=5 NW=128 EPS=0.3 NSTART=2 MAXIT=3 MAXO=2 START=greedy cores=56
+start (22 terms, v=15.2339): joint 1.610 | product 3.747   [5s]
+  round 1 move 2/46 scale 0 x1.5: joint 1.915 | product 3.673  <- new best
+  round 1 move 3/46 scale 1 x0.5: joint 1.875 | product 3.602  <- new best
+  round 1 move 7/46 scale 3 x0.5: joint 1.607 | product 3.547  <- new best
+  round 1 move 13/46 scale 6 x0.5: joint 1.755 | product 3.306  <- new best
+  round 1 move 15/46 scale 7 x0.5: joint 1.782 | product 3.304  <- new best
+  round 1 move 25/46  (112s)
+  round 1 move 37/46 scale 18 x0.5: joint 1.601 | product 3.265  <- new best
+round 1: scale 18 x0.5 -> joint 1.601 | product 3.265  (22 terms, v=15.2339)  (207s)
+
+final: joint 1.601 | product 3.265   champion in bred_product_champion.json (greedy_results.json format)
+Validate the champion at scale: copy it to a fresh folder as greedy_results.json and run dither_sweep_rho.py
+(NANG=161, NSH_LIST=32, MODES=random, SAVE_RHO=1) then product_census_v3.py on the rho file.

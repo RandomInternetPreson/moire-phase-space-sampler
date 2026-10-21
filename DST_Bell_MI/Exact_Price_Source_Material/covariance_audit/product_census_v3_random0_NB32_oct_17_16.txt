@@ -1,0 +1,75 @@
+file: rho_nsh32_random0_eps0.01_nang161.json   atoms 15360 = 15 (tau,scale) x 1024 offsets   nang 161  register [2,178]
+check: MD of the stored rho* on these banks = 0.138071187458   (file says 0.138071187458; floor 0.138071187458)
+
+=== NB=32  eps=0.05 ===
+  joint   (binned, free)   : time limit   [1803s]
+  semi     start uniform        : MD/floor = 2.2033   max slack 0.00e+00 feasible   13 rounds  [341s]
+  semi     start rho*-marginals : MD/floor = 2.4665   max slack 0.00e+00 feasible   13 rounds  [353s]
+  semi     start random0        : MD/floor = 3.0544   max slack 0.00e+00 feasible   17 rounds  [466s]
+  semi     start random1        : MD/floor = 2.5233   max slack 0.00e+00 feasible   18 rounds  [599s]
+  semi     start random2        : MD/floor = 2.5781   max slack 0.00e+00 feasible   25 rounds  [888s]
+  semi     start random3        : MD/floor = 3.0427   max slack 0.00e+00 feasible   12 rounds  [305s]
+  semi     start random4        : MD/floor = 2.6190   max slack 0.00e+00 feasible   5 rounds  [219s]
+  semi     start random5        : MD/floor = 2.3137   max slack 0.00e+00 feasible   18 rounds  [515s]
+  semi     start random6        : MD/floor = 2.7788   max slack 0.00e+00 feasible   23 rounds  [631s]
+  semi     start random7        : MD/floor = 2.3845   max slack 0.00e+00 feasible   12 rounds  [314s]
+  semi     start random8        : MD/floor = 2.3779   max slack 0.00e+00 feasible   7 rounds  [197s]
+  semi     start random9        : MD/floor = 2.6617   max slack 0.00e+00 feasible   15 rounds  [358s]
+  semi     start random10       : MD/floor = 2.4898   max slack 0.00e+00 feasible   10 rounds  [336s]
+  semi     start random11       : MD/floor = 2.5769   max slack 0.00e+00 feasible   16 rounds  [492s]
+  semi     RESULT: best feasible MD/floor = 2.2033 (start uniform); |F(2,2)| = 0.286 vs product |F(2,0)||F(0,2)| = 0.270
+  product  start uniform        : MD/floor = 3.5935   max slack 4.86e-02 NOT feasible   19 rounds  [67s]
+  product  start rho*-marginals : MD/floor = 5.9440   max slack 1.13e-02 NOT feasible   9 rounds  [23s]
+  product  start random0        : MD/floor = 3.2562   max slack 4.78e-03 NOT feasible   15 rounds  [52s]
+  product  start random1        : MD/floor = 3.2104   max slack 8.37e-03 NOT feasible   26 rounds  [90s]
+  product  start random2        : MD/floor = 3.9265   max slack 0.00e+00 feasible   7 rounds  [21s]
+  product  start random3        : MD/floor = 3.3067   max slack 0.00e+00 feasible   11 rounds  [39s]
+  product  start random4        : MD/floor = 3.3877   max slack 3.18e-02 NOT feasible   6 rounds  [22s]
+  product  start random5        : MD/floor = 3.1419   max slack 0.00e+00 feasible   26 rounds  [99s]
+  product  start random6        : MD/floor = 3.5001   max slack 3.70e-02 NOT feasible   21 rounds  [80s]
+  product  start random7        : MD/floor = 3.1924   max slack 4.52e-04 NOT feasible   14 rounds  [50s]
+  product  start random8        : MD/floor = 3.0686   max slack 0.00e+00 feasible   12 rounds  [41s]
+  product  start random9        : MD/floor = 3.2064   max slack 0.00e+00 feasible   14 rounds  [51s]
+  product  start random10       : MD/floor = 5.4816   max slack 1.36e-02 NOT feasible   2 rounds  [5s]
+  product  start random11       : MD/floor = 3.1644   max slack 0.00e+00 feasible   10 rounds  [35s]
+  product  RESULT: best feasible MD/floor = 3.0686 (start random8); |F(2,2)| = 0.570 vs product |F(2,0)||F(0,2)| = 0.446
+
+=== NB=32  eps=0.01 ===
+  joint   (binned, free)   : MD/floor = 1.1188   [661s]
+  semi     start uniform        : MD/floor = 3.9927   max slack 2.46e-02 NOT feasible   10 rounds  [204s]
+  semi     start rho*-marginals : MD/floor = 4.3289   max slack 2.16e-02 NOT feasible   24 rounds  [661s]
+  semi     start random0        : MD/floor = 4.7215   max slack 3.85e-02 NOT feasible   27 rounds  [676s]
+  semi     start random1        : MD/floor = 4.5172   max slack 4.12e-02 NOT feasible   19 rounds  [459s]
+  semi     start random2        : MD/floor = 4.3014   max slack 3.73e-02 NOT feasible   16 rounds  [405s]
+  semi     start random3        : MD/floor = 4.3369   max slack 2.24e-02 NOT feasible   22 rounds  [510s]
+  semi     start random4        : MD/floor = 3.9220   max slack 3.79e-02 NOT feasible   11 rounds  [257s]
+  semi     start random5        : MD/floor = 4.2809   max slack 4.79e-02 NOT feasible   12 rounds  [250s]
+  semi     start random6        : MD/floor = 4.2098   max slack 3.69e-02 NOT feasible   23 rounds  [583s]
+  semi     start random7        : MD/floor = 4.2994   max slack 4.89e-02 NOT feasible   17 rounds  [412s]
+  semi     start random8        : MD/floor = 4.1181   max slack 2.23e-02 NOT feasible   12 rounds  [224s]
+  semi     start random9        : MD/floor = 4.0121   max slack 2.85e-02 NOT feasible   16 rounds  [384s]
+  semi     start random10       : MD/floor = 4.3808   max slack 2.85e-02 NOT feasible   32 rounds  [680s]
+  semi     start random11       : MD/floor = 4.2296   max slack 3.87e-02 NOT feasible   19 rounds  [429s]
+  semi     RESULT: no feasible semi census found at eps=0.01
+  product  start uniform        : MD/floor = 3.6568   max slack 1.14e-01 NOT feasible   27 rounds  [77s]
+  product  start rho*-marginals : MD/floor = 4.2048   max slack 3.69e-02 NOT feasible   40 rounds  [140s]
+  product  start random0        : MD/floor = 3.5238   max slack 1.05e-01 NOT feasible   40 rounds  [113s]
+  product  start random1        : MD/floor = 3.1810   max slack 8.05e-02 NOT feasible   40 rounds  [122s]
+  product  start random2        : MD/floor = 3.9090   max slack 3.49e-02 NOT feasible   40 rounds  [123s]
+  product  start random3        : MD/floor = 4.6773   max slack 5.89e-02 NOT feasible   40 rounds  [130s]
+  product  start random4        : MD/floor = 3.2026   max slack 7.12e-02 NOT feasible   40 rounds  [119s]
+  product  start random5        : MD/floor = 4.3014   max slack 3.50e-02 NOT feasible   36 rounds  [119s]
+  product  start random6        : MD/floor = 3.3917   max slack 6.08e-02 NOT feasible   40 rounds  [123s]
+  product  start random7        : MD/floor = 3.1002   max slack 8.45e-02 NOT feasible   30 rounds  [88s]
+  product  start random8        : MD/floor = 3.2054   max slack 9.73e-02 NOT feasible   40 rounds  [122s]
+  product  start random9        : MD/floor = 4.2445   max slack 3.71e-02 NOT feasible   15 rounds  [48s]
+  product  start random10       : MD/floor = 4.2225   max slack 3.13e-02 NOT feasible   38 rounds  [131s]
+  product  start random11       : MD/floor = 3.6649   max slack 1.24e-01 NOT feasible   34 rounds  [101s]
+  product  RESULT: no feasible product census found at eps=0.01
+
+SUMMARY (MD/floor; '-' = no feasible census in class)
+  NB    eps    joint     semi  product
+  32   0.05 time limit   2.2033   3.0686
+  32   0.01   1.1188    -        -    
+
+reference: rho* on these banks MD/floor = 1.000000    total 16840s

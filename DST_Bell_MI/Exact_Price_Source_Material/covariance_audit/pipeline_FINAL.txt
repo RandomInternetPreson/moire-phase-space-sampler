@@ -1,0 +1,29 @@
+PIPELINE FINAL  2026-10-18 23:01:35   elapsed 14.11 h
+
+VERDICT: a product-friendly terrain bred from the greedy start does NOT reproduce the singlet with a station-local census at full scale (eps=0.01) - breeding-scale promise did not survive.
+
+Stage A: rounds completed 5; joint 1.631x floor; product 1.927x floor (ratio product/joint 1.18); PROMISING=yes (rule: feasible and ratio <= 1.3)
+
+Full-scale table:
+  eps=0.05: joint 1.261 | semi 2.492 | product 2.864
+  eps=0.01: joint 1.591 | semi - | product -
+
+Transitions:
+[2026-10-18 08:54:53] 0-SMOKE: pipeline start; CORES=56; TINY=0; promising ratio 1.3; rounds A=8 B=8
+[2026-10-18 08:54:53] 0-SMOKE: started breed_product_v1.py in smoke   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\smoke_breed.txt)
+[2026-10-18 08:58:31] 0-SMOKE: finished breed_product_v1.py exit=0 in 0.06 h   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\smoke_breed.txt)
+[2026-10-18 08:58:31] 0-SMOKE: started dither_sweep_rho.py in smoke   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\smoke_sweep.txt)
+[2026-10-18 08:58:36] 0-SMOKE: finished dither_sweep_rho.py exit=0 in 0.00 h   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\smoke_sweep.txt)
+[2026-10-18 08:58:36] 0-SMOKE: started run_census.py in smoke   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\smoke_census.txt)
+[2026-10-18 08:58:44] 0-SMOKE: finished run_census.py exit=0 in 0.00 h   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\smoke_census.txt)
+[2026-10-18 08:58:44] 0-SMOKE: all three scripts ran end to end at toy scale - pipeline is healthy
+[2026-10-18 08:58:44] A_breed_greedy: started breed_product_v1.py in A_breed_greedy   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\A_breed_greedy.txt)
+[2026-10-18 12:59:03] A_breed_greedy: finished breed_product_v1.py exit=0 in 4.01 h   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\A_breed_greedy.txt)
+[2026-10-18 12:59:03] A_breed_greedy: rounds completed 5; joint 1.631x floor; product 1.927x floor (ratio product/joint 1.18); PROMISING=yes (rule: feasible and ratio <= 1.3)
+[2026-10-18 12:59:03] VA_validate_greedy: started dither_sweep_rho.py in VA_validate_greedy   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\VA_validate_greedy_sweep.txt)
+[2026-10-18 17:39:38] VA_validate_greedy: finished dither_sweep_rho.py exit=0 in 4.68 h   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\VA_validate_greedy_sweep.txt)
+[2026-10-18 17:39:38] VA_validate_greedy: started run_census.py in VA_validate_greedy   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\VA_validate_greedy_census.txt)
+[2026-10-18 23:01:35] VA_validate_greedy: finished run_census.py exit=0 in 5.37 h   (log: P:\ApparentNonDeterminismLocal\6\breedrun\logs\VA_validate_greedy_census.txt)
+[2026-10-18 23:01:35] VA_validate_greedy: full-scale product-census table:
+  eps=0.05: joint 1.261 | semi 2.492 | product 2.864
+  eps=0.01: joint 1.591 | semi - | product -
