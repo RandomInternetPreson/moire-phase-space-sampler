@@ -215,4 +215,89 @@ Results: product_census_v3 outputs, A_breed_greedy/, VA_validate_greedy/,
 breedrun/logs/, pipeline_FINAL.txt, pipeline_status.txt. Transcripts as named
 above. Note: census_structure_note_zenodo_v1.pdf (the deposit note).
 
+# Deposit version 3 — the bandwidth of the census (October 21–23, 2026)
+
+Zenodo version 3 of the census record (concept DOI 10.5281/zenodo.23537610, which
+resolves to the latest version). Everything below was computed on the author's
+workstation from the deposited random0 / random1 / strat0 / strat1 banks; every log
+begins with the self-check that reproduces md = 0.138071187458. Note:
+census_bandwidth_note_zenodo_v3.pdf (one page, all tables). Nothing here is in
+arXiv v5; the sentences for v6 are held until the arXiv cool-off.
+
+## Results I–L — band-limited censuses (census_bandlimit_v1–v4.py)
+
+Question: for a census built only from harmonics exp(2i(k_A xi_A + k_B xi_B)) with
+|k_A|, |k_B| <= K, how closely can it reproduce the singlet correlators, and what
+does it pay above the floor when it can? Per (tau, s) cell the census over the 1024
+offsets is a degree-K trigonometric polynomial; non-negativity at every atom,
+normalization, correlator band (eps), CHSH and MD rows exactly as in
+dither_sweep_rho.py. Two LPs per K: the price LP (min MD subject to the band) and
+the miss LP (min band width any K-band census needs). v4 re-verifies both from the
+reconstructed census and certifies infeasibility by value; v1–v3's "infeasible"
+labels were read from a solver status and are superseded by the v4 certificates.
+Launchers: run_parallel_v1/v2/v3.py, RUN_PARALLEL*.bat (batches 1–3).
+
+- Minimum miss of the best K-band census, random0: K = 3 0.1052, K = 4 0.0174,
+  K = 5 0.0120; K = 5 on random1 / strat0 / strat1: 0.0120 / 0.0131 / 0.0110.
+  At K = 2 the miss LP itself is infeasible (no non-negative census satisfies the
+  CHSH row). So reproducing the singlet to 1% requires K >= 6 on this terrain.
+- Price (MD/floor) of the smoothest attaining census at eps = 0.01, random0:
+  K = 6 2.274, 8 1.861, 10 1.598, 12 1.356, 14 1.121; K = 6 on random1 / strat0 /
+  strat1: 2.094 / 2.019 / 2.081. The excess falls roughly linearly in K and is
+  sampling-limited beyond K ~ 14 (the unrestricted census is representable at
+  K ~ 16 by construction).
+- (eps, K) surface, random0: K = 6: 2.274 / 1.913 / 1.590 / 1.451; K = 8: 1.861 /
+  1.645 / 1.389 / 1.275; K = 10: 1.598 / 1.428 / 1.230 / 1.132 at
+  eps = 0.01 / 0.02 / 0.05 / 0.10. Monotone in both variables.
+- The skeleton (leading pixels (2,2), (2,0), (2,4), (1,1), (0,2), (2,-2), (1,-1),
+  (3,-1) and their phases) is the same at every feasible K.
+- Logs: census_bandlimit_v1_random0_10_21_26.txt, census_bandlimit_v2_random0_10_22_26.txt,
+  parallel_console.txt, parallel2_console.txt, parallel3_console.txt, bl_*.txt.
+  Coefficient files: census_bandlimit_v{1,2,3,4}_*rho_*.json (the v4 min-miss files
+  carry the certificate values).
+- Name collisions, stated for the record: bl_r0_e10_k6.txt and bl_r0_e10_k8.txt were
+  written by batch 2 (v3, status misread as infeasible) and overwritten by batch 3
+  (v4, feasible); bl_r1_k5.txt, bl_s0_k5.txt, bl_s1_k5.txt were likewise overwritten
+  by batch 3. The batch-1/2 runs survive as the SUMMARY excerpts in
+  parallel_console.txt / parallel2_console.txt and are superseded by the v4
+  certificates. Files are deposited as they now stand plus the three console files.
+
+## Result G — rank-k mixtures in sum/difference coordinates (product_census_rank_v2.py)
+
+Mixtures of k separable censuses in (S, D) = (xi_A + xi_B, xi_A - xi_B), k = 1, 2, 3,
+8 starts each, random0 banks: none feasible at eps = 0.01; best misses 2.65% ->
+2.46% -> 2.37%. No short mixture reaches the floor (8 starts; not a certificate).
+Log: product_census_rank_sumdiff_10_21_26.txt; result file:
+product_census_rank_v2_sumdiff_rho_nsh32_random0_eps0.01_nang161.json
+(product_census_rank_v1.py is the first version, kept for the record).
+
+## Result H — pooled (S, D) spectrum (census_sumdiff_v1.py)
+
+The four censuses pooled: eleven cross pixels above the permutation null; S preferred
+at 39.5 deg mod 90 deg; D tracks S inside the lobes. Log:
+census_sumdiff_v1_four_10_21_26.txt.
+
+## Result M — the solve frame (dither_sweep_swap_v1.py)
+
+Re-solving random0's offsets with Bob's setting pinned at 0 and Alice's swept (the
+paper's solves pin Alice) attains the same floor (md = 0.138071187458) and the same
+census: (2,2) at phi = 157.4 deg against ~157 deg in the pinned frame, preferred sum
+39.35 deg against 39.5 deg, the same (S, D) cross pixels. The station asymmetry of
+the census ((2,0) = 0.26 vs (0,2) = 0.13) stays on the same side, so it is a property
+of the terrain, not of the solve frame; whether the terrain's own asymmetry is
+physical or inherited from the breeding run (fitness evaluated with Alice pinned)
+remains open. Files: banks_swap_nsh32_random0_nang161_nw2048.npz,
+rho_swap_nsh32_random0_eps0.01_nang161.json, dither_swap_random0_10_22_26.txt
+(console), RUN_SWAP_windows.txt (launch), census_swap_random0_10_23_26.txt and
+sumdiff_swap_random0_10_23_26.txt (analyses), census_structure_v2_out_swap.json and
+census_sumdiff_v1_out_swap.json (the analysis outputs, renamed from the 21 Oct
+file names they overwrote; the 21 Oct content is in the 21 Oct transcripts).
+
+## Scope
+
+One terrain (the paper's greedy terrain), four censuses plus one roles-swapped
+solve, 1024-offset banks. Feasibility and infeasibility of band-limited censuses are
+certified by LP optima re-verified from the census; the rank-k statement is "no
+feasible mixture from 8 starts". Nothing here derives rho; the certificates bound
+the smoothness of any formation process from below.
 
