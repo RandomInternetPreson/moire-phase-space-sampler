@@ -1,0 +1,22 @@
+file: rho_nsh32_random0_eps0.01_nang161.json   atoms 15360 = 15 x 1024   K list [10]   eps [0.02]   solver highs-ipm   time limit none
+check: MD of the stored rho* on these banks = 0.138071187458   (file says 0.138071187458; floor 0.138071187458)
+
+=== eps=0.02  K=10   (441 basis functions per (tau,scale) cell, 6615 coefficients) ===
+  MD/floor = 1.4281   feasible   active coefficients 5733/6615   [2833s]
+  leading harmonics of the pooled census  (|F|, k_A, k_B, phi[deg])  -- (k_S,k_D) = ((k_A+k_B)/2, (k_A-k_B)/2):
+     0.421  (+2,+2)   +153.15    (S,D)-harmonic (+2.0,+0.0)
+     0.297  (+2,+0)   +127.73    (S,D)-harmonic (+1.0,+1.0)
+     0.257  (+1,+1)    +77.21    (S,D)-harmonic (+1.0,+0.0)
+     0.219  (+2,+4)    -75.96    (S,D)-harmonic (+3.0,-1.0)
+     0.206  (+3,-1)   +125.20    (S,D)-harmonic (+1.0,+2.0)
+     0.202  (+2,-2)    +52.99    (S,D)-harmonic (+0.0,+2.0)
+     0.200  (+1,-1)    +32.93    (S,D)-harmonic (+0.0,+1.0)
+     0.193  (+7,-3)   -114.44    (S,D)-harmonic (+2.0,+5.0)
+     0.177  (+4,-4)    +70.11    (S,D)-harmonic (+0.0,+4.0)
+     0.176  (+6,-4)   +163.48    (S,D)-harmonic (+1.0,+5.0)
+
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.02  10    1.4281
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 2833s

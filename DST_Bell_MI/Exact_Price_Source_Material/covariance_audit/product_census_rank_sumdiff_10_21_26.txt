@@ -1,0 +1,79 @@
+file: rho_nsh32_random0_eps0.01_nang161.json   atoms 15360   coords sumdiff   ranks [1, 2, 3]
+check: MD of the stored rho* on these banks = 0.138071187458   (file says 0.138071187458; floor 0.138071187458)
+
+=== NB=32  eps=0.05  rank=1 ===
+  start  0: MD/floor = 2.9051   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   5 rounds  [19s]
+  start  1: MD/floor = 2.8997   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   5 rounds  [18s]
+  start  2: MD/floor = 3.7010   max slack 5.75e-03 (correlator miss = eps + slack = 0.0557) NOT feasible   4 rounds  [15s]
+  start  3: MD/floor = 3.1026   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   4 rounds  [16s]
+  start  4: MD/floor = 2.8536   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   19 rounds  [73s]
+  start  5: MD/floor = 3.1659   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   20 rounds  [82s]
+  start  6: MD/floor = 2.8871   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   4 rounds  [15s]
+  start  7: MD/floor = 2.8825   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   4 rounds  [14s]
+  RESULT rank 1: best feasible MD/floor = 2.8536 (start 4); mode masses [1.0]
+
+=== NB=32  eps=0.05  rank=2 ===
+  start  0: MD/floor = 2.9051   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   5 rounds  [24s]
+  start  1: MD/floor = 2.9934   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   10 rounds  [45s]
+  start  2: MD/floor = 2.7363   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   17 rounds  [76s]
+  start  3: MD/floor = 2.5213   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   40 rounds  [395s]
+  start  4: MD/floor = 4.0716   max slack 7.84e-03 (correlator miss = eps + slack = 0.0578) NOT feasible   4 rounds  [17s]
+  start  5: MD/floor = 3.3146   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   28 rounds  [99s]
+  start  6: MD/floor = 3.4596   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   20 rounds  [73s]
+  start  7: MD/floor = 2.9418   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   10 rounds  [44s]
+  RESULT rank 2: best feasible MD/floor = 2.5213 (start 3); mode masses [0.385, 0.615]
+
+=== NB=32  eps=0.05  rank=3 ===
+  start  0: MD/floor = 2.9051   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   5 rounds  [25s]
+  start  1: MD/floor = 3.0598   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   13 rounds  [73s]
+  start  2: MD/floor = 2.7518   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   11 rounds  [55s]
+  start  3: MD/floor = 2.7791   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   27 rounds  [138s]
+  start  4: MD/floor = 3.5180   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   27 rounds  [119s]
+  start  5: MD/floor = 3.4610   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   18 rounds  [83s]
+  start  6: MD/floor = 3.2526   max slack 0.00e+00 (correlator miss = eps + slack = 0.0500) feasible   7 rounds  [35s]
+  start  7: MD/floor = 3.6822   max slack 8.48e-03 (correlator miss = eps + slack = 0.0585) NOT feasible   3 rounds  [15s]
+  RESULT rank 3: best feasible MD/floor = 2.7518 (start 2); mode masses [0.0, 1.0, 0.0]
+
+=== NB=32  eps=0.01  rank=1 ===
+  start  0: MD/floor = 4.2266   max slack 2.59e-02 (correlator miss = eps + slack = 0.0359) NOT feasible   20 rounds  [65s]
+  start  1: MD/floor = 4.0098   max slack 1.78e-02 (correlator miss = eps + slack = 0.0278) NOT feasible   10 rounds  [32s]
+  start  2: MD/floor = 4.0878   max slack 1.88e-02 (correlator miss = eps + slack = 0.0288) NOT feasible   21 rounds  [66s]
+  start  3: MD/floor = 4.2145   max slack 2.14e-02 (correlator miss = eps + slack = 0.0314) NOT feasible   24 rounds  [76s]
+  start  4: MD/floor = 4.3604   max slack 1.65e-02 (correlator miss = eps + slack = 0.0265) NOT feasible   20 rounds  [63s]
+  start  5: MD/floor = 4.0670   max slack 1.69e-02 (correlator miss = eps + slack = 0.0269) NOT feasible   23 rounds  [78s]
+  start  6: MD/floor = 4.5790   max slack 2.24e-02 (correlator miss = eps + slack = 0.0324) NOT feasible   37 rounds  [119s]
+  start  7: MD/floor = 4.4404   max slack 2.61e-02 (correlator miss = eps + slack = 0.0361) NOT feasible   34 rounds  [112s]
+  RESULT rank 1: no feasible census at eps=0.01  (smallest slack 1.65e-02; smallest correlator miss 0.0265)
+
+=== NB=32  eps=0.01  rank=2 ===
+  start  0: MD/floor = 4.2266   max slack 2.59e-02 (correlator miss = eps + slack = 0.0359) NOT feasible   20 rounds  [77s]
+  start  1: MD/floor = 4.4384   max slack 2.27e-02 (correlator miss = eps + slack = 0.0327) NOT feasible   20 rounds  [77s]
+  start  2: MD/floor = 3.9006   max slack 1.46e-02 (correlator miss = eps + slack = 0.0246) NOT feasible   10 rounds  [38s]
+  start  3: MD/floor = 4.0324   max slack 1.88e-02 (correlator miss = eps + slack = 0.0288) NOT feasible   11 rounds  [41s]
+  start  4: MD/floor = 4.9084   max slack 3.48e-02 (correlator miss = eps + slack = 0.0448) NOT feasible   12 rounds  [44s]
+  start  5: MD/floor = 4.0264   max slack 2.35e-02 (correlator miss = eps + slack = 0.0335) NOT feasible   20 rounds  [75s]
+  start  6: MD/floor = 4.0471   max slack 1.58e-02 (correlator miss = eps + slack = 0.0258) NOT feasible   21 rounds  [77s]
+  start  7: MD/floor = 4.6963   max slack 3.38e-02 (correlator miss = eps + slack = 0.0438) NOT feasible   16 rounds  [66s]
+  RESULT rank 2: no feasible census at eps=0.01  (smallest slack 1.46e-02; smallest correlator miss 0.0246)
+
+=== NB=32  eps=0.01  rank=3 ===
+  start  0: MD/floor = 4.2266   max slack 2.59e-02 (correlator miss = eps + slack = 0.0359) NOT feasible   20 rounds  [91s]
+  start  1: MD/floor = 3.9767   max slack 3.26e-02 (correlator miss = eps + slack = 0.0426) NOT feasible   40 rounds  [256s]
+  start  2: MD/floor = 4.3577   max slack 3.20e-02 (correlator miss = eps + slack = 0.0420) NOT feasible   28 rounds  [119s]
+  start  3: MD/floor = 4.8775   max slack 2.13e-02 (correlator miss = eps + slack = 0.0313) NOT feasible   16 rounds  [72s]
+  start  4: MD/floor = 4.8959   max slack 2.86e-02 (correlator miss = eps + slack = 0.0386) NOT feasible   40 rounds  [195s]
+  start  5: MD/floor = 3.9989   max slack 1.37e-02 (correlator miss = eps + slack = 0.0237) NOT feasible   15 rounds  [68s]
+  start  6: MD/floor = 3.8267   max slack 1.97e-02 (correlator miss = eps + slack = 0.0297) NOT feasible   40 rounds  [172s]
+  start  7: MD/floor = 4.4031   max slack 3.64e-02 (correlator miss = eps + slack = 0.0464) NOT feasible   9 rounds  [80s]
+  RESULT rank 3: no feasible census at eps=0.01  (smallest slack 1.37e-02; smallest correlator miss 0.0237)
+
+SUMMARY (MD/floor; '-' = no feasible census)   coords = sumdiff
+  NB    eps  rank     price  min slack if infeasible
+  32   0.05     1    2.8536
+  32   0.05     2    2.5213
+  32   0.05     3    2.7518
+  32   0.01     1     -      1.65e-02
+  32   0.01     2     -      1.46e-02
+  32   0.01     3     -      1.37e-02
+
+reference: rho* on these banks MD/floor = 1.000000   total 3726s

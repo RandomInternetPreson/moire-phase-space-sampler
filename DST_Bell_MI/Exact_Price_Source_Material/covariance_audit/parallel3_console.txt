@@ -1,0 +1,84 @@
+[2026-10-22 22:23:51] started r0_e10_k6: rho_nsh32_random0_eps0.01_nang161.json K=6 eps=0.10 miss_only=0
+[2026-10-22 22:23:51] started r0_e10_k8: rho_nsh32_random0_eps0.01_nang161.json K=8 eps=0.10 miss_only=0
+[2026-10-22 22:23:51] started r0_e01_k6_v4: rho_nsh32_random0_eps0.01_nang161.json K=6 eps=0.01 miss_only=0
+[2026-10-22 22:23:51] started r0_k2: rho_nsh32_random0_eps0.01_nang161.json K=2 eps=0.01 miss_only=1
+[2026-10-22 22:23:51] started r0_k3: rho_nsh32_random0_eps0.01_nang161.json K=3 eps=0.01 miss_only=1
+[2026-10-22 22:23:51] started r0_k4: rho_nsh32_random0_eps0.01_nang161.json K=4 eps=0.01 miss_only=1
+[2026-10-22 22:23:51] started r0_k5: rho_nsh32_random0_eps0.01_nang161.json K=5 eps=0.01 miss_only=1
+[2026-10-22 22:23:51] started r1_k5: rho_nsh32_random1_eps0.01_nang161.json K=5 eps=0.01 miss_only=1
+[2026-10-22 22:23:51] started s0_k5: rho_nsh32_strat0_eps0.01_nang161.json K=5 eps=0.01 miss_only=1
+[2026-10-22 22:23:51] started s1_k5: rho_nsh32_strat1_eps0.01_nang161.json K=5 eps=0.01 miss_only=1
+[2026-10-22 22:24:11] finished r0_k2 exit=0 after 0 min
+[2026-10-22 22:24:11] finished r0_k3 exit=0 after 0 min
+[2026-10-22 22:24:31] finished r0_k4 exit=0 after 1 min
+[2026-10-22 22:25:11] finished r0_k5 exit=0 after 1 min
+[2026-10-22 22:25:11] finished r1_k5 exit=0 after 1 min
+[2026-10-22 22:25:11] finished s0_k5 exit=0 after 1 min
+[2026-10-22 22:25:11] finished s1_k5 exit=0 after 1 min
+[2026-10-22 22:31:11] finished r0_e01_k6_v4 exit=0 after 7 min
+[2026-10-22 22:36:11] finished r0_e10_k6 exit=0 after 12 min
+[2026-10-22 22:43:31] finished r0_e10_k8 exit=0 after 20 min
+
+all 10 jobs finished in 0.33 h
+
+SUMMARY lines from each log:
+--- r0_e10_k6
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+   0.1   6    1.4513   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 738s
+--- r0_e10_k8
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+   0.1   8    1.2748   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 1163s
+--- r0_e01_k6_v4
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    2.2737   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 430s
+--- r0_k2
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   2         -   undetermined (both solvers failed on the min-miss LP)
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 6s
+--- r0_k3
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   3         -   infeasible (certified by value); min miss 0.10519
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 13s
+--- r0_k4
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   4         -   infeasible (certified by value); min miss 0.01737
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 36s
+--- r0_k5
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   5         -   infeasible (certified by value); min miss 0.01196
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 64s
+--- r1_k5
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   5         -   infeasible (certified by value); min miss 0.01201
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 63s
+--- s0_k5
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   5         -   infeasible (certified by value); min miss 0.01305
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 64s
+--- s1_k5
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   5         -   infeasible (certified by value); min miss 0.01095
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 62s

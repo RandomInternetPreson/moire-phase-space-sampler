@@ -1,0 +1,46 @@
+file: rho_nsh32_random0_eps0.01_nang161.json   atoms 15360 = 15 x 1024   K list [2, 3, 4, 5, 6, 8, 10]   eps [0.01]
+check: MD of the stored rho* on these banks = 0.138071187458   (file says 0.138071187458; floor 0.138071187458)
+
+=== eps=0.01  K=2   (25 basis functions per (tau,scale) cell, 375 coefficients) ===
+  infeasible   [1275s]
+
+=== eps=0.01  K=3   (49 basis functions per (tau,scale) cell, 735 coefficients) ===
+  infeasible   [5163s]
+
+=== eps=0.01  K=4   (81 basis functions per (tau,scale) cell, 1215 coefficients) ===
+  infeasible   [721s]
+
+=== eps=0.01  K=5   (121 basis functions per (tau,scale) cell, 1815 coefficients) ===
+  time limit   [7202s]
+
+=== eps=0.01  K=6   (169 basis functions per (tau,scale) cell, 2535 coefficients) ===
+  MD/floor = 2.2737   feasible   active coefficients 1521/2535   [3364s]
+  leading harmonics of the pooled census  (|F|, k_A, k_B, phi[deg])  -- (k_S,k_D) = ((k_A+k_B)/2, (k_A-k_B)/2):
+     0.408  (+2,+2)   +164.71    (S,D)-harmonic (+2.0,+0.0)
+     0.388  (+2,+0)   +158.23    (S,D)-harmonic (+1.0,+1.0)
+     0.240  (+2,+4)    -75.54    (S,D)-harmonic (+3.0,-1.0)
+     0.216  (+0,+2)    +15.45    (S,D)-harmonic (+1.0,-1.0)
+     0.193  (+0,+4)   +117.69    (S,D)-harmonic (+2.0,-2.0)
+     0.193  (+1,+0)    +54.44    (S,D)-harmonic (+0.5,+0.5)
+     0.169  (+4,+2)    -41.94    (S,D)-harmonic (+3.0,+1.0)
+     0.153  (+4,+6)    +91.31    (S,D)-harmonic (+5.0,-1.0)
+     0.152  (+2,-2)    +57.03    (S,D)-harmonic (+0.0,+2.0)
+     0.147  (+1,+1)    +85.34    (S,D)-harmonic (+1.0,+0.0)
+
+=== eps=0.01  K=8   (289 basis functions per (tau,scale) cell, 4335 coefficients) ===
+  time limit   [7205s]
+
+=== eps=0.01  K=10   (441 basis functions per (tau,scale) cell, 6615 coefficients) ===
+  time limit   [7208s]
+
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.01   2    infeasible
+  0.01   3    infeasible
+  0.01   4    infeasible
+  0.01   5    time limit
+  0.01   6    2.2737
+  0.01   8    time limit
+  0.01  10    time limit
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 32139s

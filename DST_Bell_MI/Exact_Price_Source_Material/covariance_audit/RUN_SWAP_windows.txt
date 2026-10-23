@@ -1,0 +1,37 @@
+Roles-swapped solve  (dither_sweep_swap_v1.py)  -- ~4 h; the frame question
+============================================================================
+Every published census was solved with Alice pinned at a = 0 and Bob swept over the register. This run
+pins Bob at 0 and sweeps Alice, on the SAME 1024 random0 offsets. Under exact covariance the price must
+come back 1.000; what may change is the census, and that is the point: it decides whether the A/B
+asymmetry of the census ((2,0) > (0,2); xi_B near 0 in the slices) and of the terrain is the frame or
+the stations, and whether the birth is symmetric under xi_A <-> xi_B once the frame is removed.
+
+Toy check on the container: same offsets, swapped solve, price 1.8055 vs 1.8050 for the original
+(equal to the dt-discretization level, as covariance requires).
+
+Put dither_sweep_swap_v1.py in covariance_audit\ (needs flight_time.py and greedy_results.json). Then:
+
+  set NANG=161
+  set NSH_LIST=32
+  set EPS_LIST=0.01
+  set SAVE_RHO=1
+  set CORES=40
+  set MODES=random
+  set SEEDS=0
+  set REGISTER=paper
+  python dither_sweep_swap_v1.py > dither_swap_random0_10_22_26.txt
+
+(Run it alone or alongside the parallel batch; it uses all 56 cores for the ~3.8 h bank build, then one LP.)
+Outputs: banks_swap_nsh32_random0_nang161_nw2048.npz, rho_swap_nsh32_random0_eps0.01_nang161.json, dither_swap.json.
+
+Then, seconds:
+  python census_structure_v2.py rho_swap_nsh32_random0_eps0.01_nang161.json > census_swap_random0_10_23_26.txt
+  python census_sumdiff_v1.py  rho_swap_nsh32_random0_eps0.01_nang161.json > sumdiff_swap_random0_10_23_26.txt
+
+Reading rule (written before running). Compare with random0's census (same offsets):
+  (2,0) and (0,2) swap magnitudes (i.e. the swapped census has (0,2) ~ 0.24-0.31 and (2,0) ~ 0.10-0.15),
+  and the slices show xi_A near 0 instead of xi_B            -> the A/B asymmetry is the FRAME; the stations
+                                                                 are symmetric; the birth is symmetric fission.
+  the asymmetry stays on the same side                        -> it is physical (the terrain's own asymmetry);
+                                                                 the daughters are born distinguishable.
+  (2,2) magnitude and phase (lock to the sum) should be unchanged either way -- that is the covariance check.

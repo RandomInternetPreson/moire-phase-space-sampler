@@ -1,0 +1,17 @@
+
+=== NSH=32  mode=random  seed=0  NANG=161 ===
+  evolving 506880 trajectories (5 tau snapshots)...
+  done in 17071s
+  banks checkpointed to banks_swap_nsh32_random0_nang161_nw2048.npz
+  saved rho_swap_nsh32_random0_eps0.01_nang161.json
+  eps=0.01  MD/floor=  1.000   active atoms 658/15360   top-12 carry 0.10
+
+
+SUMMARY  (MD/floor)
+ NSH    mode seed   eps=0.01
+  32  random    0      1.000
+
+published (grid, NSH=16, [2,178]): 1.000 1.015 1.235 1.375
+A: off-lattice == grid (within ~0.03)  -> lattice is scaffolding
+B: off-lattice > grid                   -> aliasing in the table; v2 needed
+C: jumps across NSH                     -> tongue edges

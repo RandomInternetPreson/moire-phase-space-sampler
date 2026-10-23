@@ -1,0 +1,68 @@
+[2026-10-22 15:53:25] started r1_k5: rho_nsh32_random1_eps0.01_nang161.json K=5 eps=0.01
+[2026-10-22 15:53:25] started r1_k6: rho_nsh32_random1_eps0.01_nang161.json K=6 eps=0.01
+[2026-10-22 15:53:25] started s0_k6: rho_nsh32_strat0_eps0.01_nang161.json K=6 eps=0.01
+[2026-10-22 15:53:25] started s1_k6: rho_nsh32_strat1_eps0.01_nang161.json K=6 eps=0.01
+[2026-10-22 15:53:25] started r0_e05_k6: rho_nsh32_random0_eps0.01_nang161.json K=6 eps=0.05
+[2026-10-22 15:53:25] started r0_e05_k8: rho_nsh32_random0_eps0.01_nang161.json K=8 eps=0.05
+[2026-10-22 15:53:25] started r0_e05_k10: rho_nsh32_random0_eps0.01_nang161.json K=10 eps=0.05
+[2026-10-22 15:53:25] started r0_e02_k6: rho_nsh32_random0_eps0.01_nang161.json K=6 eps=0.02
+[2026-10-22 15:56:05] finished r1_k5 exit=0 after 3 min
+[2026-10-22 16:00:05] finished s0_k6 exit=0 after 7 min
+[2026-10-22 16:00:25] finished r1_k6 exit=0 after 7 min
+[2026-10-22 16:00:45] finished s1_k6 exit=0 after 7 min
+[2026-10-22 16:01:25] finished r0_e05_k6 exit=0 after 8 min
+[2026-10-22 16:01:45] finished r0_e02_k6 exit=0 after 8 min
+[2026-10-22 16:14:05] finished r0_e05_k8 exit=0 after 21 min
+[2026-10-22 16:27:05] finished r0_e05_k10 exit=0 after 34 min
+
+all 8 jobs finished in 0.56 h
+
+SUMMARY lines from each log:
+--- r1_k5
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.01   5    infeasible
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 150s
+--- r1_k6
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.01   6    2.0940
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 402s
+--- s0_k6
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.01   6    2.0188
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 394s
+--- s1_k6
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.01   6    2.0806
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 438s
+--- r0_e05_k6
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.05   6    1.5895
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 467s
+--- r0_e05_k8
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.05   8    1.3886
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 1226s
+--- r0_e05_k10
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.05  10    1.2295
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 2005s
+--- r0_e02_k6
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.02   6    1.9133
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 484s

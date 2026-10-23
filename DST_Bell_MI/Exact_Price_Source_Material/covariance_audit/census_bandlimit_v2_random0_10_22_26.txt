@@ -1,0 +1,71 @@
+file: rho_nsh32_random0_eps0.01_nang161.json   atoms 15360 = 15 x 1024   K list [5, 8, 10, 12, 14]   eps [0.01]   solver highs-ipm   time limit none
+check: MD of the stored rho* on these banks = 0.138071187458   (file says 0.138071187458; floor 0.138071187458)
+
+=== eps=0.01  K=5   (121 basis functions per (tau,scale) cell, 1815 coefficients) ===
+  infeasible   [102s]
+
+=== eps=0.01  K=8   (289 basis functions per (tau,scale) cell, 4335 coefficients) ===
+  MD/floor = 1.8612   feasible   active coefficients 3468/4335   [1073s]
+  leading harmonics of the pooled census  (|F|, k_A, k_B, phi[deg])  -- (k_S,k_D) = ((k_A+k_B)/2, (k_A-k_B)/2):
+     0.396  (+2,+2)   +155.65    (S,D)-harmonic (+2.0,+0.0)
+     0.322  (+2,+0)   +150.14    (S,D)-harmonic (+1.0,+1.0)
+     0.219  (+2,+4)    -71.84    (S,D)-harmonic (+3.0,-1.0)
+     0.194  (+0,+4)   +113.05    (S,D)-harmonic (+2.0,-2.0)
+     0.179  (+0,+2)    +13.27    (S,D)-harmonic (+1.0,-1.0)
+     0.169  (+1,+1)    +81.78    (S,D)-harmonic (+1.0,+0.0)
+     0.164  (+2,-2)    +54.14    (S,D)-harmonic (+0.0,+2.0)
+     0.158  (+1,-1)    +38.68    (S,D)-harmonic (+0.0,+1.0)
+     0.148  (+4,-2)   -143.71    (S,D)-harmonic (+1.0,+3.0)
+     0.143  (+4,+6)    +82.57    (S,D)-harmonic (+5.0,-1.0)
+
+=== eps=0.01  K=10   (441 basis functions per (tau,scale) cell, 6615 coefficients) ===
+  MD/floor = 1.5977   feasible   active coefficients 5733/6615   [1726s]
+  leading harmonics of the pooled census  (|F|, k_A, k_B, phi[deg])  -- (k_S,k_D) = ((k_A+k_B)/2, (k_A-k_B)/2):
+     0.422  (+2,+2)   +153.76    (S,D)-harmonic (+2.0,+0.0)
+     0.315  (+2,+0)   +144.38    (S,D)-harmonic (+1.0,+1.0)
+     0.231  (+2,+4)    -67.77    (S,D)-harmonic (+3.0,-1.0)
+     0.219  (+1,+1)    +83.94    (S,D)-harmonic (+1.0,+0.0)
+     0.177  (+1,-1)    +28.83    (S,D)-harmonic (+0.0,+1.0)
+     0.175  (+2,-2)    +48.24    (S,D)-harmonic (+0.0,+2.0)
+     0.173  (+0,+4)   +122.02    (S,D)-harmonic (+2.0,-2.0)
+     0.164  (+7,-3)   -121.17    (S,D)-harmonic (+2.0,+5.0)
+     0.164  (+3,-1)   +125.50    (S,D)-harmonic (+1.0,+2.0)
+     0.163  (+0,+2)    +18.93    (S,D)-harmonic (+1.0,-1.0)
+
+=== eps=0.01  K=12   (625 basis functions per (tau,scale) cell, 9375 coefficients) ===
+  MD/floor = 1.3555   feasible   active coefficients 9374/9375   [7005s]
+  leading harmonics of the pooled census  (|F|, k_A, k_B, phi[deg])  -- (k_S,k_D) = ((k_A+k_B)/2, (k_A-k_B)/2):
+     0.412  (+2,+2)   +159.41    (S,D)-harmonic (+2.0,+0.0)
+     0.321  (+2,+0)   +142.31    (S,D)-harmonic (+1.0,+1.0)
+     0.268  (+2,+4)    -83.09    (S,D)-harmonic (+3.0,-1.0)
+     0.215  (+1,+1)    +89.26    (S,D)-harmonic (+1.0,+0.0)
+     0.185  (+0,+2)    +31.83    (S,D)-harmonic (+1.0,-1.0)
+     0.183  (+1,-1)    +25.78    (S,D)-harmonic (+0.0,+1.0)
+     0.179  (+3,-1)   +128.79    (S,D)-harmonic (+1.0,+2.0)
+     0.170  (+4,+2)    -74.97    (S,D)-harmonic (+3.0,+1.0)
+     0.164  (+7,-5)   -171.91    (S,D)-harmonic (+1.0,+6.0)
+     0.164  (+4,-2)   -163.27    (S,D)-harmonic (+1.0,+3.0)
+
+=== eps=0.01  K=14   (841 basis functions per (tau,scale) cell, 12615 coefficients) ===
+  MD/floor = 1.1213   feasible   active coefficients 12615/12615   [16072s]
+  leading harmonics of the pooled census  (|F|, k_A, k_B, phi[deg])  -- (k_S,k_D) = ((k_A+k_B)/2, (k_A-k_B)/2):
+     0.393  (+2,+2)   +158.82    (S,D)-harmonic (+2.0,+0.0)
+     0.297  (+2,+0)   +146.25    (S,D)-harmonic (+1.0,+1.0)
+     0.280  (+2,+4)    -83.63    (S,D)-harmonic (+3.0,-1.0)
+     0.207  (+1,+1)    +93.74    (S,D)-harmonic (+1.0,+0.0)
+     0.189  (+4,+2)    -85.50    (S,D)-harmonic (+3.0,+1.0)
+     0.187  (+4,-2)   -167.95    (S,D)-harmonic (+1.0,+3.0)
+     0.170  (+13,+6)   +161.54    (S,D)-harmonic (+9.5,+3.5)
+     0.170  (+1,-1)    +25.97    (S,D)-harmonic (+0.0,+1.0)
+     0.168  (+0,+4)   +121.62    (S,D)-harmonic (+2.0,-2.0)
+     0.163  (+1,+3)   +149.62    (S,D)-harmonic (+2.0,-1.0)
+
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; '-' = infeasible)
+   eps   K     price
+  0.01   5    infeasible
+  0.01   8    1.8612
+  0.01  10    1.5977
+  0.01  12    1.3555
+  0.01  14    1.1213
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 25978s
