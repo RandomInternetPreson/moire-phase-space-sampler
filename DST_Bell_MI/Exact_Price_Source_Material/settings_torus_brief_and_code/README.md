@@ -5,7 +5,7 @@ arXiv:2608.18886 (Secs. 9–10).
 
 ## Current files (v4 of the paper, October 2026)
 
-- `settings_torus_brief_v2_3.pdf` / `.tex` — the two-page brief: the observable and what
+- `settings_torus_brief_v2_4.pdf` / `.tex` — the two-page brief: the observable and what
   existing data say about it, Design A (the 2×2 cross-ratio at 0° and 45°, about 10^8
   fourfold coincidences for 5σ at 0.1%) and Design B (the settings torus, about
   2.3×10^8), the two-channel efficiency-imbalance term and its singles-based
