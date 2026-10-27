@@ -1,0 +1,93 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{array,booktabs,float}
+\usepackage{caption}
+\captionsetup{font=footnotesize,labelfont=bf,skip=3pt}
+% section sign from the CM symbol font (avoids a bitmap TS1 glyph)
+\DeclareTextSymbol{\textsection}{OMS}{120}\DeclareTextSymbolDefault{\textsection}{OMS}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{The $\cos 4(a-b)$ content of the fourfold coincidence sum}
+\rhead{A. Alai}
+\cfoot{\thepage}
+\setlength{\parskip}{3pt}
+\begin{document}
+
+\begin{center}
+{\Large\bfseries A sub-percent test of the fourfold coincidence sum}\\[3pt]
+{\large Two designs for bounding or detecting its $\cos 4(a-b)$ content}\\[5pt]
+Aaron Alai (ORCID \href{https://orcid.org/0000-0003-4704-7271}{0000-0003-4704-7271})\\
+October 2026 (v2.4) $\cdot$ companion to \href{https://arxiv.org/abs/2608.18886}{arXiv:2608.18886} v5
+\end{center}
+
+\section*{The observable and what is known about it}
+In a two-channel polarization Bell experiment with analyzer settings $(a,b)$, the fourfold coincidence sum
+\[
+R_4(a,b) = R_{++}+R_{+-}+R_{-+}+R_{--}
+\]
+is the standard fair-sampling diagnostic. Quantum mechanics predicts no $\cos 4(a-b)$ content in it: for a single pair in any two-qubit state and analyzers built from one rotating element with fixed imperfections, every coincidence rate contains only harmonics $e^{ika}$ with $|k|\le 2$ in each analyzer angle, so no rate --- single-channel or fourfold --- contains $\cos 4(a-b)$. Its constancy has been checked, but only at the percent level: Aspect, Grangier and Roger observed the sum to be constant on rotating the polarimeters (PRL 49, 91, p.~92), within statistical precision in every series, $\pm 1.5\%$ in the one series quantified, whose tabulated example is at parallel settings (Aspect, th\`ese d'\'Etat 1983, \S VIII-5c), and the single-channel scan of Brida, Genovese and Piacentini (EPJ D 44, 577) bounds the rms deviation of the normalized fringe from $1+V\cos 2\varphi$ at $\Delta_{\rm exp}=0.0074$ (Santos, arXiv:0706.3445). To my knowledge no sub-percent bound on the $\cos 4(a-b)$ content exists.
+
+What would produce such content? arXiv:2608.18886 solves, within one class of local detection models (deterministic outcomes, a common detection profile $D(m)$, clicks independent given the hidden phase), the unique profile that reproduces the singlet correlation exactly (\S5), and proves that no profile in that class can also keep $R_4$ angle-independent (Proposition~1; a proved counterpart, for this class, of Gill's conjecture about Pearle's model). The solved profile predicts $R_4/\bar R_4 = 1 + 0.0577\cos 4\Delta + 0.0098\cos 8\Delta + \cdots$, a $12.4\%$ peak-to-peak fringe with $R_4(0^\circ)/R_4(45^\circ)=1.13$. Existing data already exclude it at full amplitude and bound its mixtures with flat detection to a detection share of order $15\%$ (about $20\%$ at two standard deviations). Flat-rate local detection models outside this class exist (Larsson, PLA 256, 245, for $\eta\le 0.778$), so a flat result bounds this family rather than excluding local detection accounts in general.
+
+\textbf{Why four-point CHSH data do not see it.} The fringe takes identical values at the two CHSH relative angles: $\cos(2k\cdot 45^\circ)=\cos(2k\cdot 135^\circ)$ for every $k$, so $R_4(22.5^\circ)=R_4(67.5^\circ)$ term by term (Theorem~2), and the Eberhard/CH-form loophole-free tests did not record $R_4$. Relative angles $0^\circ$ and $45^\circ$ see the whole peak-to-peak.
+
+\section*{Two measurements}
+\textbf{Design A --- the $2\times 2$ cross-ratio.} Record $R_4$ at $a,b\in\{0^\circ,45^\circ\}$ and form
+\[
+X=\frac{R_4(0,0)\,R_4(45,45)}{R_4(0,45)\,R_4(45,0)},
+\]
+which cancels every factorizable apparatus response $A(a)B(b)$ and equals $1.278$ for the solved profile. For $5\sigma$ at $0.1\%$ peak-to-peak it needs about $2.5\times 10^7$ fourfold coincidences per setting, $10^8$ in all: under an hour at $5\times 10^4$ fourfold coincidences/s, about a day at $10^3$. Any entanglement-based BBM92 apparatus with passive basis choice and four detectors per side records this table in normal operation, so a sub-percent bound may already be available from archived data.
+
+\textbf{Design B --- the settings torus.} Scan $(a,b)$ on e.g.\ $24\times 24$ points and Fourier-analyse $\log R_4$: a factorizable response is additive after the logarithm and occupies only the Fourier axes; the physical signal occupies the anti-diagonal pixels $(k,-k)$. The estimator is the signed real part of the $(2,-2)$ pixel (the fringe has zero phase once the relative analyzer zero is calibrated; a magnitude estimator is biased positive and is not used). This design resolves the harmonic content --- the $5.87{:}1$ ratio of $\cos 4\Delta$ to $\cos 8\Delta$ is a shape prediction of the solved profile --- at about $2.3\times 10^8$ coincidences for $5\sigma$ at $0.1\%$, about $1.3$ hours at $5\times 10^4$ coincidences/s. At the $0.1\%$ threshold the $\cos 8\Delta$ pixel ($0.0085\%$) sits below the per-pixel noise, so the shape is confirmable only for fringes of roughly $0.5\%$ or more: Design A first, Design B with more counts if A sees something.
+
+\textbf{The non-factorizable apparatus term, and its calibration.} With outcome-dependent channel efficiencies $\eta_\pm$ on each side and a maximally entangled source,
+\[
+R_4 = \tfrac14\big[S_A(a)S_B(b) + D_A(a)D_B(b)\,E(a,b)\big],\qquad S=\eta_++\eta_-,\ D=\eta_+-\eta_-,
+\]
+and the second term is local but not a product. A constant relative imbalance $\delta=D/S$ adds no $\cos 4(a-b)$ to $R_4$ itself but reaches the $(2,-2)$ pixel of $\log R_4$ at second order: $-4\times 10^{-4}$ for $20\%$ per side, opposite in sign to the predicted fringe, so it can mask as well as mimic. An angle-dependent imbalance of $3\%$ per side enters $R_4$ at first order, $-2.3\times 10^{-4}$, invisible to the quadrature check when the two phases agree; with $20\%$ constant imbalance added, the uncalibrated estimator at equal phase returns $(-0.064\pm0.006)\%$, larger than the target, with a null quadrature. Aspect et al.\ measured a $\pm 1\%$ efficiency variation on rotating their polarimeters, so this is not hypothetical. The calibration is built in: for a maximally entangled source the local states are maximally mixed, so the two channel singles on each side give $\delta_A(a)$ and $\delta_B(b)$ directly; the four coincidence channels re-weighted by those efficiencies give $E(a,b)$; and $R_4/(1+\delta_A\delta_B E)$ is factorizable response times the physical fringe, to first order in the analyzers' extinction. The coincidence marginals give a second estimate of $\delta_A,\delta_B$ (exact at relative angle $45^\circ$), so agreement of the two is a check that singles and coincidence photons see the same channel efficiencies. In simulation with $3\%$ factorizable ripple, $20\%$ constant and $3\%$ angle-dependent imbalance per side, at $10^6$ coincidences per point, the uncalibrated $(2,-2)$ estimator returns a null of $(-0.041\pm 0.017)\%$ and the calibrated estimator $(0.000\pm 0.006)\%$, linear from $0.05\%$ to the full profile; at equal phase the calibrated null is also $(0.000\pm0.006)\%$ (\texttt{protocol\_sensitivity\_v2\_2.py}). The cross-ratio uses the same calibration.
+
+\textbf{Controls.} Randomized visiting order and heralded-singles normalization against source drift; interleaved reference points; detectors in the linear regime; the singles-based imbalance calibration; the quadrature of the $(2,-2)$ pixel as a partial check; two pump powers, since two pairs in one coincidence window with threshold detectors add $\cos 4\Delta$ content of relative size $\sim R\tau/8$ ($10^{-4}$ at $10^6$/s and 1\,ns; negligible at $5\times10^4$/s); and a source run at or near maximal entanglement, since the fringe prediction is for the singlet and the singles calibration assumes maximally mixed local states (a residual local polarization reads as an angle-dependent imbalance locked to the source axes; bound it independently, e.g.\ by tomography), while the harmonic bound holds for any state.
+
+\textbf{Requirements.} A polarization-entangled source near maximal entanglement, two-channel analyzers with both ports detected and channel singles recorded, independently rotatable to $0^\circ$ and $45^\circ$ (Design A) or across the torus (Design B). Coincidence rate sets the time, not the feasibility. No loophole-free rigour is needed: the observable is a rate map.
+
+\section*{Outcomes}
+\begin{enumerate}[nosep]
+\item \textbf{Flatness at 0.1\%} --- to my knowledge the first published sub-percent bound on the standard fair-sampling diagnostic, an order of magnitude beyond the existing record; it excludes the solved detection profile and its mixtures with flat detection to a detection share of order $1\%$. It does not by itself force measurement dependence: quantum mechanics, flat-rate detection models of Larsson's type, and measurement-dependent accounts are indistinguishable by rates.
+\item \textbf{A fringe of the predicted shape}, surviving the imbalance calibration and the pump-power check --- a joint $(a,b)$ dependence that no single-pair, fixed-imperfection apparatus produces, consistent with a detection account of the solved class at that mixture level.
+\item \textbf{A fringe of a different shape}, surviving the same controls --- the same kind of joint dependence, and this detection class is excluded as constructed.
+\end{enumerate}
+
+\section*{What each account leaves on the torus}
+\begin{table}[H]
+\footnotesize
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.21\textwidth}>{\raggedright\arraybackslash}p{0.13\textwidth}>{\raggedright\arraybackslash}p{0.06\textwidth}>{\raggedright\arraybackslash}p{0.30\textwidth}>{\raggedright\arraybackslash}p{0.235\textwidth}@{}}
+\toprule
+Account & $\mathcal{M}$ & $\eta_{\rm eff}$ & $R_4$ and torus pixels & Separated by\\
+\midrule
+Quantum mechanics, fixed-imperfection analyzers & --- & any & no $\cos 4(a-b)$: harmonics $|k|\le 2$ per angle; anti-diagonal $(\pm2,\mp2)$ empty & ---\\
+Census-only local model (MPL, paper Sec.~7) & Hall's floor $(\sqrt2-1)/3$, attained to twelve digits & 1 & flat rates (no detection channel); anti-diagonal empty; correlation residual $\le 1\%$ at the register & not by $R_4$: by the correlation residual between the Bell angles\\
+Detection-only local model (paper Sec.~5 class) & 0 & 0.80 (the solved profile) & $12.4\%$ peak-to-peak: $1+0.0577\cos4\Delta+0.0098\cos8\Delta+0.0031\cos12\Delta$; $(\pm2,\mp2)$ dominant, $(\pm4,\mp4)$ at $5.87{:}1$; equal at $22.5^\circ$ and $67.5^\circ$ & the scan at $0^\circ/45^\circ$; existing bounds (Aspect $\pm1.5\%$; Brida et al.\ $0.0074$ vs $0.053$) exclude full amplitude\\
+Mixture along the interpolating family (paper Sec.~8) & $\delta_f<2\%\Rightarrow\mathcal{M}\ge45\%$ of floor; $<1\%\Rightarrow 68\%$; $<0.5\%\Rightarrow 80\%$ & $0.80$--$1$ & same pixels, scaled by the detection share & the scan: existing data bound the share to order $15\%$ (about $20\%$ at $2\sigma$); a $0.1\%$ scan to order $1\%$\\
+Flat-rate local models outside the class (Larsson; symmetrized Gisin--Gisin) & 0 & $\le 0.778$ & none; indistinguishable from QM by rates & not by this protocol: the reason a flat result bounds the family rather than forcing $\mathcal{M}$\\
+\midrule
+Factorizable apparatus response $\eta_A(a)\,\eta_B(b)$ & --- & --- & axes only, $(k,0)$ and $(0,k)$ & Design A cancels it; Design B quarantines it\\
+Two-channel imbalance (Eq.~6 of the paper) & --- & --- & constant: $(\pm2,\mp2)$ at $-V^2\delta_A^2\delta_B^2/4$, opposite in sign to the physical fringe, $\sim4\times10^{-4}$ at $20\%$ per side; angle-dependent: first order in $R_4$, $-2.3\times10^{-4}$ at $3\%$ & calibrated from channel singles; marginal cross-check\\
+Multi-pair emission & --- & --- & $(\pm2,\mp2)$, same sign as the physical fringe, $\sim R\tau/8$ & two pump powers\\
+\bottomrule
+\end{tabular}
+\caption{The census and detection channels are orthogonal in what they leave behind: the census pays in $\mathcal{M}$ and leaves the rates flat, the detection profile pays in rates and leaves $\mathcal{M}$ at zero, so the scan constrains the detection side only. Three effects land on the anti-diagonal pixel, two with opposite signs, which is why the imbalance calibration and the two-power control are part of the protocol rather than refinements of it.}
+\end{table}
+
+\section*{Materials}
+Paper: \href{https://arxiv.org/abs/2608.18886}{arXiv:2608.18886} (v5: \S5 profile, Proposition~1, Theorem~2, \S9 record, \S10 protocol).\\
+Scripts (\texttt{protocol\_sensitivity\_v2\_2.py}, exact-profile harmonics, imbalance checks): \url{https://github.com/RandomInternetPreson/moire-phase-space-sampler/tree/main/DST_Bell_MI/Exact_Price_Source_Material}
+
+\medskip
+\noindent Aaron Alai $\cdot$ ORCID 0000-0003-4704-7271 $\cdot$ correspondence via the arXiv listing for 2608.18886.
+\end{document}
