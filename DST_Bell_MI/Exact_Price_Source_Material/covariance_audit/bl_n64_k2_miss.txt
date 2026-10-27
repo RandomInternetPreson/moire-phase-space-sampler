@@ -1,0 +1,14 @@
+file: rho_nsh64_random0_eps0.01_nang161.json   atoms 61440 = 15 x 4096   K list [2]   eps [0.01]   solver highs-ipm (retry highs-ds)   miss-only True
+check: MD of the stored rho* on these banks = 0.138071187458   (file says 0.138071187458; floor 0.138071187458)
+
+=== eps=0.01  K=2   (25 basis functions per (tau,scale) cell, 375 coefficients) ===
+  min-miss LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)   [12s]
+    [highs-ds] status 4 = numerical difficulties; The HiGHS status code was not recognized. (HiGHS Status 15: model_status is Unknown; primal_status is Infeasible)   [327s]
+  undetermined (both solvers failed on the min-miss LP)
+
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   2         -   undetermined (both solvers failed on the min-miss LP)
+
+reference: rho* (unrestricted, 4096 atoms per cell) MD/floor = 1.000000   total 340s

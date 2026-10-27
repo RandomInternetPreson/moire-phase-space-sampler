@@ -1,0 +1,17 @@
+file: rho_nsh32_grid0_eps0.01_nang161.json   atoms 15360 = 15 x 1024   K list [5]   eps [0.01]   solver highs-ipm (retry highs-ds)   miss-only False
+check: MD of the stored rho* on these banks = 0.138071187458   (file says 0.138071187458; floor 0.138071187458)
+
+=== eps=0.01  K=5   (121 basis functions per (tau,scale) cell, 1815 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [101s]
+  min-miss LP:
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [33s]
+    verify: rho_min -1.17e-08  mass 1.000000000  max |E - target| 0.010553  MD/floor 2.7219   OK
+    min-miss: sigma* = 0.000553  ->  best K=5 census misses the singlet by 0.010553 (= eps 0.01 + +0.000553)
+  INFEASIBLE at eps=0.01: certified, min miss 0.01055 > eps
+
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   5         -   infeasible (certified by value); min miss 0.01055
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 135s

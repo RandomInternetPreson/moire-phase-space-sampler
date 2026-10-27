@@ -1,0 +1,80 @@
+file: rho_nsh32_random0_eps0.01_nang161.json   atoms 15360 = 15 x 1024;  rho* misses: band 0.01000, price 1.0000
+class: cell-separable censuses of rank R, shapes free over 1024 offsets;  ranks [1, 2, 3], 6 starts, 40 alternations, eps 0.01
+
+=== rank 1 ===
+  start 0: sigma* 0.002578 -> min miss 0.00258 (CHSH 3.0e-12) after 4 alternations   [3s]
+  start 1: sigma* 0.010458 -> min miss 0.01046 (CHSH 4.0e-15) after 4 alternations   [6s]
+  start 2: sigma* 0.002217 -> min miss 0.00222 (CHSH 4.4e-16) after 4 alternations   [9s]
+  start 3: sigma* 0.002309 -> min miss 0.00231 (CHSH 6.2e-15) after 4 alternations   [13s]
+  start 4: sigma* 0.009964 -> min miss 0.00996 (CHSH 1.9e-09) after 4 alternations   [16s]
+  start 5: sigma* 0.005294 -> min miss 0.00529 (CHSH 5.2e-14) after 4 alternations   [19s]
+
+  rank 1: best min miss 0.00222   <= eps: FEASIBLE at eps
+    shape 0: total weight 1.000; cell weights (rows tau, cols scale):
+      tau=0.5   0.022  0.123  0.003
+      tau=1.0   0.093  0.082  0.004
+      tau=2.0   0.076  0.257  0.055
+      tau=4.0   0.039  0.042  0.080
+      tau=8.0   0.036  0.018  0.070
+      leading harmonics (|F|, k_A, k_B, phi):  (+2,+2) 0.65@+153  (+4,-4) 0.36@+90  (+2,+0) 0.33@+134  (+4,+2) 0.32@-82  (+2,-4) 0.28@-152
+    price at eps=0.01: MD/floor = 1.8362 (re-measured; band miss 0.01000)   [361s]
+
+=== rank 2 ===
+  start 0: sigma* 0.001821 -> min miss 0.00182 (CHSH 4.5e-14) after 4 alternations   [373s]
+  start 1: sigma* 0.009089 -> min miss 0.00909 (CHSH 1.2e-08) after 4 alternations   [384s]
+  start 2: sigma* 0.002767 -> min miss 0.00277 (CHSH 4.9e-15) after 4 alternations   [396s]
+  start 3: sigma* 0.001640 -> min miss 0.00164 (CHSH 7.3e-13) after 4 alternations   [411s]
+  start 4: sigma* 0.001947 -> min miss 0.00195 (CHSH 1.3e-15) after 4 alternations   [424s]
+  start 5: sigma* 0.000040 -> min miss 0.00004 (CHSH 1.2e-14) after 4 alternations   [437s]
+
+  rank 2: best min miss 0.00004   <= eps: FEASIBLE at eps
+    shape 0: total weight 0.759; cell weights (rows tau, cols scale):
+      tau=0.5   0.002  0.003  0.129
+      tau=1.0   0.007  0.003  0.153
+      tau=2.0   0.051  0.062  0.000
+      tau=4.0   0.004  0.122  0.128
+      tau=8.0   0.002  0.093  0.000
+      leading harmonics (|F|, k_A, k_B, phi):  (+2,+2) 0.61@+168  (+2,+4) 0.32@-87  (+3,+2) 0.31@-163  (+4,-4) 0.31@+89  (+0,+2) 0.29@+69
+    shape 1: total weight 0.241; cell weights (rows tau, cols scale):
+      tau=0.5   0.006  0.006  0.016
+      tau=1.0   0.007  0.061  0.013
+      tau=2.0   0.003  0.024  0.016
+      tau=4.0   0.032  0.031  0.017
+      tau=8.0   0.008  0.001  0.000
+      leading harmonics (|F|, k_A, k_B, phi):  (+1,-1) 0.55@+4  (+3,-3) 0.54@+95  (+2,-4) 0.54@-104  (+2,+2) 0.53@+131  (+2,+4) 0.45@-92
+    price at eps=0.01: MD/floor = 1.5479 (re-measured; band miss 0.01000)   [5000s]
+
+=== rank 3 ===
+  start 0: sigma* 0.006097 -> min miss 0.00610 (CHSH 4.4e-16) after 4 alternations   [5018s]
+  start 1: sigma* 0.001423 -> min miss 0.00142 (CHSH 4.5e-14) after 4 alternations   [5038s]
+  start 2: sigma* 0.005448 -> min miss 0.00545 (CHSH 8.9e-16) after 4 alternations   [5060s]
+  start 3: sigma* 0.002831 -> min miss 0.00283 (CHSH 4.4e-16) after 4 alternations   [5083s]
+  start 4: sigma* 0.001833 -> min miss 0.00183 (CHSH 4.4e-15) after 4 alternations   [5102s]
+  start 5: sigma* 0.000892 -> min miss 0.00089 (CHSH 2.8e-13) after 4 alternations   [5125s]
+
+  rank 3: best min miss 0.00089   <= eps: FEASIBLE at eps
+    shape 0: total weight 0.693; cell weights (rows tau, cols scale):
+      tau=0.5   0.012  0.072  0.150
+      tau=1.0   0.033  0.111  0.012
+      tau=2.0   0.045  0.040  0.003
+      tau=4.0   0.003  0.084  0.117
+      tau=8.0   0.005  0.005  0.000
+      leading harmonics (|F|, k_A, k_B, phi):  (+2,+2) 0.64@+170  (+2,+0) 0.42@+132  (+0,+2) 0.40@+64  (+4,+0) 0.35@-125  (+2,+4) 0.34@-104
+    shape 1: total weight 0.264; cell weights (rows tau, cols scale):
+      tau=0.5   0.035  0.031  0.004
+      tau=1.0   0.005  0.006  0.007
+      tau=2.0   0.003  0.049  0.000
+      tau=4.0   0.003  0.005  0.055
+      tau=8.0   0.046  0.013  0.000
+      leading harmonics (|F|, k_A, k_B, phi):  (+2,-4) 0.58@-129  (+4,-4) 0.54@+70  (+2,+2) 0.50@+140  (+4,-2) 0.49@+17  (+4,+0) 0.37@-150
+    shape 2: total weight 0.043; cell weights (rows tau, cols scale):
+      tau=0.5   0.004  0.003  0.002
+      tau=1.0   0.005  0.002  0.009
+      tau=2.0   0.002  0.002  0.000
+      tau=4.0   0.001  0.000  0.000
+      tau=8.0   0.010  0.003  0.000
+      leading harmonics (|F|, k_A, k_B, phi):  (+2,+0) 0.99@+145  (+2,-2) 0.95@-166  (+0,+2) 0.95@-49  (+4,+0) 0.95@-70  (+4,-4) 0.94@+34
+    price at eps=0.01: MD/floor = 1.5722 (re-measured; band miss 0.01000)   [9354s]
+
+SUMMARY  cell-separable censuses (free shapes), min miss by rank:  R=1: 0.00222 (price 1.8362)  R=2: 0.00004 (price 1.5479)  R=3: 0.00089 (price 1.5722)
+compare: K=5 band-limited (certified) 0.01196; birth models v1/v2 (separable by form) 0.0242; rank-1 approx of the K=6 census 0.0499   [9354s total]

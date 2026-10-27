@@ -1,0 +1,34 @@
+file: rho_nsh32_random0_eps0.01_nang161.json   atoms 15360 = 15 x 1024
+check: MD of the stored rho* = 0.138071187458 (file 0.138071187458; floor 0.138071187458);  rho* misses: band 0.01000  CHSH 4.88e-15
+model: J=1 families, coupling=False, station factor=False, 24 parameters;  mode=miss eps=0.01 seed=1 pop=12x24 time limit 3600s
+  DE: 1450368 evaluations, best objective 0.049981  [3601s]
+  polish: 1450954 evaluations total, best objective 0.049981  [3602s]
+
+RESULT  mode=miss J=1 coupling=False station=False eps=0.01
+  model census: band miss 0.04998   CHSH miss 0.00169   -> not feasible at eps=0.01
+  MD/floor = 4.7139   (LP optimum over all censuses = 1.000; smoothest K=6 census = 2.274 at eps=0.01 on random0)
+  smallest max-miss seen in this run: 0.04998   (compare: best K=5 band-limited census misses 0.0120, K=4 0.0174)
+
+  parameters:
+    family 0: weight 4.872  axis muS   36.2 deg (kappa_S  22.1)  push muD  146.7 deg (kappa_D   0.6, kappa_D2  +0.2)  coupling beta   +0.0 deg
+    cell weights (rows tau, cols scale):
+      tau=0.5   0.000  0.006  0.446
+      tau=1.0   0.001  0.001  0.016
+      tau=2.0   0.001  0.017  0.002
+      tau=4.0   0.005  0.001  0.001
+      tau=8.0   0.164  0.313  0.028
+
+  leading harmonics of the model census  (|F|, k_A, k_B, phi[deg])  -- LP skeleton: (2,2)~0.37@157, (2,0), (2,4), (1,1), (0,2):
+     0.974  (+1,+1)    +72.97
+     0.900  (+2,+2)   +145.98
+     0.786  (+3,+3)   -140.91
+     0.648  (+4,+4)    -67.64
+     0.500  (+5,+5)     +5.91
+     0.357  (+6,+6)    +80.00
+     0.282  (+2,+0)     +2.94
+     0.277  (+1,-1)    -67.39
+     0.274  (+3,+1)    +73.05
+     0.258  (+0,+2)   +137.95
+
+SUMMARY  mode=miss J=1 c=0 st=0 eps=0.01: band miss 0.04998  CHSH miss 0.00169  price 4.7139  infeasible  min-miss-seen 0.04998   [3602s, 1450954 evals]
+wrote birth_model_v1_j1_nc_miss_s1_rho_nsh32_random0_eps0.01_nang161.json

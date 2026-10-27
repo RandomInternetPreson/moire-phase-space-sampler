@@ -1,0 +1,37 @@
+file: rho_nsh32_random0_eps0.01_nang161.json   atoms 15360 = 15 x 1024
+check: MD of the stored rho* = 0.138071187458 (file 0.138071187458; floor 0.138071187458);  rho* misses: band 0.01000  CHSH 4.88e-15
+model: J=3 families, coupling=True, station factor=True, 38 parameters;  mode=miss eps=0.01 seed=1 pop=12x38 time limit 3600s
+  DE: 1311912 evaluations, best objective 0.039125  [3601s]
+  polish: 1312770 evaluations total, best objective 0.035966  [3603s]
+
+RESULT  mode=miss J=3 coupling=True station=True eps=0.01
+  model census: band miss 0.03597   CHSH miss 0.01791   -> not feasible at eps=0.01
+  MD/floor = 3.3465   (LP optimum over all censuses = 1.000; smoothest K=6 census = 2.274 at eps=0.01 on random0)
+  smallest max-miss seen in this run: 0.03597   (compare: best K=5 band-limited census misses 0.0120, K=4 0.0174)
+
+  parameters:
+    family 0: weight 1.894  axis muS  122.8 deg (kappa_S  13.0)  push muD  177.1 deg (kappa_D  10.8, kappa_D2  -2.6)  coupling beta  -18.3 deg
+    family 1: weight 14.037  axis muS   36.1 deg (kappa_S  14.5)  push muD  163.2 deg (kappa_D   0.5, kappa_D2  +0.4)  coupling beta  +71.8 deg
+    family 2: weight 0.430  axis muS  108.1 deg (kappa_S  23.2)  push muD  167.8 deg (kappa_D  11.6, kappa_D2  -5.3)  coupling beta  +71.6 deg
+    cell weights (rows tau, cols scale):
+      tau=0.5   0.001  0.002  0.256
+      tau=1.0   0.000  0.197  0.008
+      tau=2.0   0.009  0.018  0.012
+      tau=4.0   0.029  0.059  0.001
+      tau=8.0   0.342  0.060  0.006
+    station factor: alpha +0.213  phi  226.1 deg  (slots of cos 4 xi_A at 56.5 deg mod 90)
+
+  leading harmonics of the model census  (|F|, k_A, k_B, phi[deg])  -- LP skeleton: (2,2)~0.37@157, (2,0), (2,4), (1,1), (0,2):
+     0.791  (+2,+2)   +139.44
+     0.600  (+1,+1)    +80.87
+     0.527  (+3,+3)   -126.20
+     0.388  (+4,+4)    -72.62
+     0.287  (+5,+5)    +15.77
+     0.245  (+1,+3)   +142.04
+     0.220  (+1,-1)    -11.43
+     0.211  (+2,+6)    -13.43
+     0.174  (+2,+4)    -91.12
+     0.162  (+4,+6)    +32.62
+
+SUMMARY  mode=miss J=3 c=1 st=1 eps=0.01: band miss 0.03597  CHSH miss 0.01791  price 3.3465  infeasible  min-miss-seen 0.03597   [3603s, 1312770 evals]
+wrote birth_model_v1_j3_miss_s1_rho_nsh32_random0_eps0.01_nang161.json

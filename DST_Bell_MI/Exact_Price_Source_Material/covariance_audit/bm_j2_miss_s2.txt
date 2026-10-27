@@ -1,0 +1,36 @@
+file: rho_nsh32_random0_eps0.01_nang161.json   atoms 15360 = 15 x 1024
+check: MD of the stored rho* = 0.138071187458 (file 0.138071187458; floor 0.138071187458);  rho* misses: band 0.01000  CHSH 4.88e-15
+model: J=2 families, coupling=True, station factor=True, 31 parameters;  mode=miss eps=0.01 seed=2 pop=12x31 time limit 3600s
+  DE: 1353336 evaluations, best objective 0.049160  [3601s]
+  polish: 1354051 evaluations total, best objective 0.047694  [3603s]
+
+RESULT  mode=miss J=2 coupling=True station=True eps=0.01
+  model census: band miss 0.04769   CHSH miss 0.04102   -> not feasible at eps=0.01
+  MD/floor = 3.9101   (LP optimum over all censuses = 1.000; smoothest K=6 census = 2.274 at eps=0.01 on random0)
+  smallest max-miss seen in this run: 0.04769   (compare: best K=5 band-limited census misses 0.0120, K=4 0.0174)
+
+  parameters:
+    family 0: weight 0.325  axis muS   30.8 deg (kappa_S   5.9)  push muD   64.4 deg (kappa_D  29.9, kappa_D2  +1.7)  coupling beta  -49.8 deg
+    family 1: weight 1.626  axis muS  131.1 deg (kappa_S  13.9)  push muD   66.7 deg (kappa_D   3.0, kappa_D2  -1.4)  coupling beta  -84.9 deg
+    cell weights (rows tau, cols scale):
+      tau=0.5   0.202  0.057  0.005
+      tau=1.0   0.159  0.009  0.014
+      tau=2.0   0.217  0.145  0.047
+      tau=4.0   0.089  0.000  0.018
+      tau=8.0   0.011  0.026  0.001
+    station factor: alpha -0.992  phi   11.4 deg  (slots of cos 4 xi_A at 2.9 deg mod 90)
+
+  leading harmonics of the model census  (|F|, k_A, k_B, phi[deg])  -- LP skeleton: (2,2)~0.37@157, (2,0), (2,4), (1,1), (0,2):
+     0.784  (+2,+2)   +158.07
+     0.724  (+1,+1)    -96.32
+     0.533  (+3,+3)    +66.83
+     0.521  (+5,+1)   +106.18
+     0.508  (+6,+4)    +20.13
+     0.486  (+5,+3)   +111.97
+     0.467  (+4,+2)   -123.04
+     0.409  (+3,+1)    -43.48
+     0.391  (+4,+4)    -36.58
+     0.379  (+3,-1)    -55.32
+
+SUMMARY  mode=miss J=2 c=1 st=1 eps=0.01: band miss 0.04769  CHSH miss 0.04102  price 3.9101  infeasible  min-miss-seen 0.04769   [3603s, 1354051 evals]
+wrote birth_model_v1_j2_miss_s2_rho_nsh32_random0_eps0.01_nang161.json
