@@ -301,3 +301,28 @@ certified by LP optima re-verified from the census; the rank-k statement is "no
 feasible mixture from 8 starts". Nothing here derives rho; the certificates bound
 the smoothness of any formation process from below.
 
+### Version 4 (27 Oct 2026) — sampling correction, lattice census, dial dependence
+
+**Correction.** The band-limited prices of version 3 (Results K–L) were computed on 1024 random offsets and include a quadrature cost: a band-limited census on N random atoms evaluates its correlators as an N-point random quadrature, and the LP pays MD to cancel the ~N^−1/2 noise. On a 32×32 lattice of offsets (`pipeline_4096_v2.py` with the grid option, job 400; `RUN_GRID32.bat`) the effect is absent. Lattice prices at ε = 0.01: 1.700, 1.429, 1.258, 1.112, 1.000 at K = 6, 8, 10, 12, 14 (`bl_n32_k*.txt`). 4096 random offsets (job 399; `RUN_4096_v2.bat`, `RUN_4096_MISS.bat`): 1.828, 1.428, 1.301, 1.219, 1.139, 1.071, 1.012 at K = 6–18 (`bl_n64_k*.txt`). The K ≤ 5 certificates hold on every sampling: best K = 5 miss 1.20 / 1.03 / 1.055% (1024 random / 4096 random / lattice), K = 4: 1.74 / 1.43 / 1.17%, K = 3: 10.5 / 12.6 / 8.5% (`bl_n64_k*_miss.txt`, `bl_n32_k2–5.txt`). The version-3 values stand for the 1024-random census; the lattice values are the model's smoothness price. The (ε, K) surface of version 3 is a 1024-random surface; its shape stands, its values do not transfer. Rows K = 4, 5 of that surface (`bl_r0_e*_k4.txt`, `bl_r0_e*_k5.txt`) are deposited for completeness.
+
+**Result N — bandwidth, three samplings.** Floor attained at 1.000000 on 1024 random (×4), 4096 random (762 active of 61440), lattice (699 active of 15360). All three K-curves monotone. The floor census needs harmonics to K ≈ 14–18: angular features of 5–6°.
+
+**Result O — the lattice census is the same census.** `census_structure_v2.py` and `census_sumdiff_v1.py` on `rho_nsh32_grid0`: (2,2) |F| = 0.314 at φ = 159.4°, preferred sum 39.84° mod 90°, (2,0) 0.271 vs (0,2) 0.162 (same-side station asymmetry), diagonal z = +4.2, anti-diagonal z = −0.6, same (S, D) cross pixels and both push families (`census_structure_v2_nsh32_grid0.txt`, `census_sumdiff_v1_nsh32_grid0.txt`, `census_structure_v2_out_nsh32.json`, `census_sumdiff_v1_out_nsh32.json`).
+
+**Result P — the census depends on the dial** (`census_cells_v1.py`). 15 × 1024 matrix R[cell, offset] of the smooth K = 6 census: rank-1 shape share 0.38 (random0) / 0.51 (lattice); cell cosine similarity 0.33 / 0.50, and on the lattice 0.70 within a scale vs 0.43 within a τ. Best rank-1 approximation misses the singlet by 5.0% / 5.7%; rank 3 by 3.5% / 4.0% (`census_cells_random0_10_23_26.txt`, `census_cells_grid0_10_27_26.txt`, `census_cells_v1_out_grid0.json`). The lock axis rising with scale is suggestive, not established.
+
+**Result Q — price of a dial-blind birth** (`census_cellsep_v1.py`, free shapes; alternating LP, 6 starts; upper bounds). One or two offset densities shared by all cells and reweighted per cell: lattice rank 1 miss 0.38%, price 1.473; rank 2 miss 0.08%, price 1.196; random0 1.78–1.84 / 1.55–1.67 with the quadrature cost (`census_cellsep_random0_10_25_26.txt`, `cs_free_s2.txt`, `cs_g_free_s1.txt`, `census_cellsep_v1_rho_*.json`). The sum-locked / difference-locked split of the random0 rank-2 solution is one local optimum, not replicated.
+
+**Result R — smooth and dial-blind** (`census_cellsep_v2.py`, BAND = K). Rank 1 not found under 1.2% miss at K = 6 or 8 on either sampling; rank 2 at K = 6: 0.992% miss, 2.372×; rank 1 at K = 10: 0.97%, 2.269× (`cs_k*_r*.txt`, `cs_g_k*_r*.txt`, `census_cellsep_v2_*.json`). Best found, not certificates.
+
+**Result S — parametric birth model** (`birth_model_v1.py` cold, `birth_model_v2.py` warm-started from the K = 6 census). ~30-parameter von Mises push model, cell-separable by construction: 2.4–2.6% miss from cold starts and 2.42–2.50% warm; fits the K = 6 census with 0.70 relative error; finds the axis (38.1°), station slots (38.4° mod 90°) and (2,2) phase (156°) but over-sharpens and lacks the high-D harmonics (`bm_*.txt`, `bm2_*.txt`, `birth_model_v*_*.json`). A floor-attaining birth model must carry harmonics to K ≈ 14–18 and vary with the terrain depth.
+
+**Batches.** `run_parallel_v4.py`–`v8.py` with `RUN_BATCH4/5/6/8.bat`; consoles `parallel4–8_console.txt`. Batch 7 (`parallel7_console.txt`) is the 4096 K-curve and certificate batch; the 4096 pipeline launcher is `RUN_4096_v2.bat` / `RUN_4096_MISS.bat`.
+
+**Housekeeping.**
+- `pipeline_4096_v1.py` had no `__main__` guard and spawn-looped for 46 h under Windows multiprocessing (job 398, no output). Withdrawn; not deposited. `pipeline_4096_v2.py` is the tested replacement (tested under spawn; banks bit-identical).
+- `census_cells_v1.py` writes `census_cells_v1_out.json` beside its first input; the 27 Oct lattice run overwrote the 23 Oct random0 file. The deposited `census_cells_v1_out_grid0.json` is the lattice run; the random0 numbers are in `census_cells_random0_10_23_26.txt`.
+- Results Q, R, S are "best found"; only the K ≤ 5 misses and the LP prices are certificates or optima.
+- K = 20 on 4096 (job 399) and the 4096 structure outputs (`census_structure_v2_nsh64_random0.txt`, `census_sumdiff_v1_nsh64_random0.txt`, `*_out_nsh64.json`) are added when the job completes — version 4 if before publishing, otherwise version 5.
+
+Deposit: version 4 of 10.5281/zenodo.23537610. Note: `census_bandwidth_note_zenodo_v4.pdf`.
