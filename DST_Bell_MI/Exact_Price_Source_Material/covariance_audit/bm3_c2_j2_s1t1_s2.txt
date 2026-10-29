@@ -1,0 +1,68 @@
+file: rho_nsh32_grid0_eps0.01_nang161.json   atoms 15360 = 15 x 1024
+target: K=6 census from census_bandlimit_v4_n32_k6_rho_nsh32_grid0_eps0.01_nang161.json: price 1.6996, re-measured 1.6996; misses band 0.01000 CHSH 1.1e-07
+model v3: J=2, scale-dependence=True, tau-dependence=True, station=True; 77 parameters; mode=miss eps=0.01 seed=2 pop=10x77 time limit 10800s
+
+stage 1: least-squares fit to the K=6 census, 12 starts
+  start 0: rel. L2 error 1.0841   fitted census misses band 0.48287 CHSH 1.23134   [10s]
+  start 1: rel. L2 error 0.8992   fitted census misses band 0.27337 CHSH 0.92039   [28s]
+  start 2: rel. L2 error 0.5734   fitted census misses band 0.10977 CHSH 0.11384   [67s]
+  start 3: rel. L2 error 0.7265   fitted census misses band 0.15031 CHSH 0.49487   [92s]
+  start 4: rel. L2 error 0.9003   fitted census misses band 0.21484 CHSH 0.79353   [108s]
+  start 5: rel. L2 error 0.8828   fitted census misses band 0.26702 CHSH 0.71875   [138s]
+  start 6: rel. L2 error 0.8738   fitted census misses band 0.25043 CHSH 0.83673   [167s]
+  start 7: rel. L2 error 0.4919   fitted census misses band 0.07852 CHSH 0.13775   [219s]
+  start 8: rel. L2 error 0.4739   fitted census misses band 0.06233 CHSH 0.12771   [257s]
+  start 9: rel. L2 error 0.8067   fitted census misses band 0.25134 CHSH 0.79377   [317s]
+  start 10: rel. L2 error 0.7716   fitted census misses band 0.18871 CHSH 0.54694   [344s]
+  start 11: rel. L2 error 0.8193   fitted census misses band 0.18338 CHSH 0.53824   [359s]
+
+  best fit: rel. L2 error 0.4739  (v2 form on random0: 0.70);  fitted census: band miss 0.06233  CHSH miss 0.12771  MD/floor 2.0297
+  leading harmonics, target vs fit  (|F| target, |F| fit, phase target, phase fit):
+     (+2,+0)   0.411  0.466     +177.4    +165.3
+     (+2,+2)   0.348  0.345     +162.0    +147.1
+     (+0,+4)   0.300  0.206      +98.6    +108.1
+     (+2,-2)   0.259  0.259      +58.1     +49.8
+     (+2,+4)   0.248  0.151      -69.5     -73.9
+     (+4,+2)   0.237  0.209      -46.4     -37.8
+     (+4,-2)   0.204  0.126     -139.2    -131.7
+     (+1,+1)   0.160  0.075      +73.7     +53.1   <-- weak in the form
+     (+2,-4)   0.116  0.075     +106.6     +74.0
+     (+0,+2)   0.096  0.049      +32.7     +64.3
+     (+6,+2)   0.084  0.026     +153.9    +129.1   <-- weak in the form
+     (+4,+4)   0.084  0.009     +111.7    +116.8   <-- missing in the form
+
+stage 2: differential evolution (miss) seeded around the fit
+  DE: 2222221 evaluations, best objective 0.024515  [11162s]
+
+RESULT  v3 J=2 scale-dep=True tau-dep=True mode=miss eps=0.01
+  model census: band miss 0.02230   CHSH miss 0.01354   -> not feasible at eps=0.01
+  MD/floor = 3.1176   (lattice: K=6 census 1.700; free dial-blind 1.473; LP optimum 1.000)
+  smallest max-miss seen: 0.02230   (v1/v2 form: 0.024; free dial-blind shape: 0.0038; K=5 census: 0.01055)
+
+  parameters (base; per-unit-scale slope; per-unit-tau slope):
+    family 0: weight 0.119; axis muS   75.1 deg (slope_s +16.0, slope_t  +4.7); kS   3.4 kS2 -27.6; push muD  128.7 deg (slope_s -36.2); kD1-4  -4.3  -5.2  -5.2  -4.5; beta  -28.9 deg
+      axis by scale: s=1.0: 59.0  s=1.8: 75.1  s=2.6: 91.1   push by scale: s=1.0: 164.9  s=1.8: 128.7  s=2.6: 92.4
+    family 1: weight 1.084; axis muS   87.8 deg (slope_s -21.3, slope_t +25.9); kS  28.1 kS2 +11.3; push muD  134.0 deg (slope_s  -9.6); kD1-4 +16.2 +14.9  +3.8 +14.0; beta  -32.7 deg
+      axis by scale: s=1.0: 109.1  s=1.8: 87.8  s=2.6: 66.6   push by scale: s=1.0: 143.6  s=1.8: 134.0  s=2.6: 124.4
+    cell weights (rows tau, cols scale):
+      tau=0.5   0.005  0.192  0.174
+      tau=1.0   0.004  0.003  0.003
+      tau=2.0   0.001  0.004  0.008
+      tau=4.0   0.236  0.112  0.013
+      tau=8.0   0.005  0.046  0.195
+    station factor: alpha +0.868  phi  176.3 deg
+
+  leading harmonics of the final model census  (|F|, k_A, k_B, phi[deg]):
+     0.541  (+2,+2)   +145.01
+     0.457  (+2,+0)   +178.78
+     0.267  (+0,+2)    -33.10
+     0.236  (+4,+2)    -39.12
+     0.073  (+2,-2)   -164.86
+     0.048  (+4,+4)   -148.76
+     0.045  (+3,-3)    +54.36
+     0.039  (+1,-1)     -2.97
+     0.038  (+3,+1)   -178.28
+     0.038  (+5,-1)   -165.52
+
+SUMMARY  v3 J=2 sdep=1 tdep=1 mode=miss eps=0.01: fit rel.err 0.4739 | final band miss 0.02230  CHSH miss 0.01354  price 3.1176  infeasible  min-miss-seen 0.02230   [11170s, 2223965 evals]
+wrote birth_model_v3_c2_j2_s1t1_s2_rho_nsh32_grid0_eps0.01_nang161.json

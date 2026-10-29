@@ -1,0 +1,49 @@
+
+===== census_cellsep_v1_rho_nsh32_random0_eps0.01_nang161.json  (census rho_nsh32_random0_eps0.01_nang161.json; band free) =====
+  rank 1: min miss 0.00222, price 1.8362
+    shape 0: weight 1.000   power share |k|<=4: diagonal (sum-locked) 0.24, anti-diagonal (difference-locked) 0.06
+      (+2,+0) 0.45@+172  (+2,+2) 0.44@+158  (+2,+4) 0.33@-67  (+0,+4) 0.33@+117  (+4,+2) 0.32@-51  (+4,-2) 0.20@-152
+      cell weights by tau (rows) x scale (cols): 0.022 0.123 0.003 | 0.093 0.082 0.004 | 0.076 0.257 0.055 | 0.039 0.042 0.080 | 0.036 0.018 0.070
+  rank 2: min miss 0.00004, price 1.5479
+    shape 0: weight 0.759   power share |k|<=4: diagonal (sum-locked) 0.23, anti-diagonal (difference-locked) 0.05
+      (+2,+0) 0.41@+180  (+2,+2) 0.37@+169  (+2,+4) 0.37@-59  (+4,+2) 0.26@-37  (+4,-2) 0.23@-157  (+0,+4) 0.19@+132
+      cell weights by tau (rows) x scale (cols): 0.002 0.003 0.129 | 0.007 0.003 0.153 | 0.051 0.062 0.000 | 0.004 0.122 0.128 | 0.002 0.093 0.000
+    shape 1: weight 0.241   power share |k|<=4: diagonal (sum-locked) 0.36, anti-diagonal (difference-locked) 0.08
+      (+2,+2) 0.55@+157  (+2,+0) 0.29@+146  (+1,+3) 0.26@+144  (+4,+2) 0.24@-93  (+1,+1) 0.24@+107  (+0,+4) 0.24@+101
+      cell weights by tau (rows) x scale (cols): 0.006 0.006 0.016 | 0.007 0.061 0.013 | 0.003 0.024 0.016 | 0.032 0.031 0.000 | 0.008 0.001 0.017
+  rank 3: min miss 0.00089, price 1.5722
+    shape 0: weight 0.693   power share |k|<=4: diagonal (sum-locked) 0.22, anti-diagonal (difference-locked) 0.03
+      (+2,+0) 0.50@-171  (+2,+2) 0.41@+158  (+2,+4) 0.35@-43  (+4,+2) 0.30@-28  (+0,+4) 0.23@+117  (+4,-2) 0.18@-135
+      cell weights by tau (rows) x scale (cols): 0.012 0.072 0.150 | 0.033 0.111 0.012 | 0.045 0.040 0.003 | 0.003 0.084 0.117 | 0.005 0.005 0.000
+    shape 1: weight 0.264   power share |k|<=4: diagonal (sum-locked) 0.24, anti-diagonal (difference-locked) 0.12
+      (+2,+0) 0.53@+127  (+2,+2) 0.53@+164  (+4,+2) 0.47@-88  (+1,+1) 0.45@+108  (+0,+2) 0.40@+45  (+2,+4) 0.40@-109
+      cell weights by tau (rows) x scale (cols): 0.035 0.031 0.004 | 0.005 0.006 0.007 | 0.003 0.049 0.000 | 0.003 0.005 0.055 | 0.046 0.013 0.000
+    shape 2: weight 0.043   power share |k|<=4: diagonal (sum-locked) 0.14, anti-diagonal (difference-locked) 0.10
+      (+3,+2) 0.48@-143  (+2,-4) 0.47@-161  (+4,+2) 0.45@-164  (+1,-2) 0.42@-42  (+3,+1) 0.40@+72  (+3,+3) 0.39@+61
+      cell weights by tau (rows) x scale (cols): 0.004 0.003 0.002 | 0.005 0.002 0.009 | 0.002 0.002 0.000 | 0.001 0.000 0.000 | 0.010 0.003 0.000
+
+===== census_cellsep_v2_free_s2_rho_nsh32_random0_eps0.01_nang161.json  (census rho_nsh32_random0_eps0.01_nang161.json; band free) =====
+  rank 1: min miss 0.00199, price 1.7792
+    shape 0: weight 1.000   power share |k|<=4: diagonal (sum-locked) 0.26, anti-diagonal (difference-locked) 0.06
+      (+2,+0) 0.44@+173  (+2,+2) 0.44@+160  (+2,+4) 0.34@-64  (+4,+2) 0.30@-50  (+0,+4) 0.30@+118  (+4,-2) 0.21@-154
+      cell weights by tau (rows) x scale (cols): 0.013 0.021 0.050 | 0.069 0.118 0.130 | 0.024 0.017 0.049 | 0.056 0.180 0.035 | 0.090 0.104 0.043
+  rank 2: min miss 0.00052, price 1.6671
+    shape 0: weight 0.441   power share |k|<=4: diagonal (sum-locked) 0.21, anti-diagonal (difference-locked) 0.14
+      (+2,+2) 0.45@+156  (+2,+4) 0.37@-61  (+2,+0) 0.34@+162  (+4,-2) 0.31@-166  (+0,+4) 0.30@+124  (+4,+2) 0.29@-62
+      cell weights by tau (rows) x scale (cols): 0.012 0.007 0.003 | 0.024 0.101 0.062 | 0.012 0.055 0.078 | 0.006 0.007 0.025 | 0.004 0.004 0.041
+    shape 1: weight 0.559   power share |k|<=4: diagonal (sum-locked) 0.29, anti-diagonal (difference-locked) 0.02
+      (+2,+2) 0.42@+173  (+2,+0) 0.42@-179  (+2,+4) 0.28@-58  (+4,+2) 0.24@-30  (+1,+1) 0.19@+83  (+4,-2) 0.17@-139
+      cell weights by tau (rows) x scale (cols): 0.006 0.036 0.126 | 0.048 0.035 0.022 | 0.015 0.016 0.003 | 0.004 0.023 0.125 | 0.000 0.100 0.000
+
+===== census_cellsep_v2_g_free_s1_rho_nsh32_grid0_eps0.01_nang161.json  (census rho_nsh32_grid0_eps0.01_nang161.json; band free) =====
+  rank 1: min miss 0.00384, price 1.4728
+    shape 0: weight 1.000   power share |k|<=4: diagonal (sum-locked) 0.20, anti-diagonal (difference-locked) 0.04
+      (+2,+0) 0.49@+176  (+2,+2) 0.39@+160  (+2,+4) 0.39@-70  (+4,+2) 0.37@-60  (+0,+4) 0.33@+88  (+4,-2) 0.24@-154
+      cell weights by tau (rows) x scale (cols): 0.079 0.219 0.015 | 0.034 0.012 0.003 | 0.060 0.085 0.205 | 0.069 0.021 0.122 | 0.026 0.051 0.000
+  rank 2: min miss 0.00082, price 1.1961
+    shape 0: weight 0.759   power share |k|<=4: diagonal (sum-locked) 0.14, anti-diagonal (difference-locked) 0.04
+      (+2,+4) 0.46@-64  (+2,+0) 0.41@+177  (+0,+4) 0.34@+94  (+4,+2) 0.33@-62  (+2,+2) 0.30@+159  (+4,-2) 0.26@-155
+      cell weights by tau (rows) x scale (cols): 0.002 0.003 0.129 | 0.007 0.003 0.153 | 0.051 0.062 0.128 | 0.004 0.122 0.000 | 0.002 0.093 0.000
+    shape 1: weight 0.241   power share |k|<=4: diagonal (sum-locked) 0.32, anti-diagonal (difference-locked) 0.07
+      (+2,+2) 0.48@+163  (+2,+0) 0.29@-149  (+2,-4) 0.29@+138  (+0,+2) 0.28@-60  (+0,+4) 0.26@+77  (+4,-2) 0.26@-152
+      cell weights by tau (rows) x scale (cols): 0.006 0.006 0.016 | 0.007 0.061 0.013 | 0.003 0.024 0.000 | 0.032 0.031 0.032 | 0.008 0.001 0.000
