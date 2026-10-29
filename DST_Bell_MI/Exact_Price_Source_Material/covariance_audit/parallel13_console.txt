@@ -1,0 +1,34 @@
+[2026-10-29 08:53:22] started cr_k6_w6_nc16: census_bumps_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '6', 'BUMP_NC': '16', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'OUT_TAG': 'cr_k6_w6_nc16'}
+[2026-10-29 08:53:22] started cr_k6_w12_nc16: census_bumps_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '12', 'BUMP_NC': '16', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'OUT_TAG': 'cr_k6_w12_nc16'}
+[2026-10-29 08:53:22] started cr_k6_w9_nc16: census_bumps_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '9', 'BUMP_NC': '16', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'OUT_TAG': 'cr_k6_w9_nc16'}
+[2026-10-29 08:53:22] started cr_k6_w6_nc32: census_bumps_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '6', 'BUMP_NC': '32', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'OUT_TAG': 'cr_k6_w6_nc32'}
+[2026-10-29 08:53:22] started cr_k6_w3_nc32: census_bumps_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '3', 'BUMP_NC': '32', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'OUT_TAG': 'cr_k6_w3_nc32'}
+[2026-10-29 08:53:22] started cr_k0_w6_nc16: census_bumps_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K': '0', 'BUMP_W': '6', 'BUMP_NC': '16', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'OUT_TAG': 'cr_k0_w6_nc16'}
+[2026-10-29 08:55:42] finished cr_k0_w6_nc16 exit=0 after 2 min
+[2026-10-29 09:10:22] finished cr_k6_w9_nc16 exit=0 after 17 min
+[2026-10-29 09:11:42] finished cr_k6_w12_nc16 exit=0 after 18 min
+[2026-10-29 09:14:02] finished cr_k6_w6_nc16 exit=0 after 21 min
+[2026-10-29 09:50:02] finished cr_k6_w3_nc32 exit=0 after 57 min
+[2026-10-29 09:58:42] finished cr_k6_w6_nc32 exit=0 after 65 min
+
+all 6 jobs finished in 1.09 h
+
+SUMMARY lines from each log:
+--- cr_k6_w6_nc16
+SUMMARY  K=6 + bumps w=6 nc=16: price 1.5019  bump mass 0.672  active bumps 159 (10.6/cell)   [1220s]
+wrote census_bumps_v1_cr_k6_w6_nc16_rho_nsh32_grid0_eps0.01_nang161.json
+--- cr_k6_w12_nc16
+SUMMARY  K=6 + bumps w=12 nc=16: price 1.6996  bump mass 0.000  active bumps 0 (0.0/cell)   [1087s]
+wrote census_bumps_v1_cr_k6_w12_nc16_rho_nsh32_grid0_eps0.01_nang161.json
+--- cr_k6_w9_nc16
+SUMMARY  K=6 + bumps w=9 nc=16: price 1.6793  bump mass 0.223  active bumps 44 (2.9/cell)   [995s]
+wrote census_bumps_v1_cr_k6_w9_nc16_rho_nsh32_grid0_eps0.01_nang161.json
+--- cr_k6_w6_nc32
+SUMMARY  K=6 + bumps w=6 nc=32: price 1.2995  bump mass 1.000  active bumps 292 (19.5/cell)   [3909s]
+wrote census_bumps_v1_cr_k6_w6_nc32_rho_nsh32_grid0_eps0.01_nang161.json
+--- cr_k6_w3_nc32
+SUMMARY  K=6 + bumps w=3 nc=32: price 1.0481  bump mass 1.000  active bumps 493 (32.9/cell)   [3380s]
+wrote census_bumps_v1_cr_k6_w3_nc32_rho_nsh32_grid0_eps0.01_nang161.json
+--- cr_k0_w6_nc16
+SUMMARY  K=0 + bumps w=6 nc=16: price 1.5284  bump mass 1.000  active bumps 204 (13.6/cell)   [117s]
+wrote census_bumps_v1_cr_k0_w6_nc16_rho_nsh32_grid0_eps0.01_nang161.json

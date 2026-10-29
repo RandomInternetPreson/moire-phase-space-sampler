@@ -1,0 +1,29 @@
+[2026-10-27 20:02:48] started g_e02_k5: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '5', 'EPS_LIST': '0.02', 'OUT_TAG': 'g_e02_k5', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e05_k5: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '5', 'EPS_LIST': '0.05', 'OUT_TAG': 'g_e05_k5', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e10_k5: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '5', 'EPS_LIST': '0.10', 'OUT_TAG': 'g_e10_k5', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e02_k6: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.02', 'OUT_TAG': 'g_e02_k6', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e05_k6: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.05', 'OUT_TAG': 'g_e05_k6', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e10_k6: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.10', 'OUT_TAG': 'g_e10_k6', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e02_k8: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '8', 'EPS_LIST': '0.02', 'OUT_TAG': 'g_e02_k8', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e05_k8: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '8', 'EPS_LIST': '0.05', 'OUT_TAG': 'g_e05_k8', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e10_k8: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '8', 'EPS_LIST': '0.10', 'OUT_TAG': 'g_e10_k8', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e02_k10: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '10', 'EPS_LIST': '0.02', 'OUT_TAG': 'g_e02_k10', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e05_k10: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '10', 'EPS_LIST': '0.05', 'OUT_TAG': 'g_e05_k10', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:02:48] started g_e10_k10: census_bandlimit_v4.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '10', 'EPS_LIST': '0.10', 'OUT_TAG': 'g_e10_k10', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-27 20:06:48] finished g_e02_k5 exit=0 after 4 min
+[2026-10-27 20:07:08] finished g_e10_k5 exit=0 after 4 min
+[2026-10-27 20:08:28] finished g_e05_k5 exit=0 after 6 min
+[2026-10-27 20:10:48] finished g_e05_k6 exit=0 after 8 min
+[2026-10-27 20:12:28] finished g_e10_k6 exit=0 after 10 min
+[2026-10-27 20:12:48] finished g_e02_k6 exit=0 after 10 min
+[2026-10-27 20:20:48] finished g_e02_k8 exit=0 after 18 min
+[2026-10-27 20:21:28] finished g_e05_k8 exit=0 after 19 min
+[2026-10-27 20:31:28] finished g_e10_k8 exit=0 after 29 min
+[2026-10-27 20:39:08] finished g_e02_k10 exit=0 after 36 min
+[2026-10-27 20:59:08] finished g_e05_k10 exit=0 after 56 min
+Traceback (most recent call last):
+  File "P:\CHSHDerivation\moire-phase-space-sampler-main\moire-phase-space-sampler-main\DST_Bell_MI\Exact_Price_Source_Material\covariance_audit\run_parallel_v9.py", line 43, in <module>
+    time.sleep(20)
+    ~~~~~~~~~~^^^^
+KeyboardInterrupt
+^C

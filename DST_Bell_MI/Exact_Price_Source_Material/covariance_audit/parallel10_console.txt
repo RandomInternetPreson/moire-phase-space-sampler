@@ -1,0 +1,49 @@
+[2026-10-27 20:10:08] started a_j2_s0t0: birth_model_v3.py rho_nsh32_grid0_eps0.01_nang161.json {'FAMILIES': '2', 'SCALE_DEP': '0', 'TAU_DEP': '0', 'STATION': '1', 'MODE': 'miss', 'EPS': '0.01', 'SEED': '1', 'TIME_LIMIT': '10800', 'NSTART': '12', 'POP': '10', 'K6_JSON': 'census_bandlimit_v4_n32_k6_rho_nsh32_grid0_eps0.01_nang161.json', 'K6_K': '6', 'OUT_TAG': 'a_j2_s0t0'}
+[2026-10-27 20:10:08] started b_j2_s1t0: birth_model_v3.py rho_nsh32_grid0_eps0.01_nang161.json {'FAMILIES': '2', 'SCALE_DEP': '1', 'TAU_DEP': '0', 'STATION': '1', 'MODE': 'miss', 'EPS': '0.01', 'SEED': '1', 'TIME_LIMIT': '10800', 'NSTART': '12', 'POP': '10', 'K6_JSON': 'census_bandlimit_v4_n32_k6_rho_nsh32_grid0_eps0.01_nang161.json', 'K6_K': '6', 'OUT_TAG': 'b_j2_s1t0'}
+[2026-10-27 20:10:08] started c_j2_s1t1: birth_model_v3.py rho_nsh32_grid0_eps0.01_nang161.json {'FAMILIES': '2', 'SCALE_DEP': '1', 'TAU_DEP': '1', 'STATION': '1', 'MODE': 'miss', 'EPS': '0.01', 'SEED': '1', 'TIME_LIMIT': '10800', 'NSTART': '12', 'POP': '10', 'K6_JSON': 'census_bandlimit_v4_n32_k6_rho_nsh32_grid0_eps0.01_nang161.json', 'K6_K': '6', 'OUT_TAG': 'c_j2_s1t1'}
+[2026-10-27 20:10:08] started c2_j2_s1t1_s2: birth_model_v3.py rho_nsh32_grid0_eps0.01_nang161.json {'FAMILIES': '2', 'SCALE_DEP': '1', 'TAU_DEP': '1', 'STATION': '1', 'MODE': 'miss', 'EPS': '0.01', 'SEED': '2', 'TIME_LIMIT': '10800', 'NSTART': '12', 'POP': '10', 'K6_JSON': 'census_bandlimit_v4_n32_k6_rho_nsh32_grid0_eps0.01_nang161.json', 'K6_K': '6', 'OUT_TAG': 'c2_j2_s1t1_s2'}
+[2026-10-27 20:10:08] started d_j1_s1t1: birth_model_v3.py rho_nsh32_grid0_eps0.01_nang161.json {'FAMILIES': '1', 'SCALE_DEP': '1', 'TAU_DEP': '1', 'STATION': '1', 'MODE': 'miss', 'EPS': '0.01', 'SEED': '1', 'TIME_LIMIT': '10800', 'NSTART': '12', 'POP': '10', 'K6_JSON': 'census_bandlimit_v4_n32_k6_rho_nsh32_grid0_eps0.01_nang161.json', 'K6_K': '6', 'OUT_TAG': 'd_j1_s1t1'}
+[2026-10-27 20:10:08] started e_j3_s1t1: birth_model_v3.py rho_nsh32_grid0_eps0.01_nang161.json {'FAMILIES': '3', 'SCALE_DEP': '1', 'TAU_DEP': '1', 'STATION': '1', 'MODE': 'miss', 'EPS': '0.01', 'SEED': '1', 'TIME_LIMIT': '10800', 'NSTART': '12', 'POP': '10', 'K6_JSON': 'census_bandlimit_v4_n32_k6_rho_nsh32_grid0_eps0.01_nang161.json', 'K6_K': '6', 'OUT_TAG': 'e_j3_s1t1'}
+[2026-10-27 20:10:08] started g_j2_s1t1_price: birth_model_v3.py rho_nsh32_grid0_eps0.01_nang161.json {'FAMILIES': '2', 'SCALE_DEP': '1', 'TAU_DEP': '1', 'STATION': '1', 'MODE': 'price', 'EPS': '0.01', 'SEED': '1', 'TIME_LIMIT': '10800', 'NSTART': '12', 'POP': '10', 'K6_JSON': 'census_bandlimit_v4_n32_k6_rho_nsh32_grid0_eps0.01_nang161.json', 'K6_K': '6', 'OUT_TAG': 'g_j2_s1t1_price'}
+[2026-10-27 20:10:08] started h_j2_s1t1_p02: birth_model_v3.py rho_nsh32_grid0_eps0.01_nang161.json {'FAMILIES': '2', 'SCALE_DEP': '1', 'TAU_DEP': '1', 'STATION': '1', 'MODE': 'price', 'EPS': '0.02', 'SEED': '1', 'TIME_LIMIT': '10800', 'NSTART': '12', 'POP': '10', 'K6_JSON': 'census_bandlimit_v4_n32_k6_rho_nsh32_grid0_eps0.01_nang161.json', 'K6_K': '6', 'OUT_TAG': 'h_j2_s1t1_p02'}
+[2026-10-27 20:10:08] started i_j3_s1t1_price: birth_model_v3.py rho_nsh32_grid0_eps0.01_nang161.json {'FAMILIES': '3', 'SCALE_DEP': '1', 'TAU_DEP': '1', 'STATION': '1', 'MODE': 'price', 'EPS': '0.01', 'SEED': '1', 'TIME_LIMIT': '10800', 'NSTART': '12', 'POP': '10', 'K6_JSON': 'census_bandlimit_v4_n32_k6_rho_nsh32_grid0_eps0.01_nang161.json', 'K6_K': '6', 'OUT_TAG': 'i_j3_s1t1_price'}
+[2026-10-27 23:11:28] finished a_j2_s0t0 exit=0 after 181 min
+[2026-10-27 23:12:28] finished d_j1_s1t1 exit=0 after 182 min
+[2026-10-27 23:13:08] finished b_j2_s1t0 exit=0 after 183 min
+[2026-10-27 23:16:28] finished c2_j2_s1t1_s2 exit=0 after 186 min
+[2026-10-27 23:17:48] finished c_j2_s1t1 exit=0 after 188 min
+[2026-10-27 23:18:08] finished g_j2_s1t1_price exit=0 after 188 min
+[2026-10-27 23:18:08] finished h_j2_s1t1_p02 exit=0 after 188 min
+[2026-10-27 23:27:48] finished e_j3_s1t1 exit=0 after 198 min
+[2026-10-27 23:27:48] finished i_j3_s1t1_price exit=0 after 198 min
+
+all 9 jobs finished in 3.29 h
+
+SUMMARY lines from each log:
+--- a_j2_s0t0
+SUMMARY  v3 J=2 sdep=0 tdep=0 mode=miss eps=0.01: fit rel.err 0.7953 | final band miss 0.02053  CHSH miss 0.02024  price 3.4093  infeasible  min-miss-seen 0.02053   [10877s, 2303034 evals]
+wrote birth_model_v3_a_j2_s0t0_rho_nsh32_grid0_eps0.01_nang161.json
+--- b_j2_s1t0
+SUMMARY  v3 J=2 sdep=1 tdep=0 mode=miss eps=0.01: fit rel.err 0.5360 | final band miss 0.02090  CHSH miss 0.00458  price 2.9356  infeasible  min-miss-seen 0.02090   [10977s, 2218080 evals]
+wrote birth_model_v3_b_j2_s1t0_rho_nsh32_grid0_eps0.01_nang161.json
+--- c_j2_s1t1
+SUMMARY  v3 J=2 sdep=1 tdep=1 mode=miss eps=0.01: fit rel.err 0.4643 | final band miss 0.02211  CHSH miss 0.00549  price 2.8995  infeasible  min-miss-seen 0.02211   [11259s, 2217128 evals]
+wrote birth_model_v3_c_j2_s1t1_rho_nsh32_grid0_eps0.01_nang161.json
+--- c2_j2_s1t1_s2
+SUMMARY  v3 J=2 sdep=1 tdep=1 mode=miss eps=0.01: fit rel.err 0.4739 | final band miss 0.02230  CHSH miss 0.01354  price 3.1176  infeasible  min-miss-seen 0.02230   [11170s, 2223965 evals]
+wrote birth_model_v3_c2_j2_s1t1_s2_rho_nsh32_grid0_eps0.01_nang161.json
+--- d_j1_s1t1
+SUMMARY  v3 J=1 sdep=1 tdep=1 mode=miss eps=0.01: fit rel.err 0.6049 | final band miss 0.02755  CHSH miss 0.00149  price 2.7918  infeasible  min-miss-seen 0.02755   [10928s, 3671296 evals]
+wrote birth_model_v3_d_j1_s1t1_rho_nsh32_grid0_eps0.01_nang161.json
+--- e_j3_s1t1
+SUMMARY  v3 J=3 sdep=1 tdep=1 mode=miss eps=0.01: fit rel.err 0.5732 | final band miss 0.02776  CHSH miss 0.00260  price 2.9224  infeasible  min-miss-seen 0.02776   [11841s, 1595832 evals]
+wrote birth_model_v3_e_j3_s1t1_rho_nsh32_grid0_eps0.01_nang161.json
+--- g_j2_s1t1_price
+SUMMARY  v3 J=2 sdep=1 tdep=1 mode=price eps=0.01: fit rel.err 0.4643 | final band miss 0.03546  CHSH miss 0.01000  price 3.4306  infeasible  min-miss-seen 0.03258   [11272s, 1048293 evals]
+wrote birth_model_v3_g_j2_s1t1_price_rho_nsh32_grid0_eps0.01_nang161.json
+--- h_j2_s1t1_p02
+SUMMARY  v3 J=2 sdep=1 tdep=1 mode=price eps=0.02: fit rel.err 0.4643 | final band miss 0.02778  CHSH miss 0.02000  price 2.8762  infeasible  min-miss-seen 0.02723   [11273s, 1048254 evals]
+wrote birth_model_v3_h_j2_s1t1_p02_rho_nsh32_grid0_eps0.01_nang161.json
+--- i_j3_s1t1_price
+SUMMARY  v3 J=3 sdep=1 tdep=1 mode=price eps=0.01: fit rel.err 0.5732 | final band miss 0.02971  CHSH miss 0.01004  price 3.6092  infeasible  min-miss-seen 0.02929   [11850s, 895984 evals]
+wrote birth_model_v3_i_j3_s1t1_price_rho_nsh32_grid0_eps0.01_nang161.json

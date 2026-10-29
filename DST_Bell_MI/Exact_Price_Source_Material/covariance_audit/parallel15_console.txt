@@ -1,0 +1,34 @@
+[2026-10-29 12:20:21] started r0ctl_p1: census_bumps_v2.py rho_nsh32_random0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '6', 'BUMP_NC': '16', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'PERTURB': '1e-7', 'PSEED': '1', 'OUT_TAG': 'r0ctl_p1'}
+[2026-10-29 12:20:21] started r0ctl_p2: census_bumps_v2.py rho_nsh32_random0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '6', 'BUMP_NC': '16', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'PERTURB': '1e-7', 'PSEED': '2', 'OUT_TAG': 'r0ctl_p2'}
+[2026-10-29 12:20:21] started r0ctl_p3: census_bumps_v2.py rho_nsh32_random0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '6', 'BUMP_NC': '16', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'PERTURB': '1e-5', 'PSEED': '3', 'OUT_TAG': 'r0ctl_p3'}
+[2026-10-29 12:20:21] started n64ctl_p1: census_bumps_v2.py rho_nsh64_random0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '6', 'BUMP_NC': '16', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'PERTURB': '1e-7', 'PSEED': '1', 'OUT_TAG': 'n64ctl_p1'}
+[2026-10-29 12:20:21] started n64ctl_p2: census_bumps_v2.py rho_nsh64_random0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '6', 'BUMP_NC': '16', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'PERTURB': '1e-7', 'PSEED': '2', 'OUT_TAG': 'n64ctl_p2'}
+[2026-10-29 12:20:21] started n64ctl_p3: census_bumps_v2.py rho_nsh64_random0_eps0.01_nang161.json {'K': '6', 'BUMP_W': '6', 'BUMP_NC': '16', 'EPS': '0.01', 'METHOD': 'highs-ipm', 'PERTURB': '1e-5', 'PSEED': '3', 'OUT_TAG': 'n64ctl_p3'}
+[2026-10-29 12:46:41] finished r0ctl_p3 exit=0 after 26 min
+[2026-10-29 12:47:01] finished r0ctl_p1 exit=0 after 27 min
+[2026-10-29 12:47:01] finished r0ctl_p2 exit=0 after 27 min
+[2026-10-29 13:41:21] finished n64ctl_p2 exit=0 after 81 min
+[2026-10-29 13:42:41] finished n64ctl_p3 exit=0 after 82 min
+[2026-10-29 13:46:01] finished n64ctl_p1 exit=0 after 86 min
+
+all 6 jobs finished in 1.43 h
+
+SUMMARY lines from each log:
+--- r0ctl_p1
+SUMMARY  K=6 + bumps w=6 nc=16: price 1.8547  bump mass 0.980  active bumps 163 (10.9/cell)   [1586s]
+wrote census_bumps_v2_r0ctl_p1_rho_nsh32_random0_eps0.01_nang161.json
+--- r0ctl_p2
+SUMMARY  K=6 + bumps w=6 nc=16: price 1.8547  bump mass 0.980  active bumps 163 (10.9/cell)   [1590s]
+wrote census_bumps_v2_r0ctl_p2_rho_nsh32_random0_eps0.01_nang161.json
+--- r0ctl_p3
+SUMMARY  K=6 + bumps w=6 nc=16: price 1.8547  bump mass 0.980  active bumps 163 (10.9/cell)   [1569s]
+wrote census_bumps_v2_r0ctl_p3_rho_nsh32_random0_eps0.01_nang161.json
+--- n64ctl_p1
+SUMMARY  K=6 + bumps w=6 nc=16: price 1.3835  bump mass 0.969  active bumps 144 (9.6/cell)   [5138s]
+wrote census_bumps_v2_n64ctl_p1_rho_nsh64_random0_eps0.01_nang161.json
+--- n64ctl_p2
+SUMMARY  K=6 + bumps w=6 nc=16: price 1.3835  bump mass 0.969  active bumps 144 (9.6/cell)   [4858s]
+wrote census_bumps_v2_n64ctl_p2_rho_nsh64_random0_eps0.01_nang161.json
+--- n64ctl_p3
+SUMMARY  K=6 + bumps w=6 nc=16: price 1.3835  bump mass 0.969  active bumps 144 (9.6/cell)   [4938s]
+wrote census_bumps_v2_n64ctl_p3_rho_nsh64_random0_eps0.01_nang161.json

@@ -1,0 +1,140 @@
+[2026-10-28 08:26:16] started pl_N7_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '7', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N7_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N8_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '8', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N8_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N9_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '9', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N9_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N10_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '10', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N10_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N11_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '11', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N11_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N12_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '12', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N12_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N13_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '13', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N13_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N14_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '14', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N14_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N15_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '15', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N15_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N16_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '16', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N16_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N17_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '17', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N17_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N18_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '18', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N18_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N19_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '19', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N19_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N20_lines: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '20', 'PLEAT_MODE': 'lines', 'OUT_TAG': 'pl_N20_lines', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N8_blocks: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '8', 'PLEAT_MODE': 'blocks', 'OUT_TAG': 'pl_N8_blocks', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N12_blocks: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '12', 'PLEAT_MODE': 'blocks', 'OUT_TAG': 'pl_N12_blocks', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:26:16] started pl_N16_blocks: census_pleat_v1.py rho_nsh32_grid0_eps0.01_nang161.json {'K_LIST': '6', 'EPS_LIST': '0.01', 'PLEAT_N': '16', 'PLEAT_MODE': 'blocks', 'OUT_TAG': 'pl_N16_blocks', 'TIME_LIMIT': '0', 'METHOD': 'highs-ipm', 'METHOD2': 'highs-ds', 'MISS_ONLY': '0'}
+[2026-10-28 08:34:36] finished pl_N8_lines exit=0 after 8 min
+[2026-10-28 08:34:56] finished pl_N7_lines exit=0 after 9 min
+[2026-10-28 08:34:56] finished pl_N10_lines exit=0 after 9 min
+[2026-10-28 08:34:56] finished pl_N12_lines exit=0 after 9 min
+[2026-10-28 08:34:56] finished pl_N13_lines exit=0 after 9 min
+[2026-10-28 08:34:56] finished pl_N17_lines exit=0 after 9 min
+[2026-10-28 08:34:56] finished pl_N20_lines exit=0 after 9 min
+[2026-10-28 08:35:16] finished pl_N9_lines exit=0 after 9 min
+[2026-10-28 08:35:16] finished pl_N11_lines exit=0 after 9 min
+[2026-10-28 08:35:16] finished pl_N15_lines exit=0 after 9 min
+[2026-10-28 08:35:16] finished pl_N16_lines exit=0 after 9 min
+[2026-10-28 08:35:16] finished pl_N19_lines exit=0 after 9 min
+[2026-10-28 08:35:36] finished pl_N18_lines exit=0 after 9 min
+[2026-10-28 08:35:56] finished pl_N14_lines exit=0 after 10 min
+[2026-10-28 10:13:16] finished pl_N16_blocks exit=0 after 107 min
+[2026-10-28 13:36:56] finished pl_N8_blocks exit=0 after 311 min
+[2026-10-28 13:43:16] finished pl_N12_blocks exit=0 after 317 min
+
+all 17 jobs finished in 5.28 h
+
+SUMMARY lines from each log:
+--- pl_N7_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6971   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 519s
+--- pl_N8_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6653   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 494s
+--- pl_N9_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6981   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 525s
+--- pl_N10_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6907   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 510s
+--- pl_N11_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6976   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 519s
+--- pl_N12_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6945   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 505s
+--- pl_N13_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6982   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 500s
+--- pl_N14_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6944   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 565s
+--- pl_N15_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6986   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 527s
+--- pl_N16_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6978   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 535s
+--- pl_N17_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6986   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 512s
+--- pl_N18_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6944   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 557s
+--- pl_N19_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6982   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 519s
+--- pl_N20_lines
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.6945   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 516s
+--- pl_N8_blocks
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.0000   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 18622s
+--- pl_N12_blocks
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.0000   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 19006s
+--- pl_N16_blocks
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.01   6    1.1337   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 6406s
