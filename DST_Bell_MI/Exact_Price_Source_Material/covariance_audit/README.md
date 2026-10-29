@@ -326,3 +326,34 @@ the smoothness of any formation process from below.
 - K = 20 on 4096 (job 399) and the 4096 structure outputs (`census_structure_v2_nsh64_random0.txt`, `census_sumdiff_v1_nsh64_random0.txt`, `*_out_nsh64.json`) are added when the job completes — version 4 if before publishing, otherwise version 5.
 
 Deposit: version 4 of 10.5281/zenodo.23537610. Note: `census_bandwidth_note_zenodo_v4.pdf`.
+
+### Version 5 (29 Oct 2026) — the fine structure of the census: lattice surface, parametric wall, pleat, grain, crest, and a negative replication
+
+**Result T — the lattice (ε, K) surface** (`run_parallel_v9.py`, `bl_g_e*_k*.txt`, `census_bandlimit_v4_g_*.json`). MD/floor at ε = 0.01 / 0.02 / 0.05 / 0.10: K = 5: infeasible (miss 1.055%) / 1.790 / 1.369 / 1.237; K = 6: 1.700 / 1.482 / 1.230 / 1.127; K = 8: 1.429 / 1.268 / 1.102 / 1.009; K = 10: 1.258 / 1.135 / 1.009 / ≤ 1.009 (the ε = 0.10 cell was stopped bracketed at 1.000–1.009; `bl_g_e10_k10.txt`, `bl_g_e10_k10_ds.txt` as they stand). Monotone in both variables. Replaces the 1024-random surface of version 3.
+
+**Result U — a few-parameter law does not reach the floor** (`birth_model_v3.py`, `v4.py`; batches 10 and 12; `bm3_*.txt`, `bm4_*.txt`). Von Mises push model with a preferred axis, push harmonics 1–4, every parameter depending on terrain depth and lock duration, free cell weights and a station factor (57–77 parameters), warm-started from the K = 6 census: miss 2.05–2.2% (2.2–2.6% with lobes allowed down to 1.5°, v4). The fit to the K = 6 census improves with depth dependence (relative error 0.80 → 0.46); the miss does not. Best-found.
+
+**Result V — not a ripple, not a crease** (`census_pleat_v1.py`, batch 11, `bl_pl_N*_lines.txt`, `bl_pl_N*_blocks.txt`). K = 6 census plus the four harmonics of an N-fold periodic ripple, N = 7–20, each cell free in amplitude and phase: 1.665 at N = 8 and 1.694–1.699 otherwise, against 1.700. Every sideband of ripple × smooth: contiguous bands to 14 or 18 reach 1.000; a band covering 10–22 with a hole at 7–9 pays 1.134. The fine structure is broadband and contiguous from ≈ 7 to ≈ 14.
+
+**Result W — which edge belongs to the mesh** (`pipeline_terrain_v1.py`, `RUN_TERRAIN.bat`; `terrain_ord3/`, `terrain_ord2/`). Terrain cut to station indices ≤ 3 (15 of 23 terms) and ≤ 2 (6 terms); both attain the floor. First feasible K = 6 / 5 / 4 for heaviest index 5 / 3 / 2 (full / cut 3 / cut 2); the top of the band moves only from ≈ 14 to ≈ 12.5 (K = 12: 1.112 / 1.136 / 1.034). The coarsest harmonic the census needs is set by the finest fence it meets; the finest structure it carries is not. The pre-registered prediction that the top would track the cut failed and is recorded as such.
+
+**Result X — localized features** (`census_bumps_v1.py`, `v2.py`; batches 13–15; `bumps_cr_*.txt`, `bumps_ctl_*.txt`, `bumps_r0ctl_*.txt`, `bumps_n64ctl_*.txt`; `beads_inspect_v1.py`, `beads_control_v1–v3.py`). K = 6 plus a dictionary of von Mises bumps (half-width 12°, 9°, 6°, 3°; 16×16 or 32×32 centres; weights ≥ 0): 12° bumps unused; from 6° down the LP moves 67–100% of the mass into the bumps and the price falls with narrowness to the atom scale (1.700 → 1.502 → 1.300 → 1.048). Same on random0 (2.274 → 1.855) and 4096 random (1.828 → 1.384). The active bumps have no mean station phase in any τ (no traveling feature); their count does not follow the mesh (10.6 / 12.9 / 11.5 per cell on full / cut 3 / cut 2); they sit on the sum-lock ridge (S mod 90° at 22–45°, top three 2.8° bins carrying 0.36 / 0.74 / 0.63 of the mass on lattice / random0 / 4096); off-lattice their differences cluster at D ≈ 14° and ≈ 104°. Every bump has a twin at (ξ_A + 90°, ξ_B + 90°), an exact symmetry of the model. Vertices stable under objective perturbation (same-cell overlap 0.86–0.94 on all three samplings).
+
+**Retired — Results Y and Z of note v19 (partition of difference values across cells; difference phase sorts the depth).** Found on the lattice with the vertex-perturbation control; does not replicate off-lattice:
+
+| | lattice | random0 | 4096 random |
+|---|---|---|---|
+| between-cell D-overlap, z vs shuffle null | −5.2 | +0.1 | +1.3 |
+| cells differing in scale only | −4.1 | −1.0 | −0.2 |
+| cells differing in τ only | −2.0 | +0.3 | +0.4 |
+| sorting map (D-bin → scale) | structured | unstructured | unstructured |
+
+The v19 "sorting strength" statistic (0.58) is reproduced by unsorted censuses (0.54, 0.58) and had no null. Lattice-specific (bump centres coincide with atoms and the lattice symmetries tie the cells' columns); recorded with its numbers, not a result. Transcripts `beads_control_v3_random0_10_29_26.txt`, `beads_control_v3_nsh64_10_29_26.txt`, `beads_inspect_offlattice_10_29_26.txt`.
+
+**Method note.** A lattice result on the census's fine structure must be replicated on random offsets before it is called a result, as a random-offset result on the smooth structure had to be replicated on the lattice (version 4). The two samplings fail in opposite ways: quadrature noise on random atoms, symmetry ties on the lattice. A statistic needs a null before it is read.
+
+**Also.** `cellsep_inspect_v1.py` (`cellsep_inspect_10_27_26.txt`) inspected the rank-2 dial-blind decompositions of version 4 and retired the sum-locked / difference-locked reading.
+
+**Still pending.** K = 20 on the 4096 census (job 399) and its structure transcripts → version 6.
+
+Deposit: version 5 of 10.5281/zenodo.23537610. Note: `census_fine_structure_note_zenodo_v5.pdf`.
