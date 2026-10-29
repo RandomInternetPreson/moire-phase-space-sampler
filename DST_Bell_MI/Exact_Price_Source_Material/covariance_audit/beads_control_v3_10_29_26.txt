@@ -1,0 +1,51 @@
+6 runs; 14 cells
+(1) per run: price, between-cell D-overlap, shuffle null, z
+    census_bumps_v2_ctl_p1_rho_nsh32_grid0_e price 1.5019   overlap 0.163   null 0.214+-0.012   z = -4.2
+    census_bumps_v2_ctl_p2_rho_nsh32_grid0_e price 1.5019   overlap 0.171   null 0.226+-0.015   z = -3.8
+    census_bumps_v2_ctl_p3_rho_nsh32_grid0_e price 1.5019   overlap 0.142   null 0.209+-0.014   z = -4.7
+    census_bumps_v2_ctl_p4_rho_nsh32_grid0_e price 1.5019   overlap 0.152   null 0.220+-0.014   z = -4.9
+    census_bumps_v2_ctl_p5_rho_nsh32_grid0_e price 1.5019   overlap 0.163   null 0.222+-0.014   z = -4.3
+    census_bumps_v2_ctl_p6_rho_nsh32_grid0_e price 1.5019   overlap 0.146   null 0.224+-0.015   z = -5.1
+(2) stability of each cell's D-set across runs (same cell, different vertices): overlap averaged over run pairs
+    tau=0.5  s=1.0  same-cell overlap across runs 1.000
+    tau=0.5  s=1.8  same-cell overlap across runs 1.000
+    tau=0.5  s=2.6  same-cell overlap across runs 1.000
+    tau=1.0  s=1.0  same-cell overlap across runs 1.000
+    tau=1.0  s=1.8  same-cell overlap across runs 1.000
+    tau=1.0  s=2.6  same-cell overlap across runs 0.974
+    tau=2.0  s=1.0  same-cell overlap across runs 1.000
+    tau=2.0  s=1.8  same-cell overlap across runs 0.998
+    tau=2.0  s=2.6  same-cell overlap across runs 0.477
+    tau=4.0  s=1.0  same-cell overlap across runs 1.000
+    tau=4.0  s=1.8  same-cell overlap across runs 1.000
+    tau=4.0  s=2.6  same-cell overlap across runs 0.335
+    tau=8.0  s=1.8  same-cell overlap across runs 1.000
+    tau=8.0  s=2.6  same-cell overlap across runs 0.253
+    MEAN same-cell/different-run overlap 0.860   vs   mean between-cell/same-run overlap 0.156
+    reading: same-cell >> between-cell -> the cells keep their D-sets (physical); same-cell ~ between-cell -> the assignment reshuffles (thrift)
+(3) averaged census over runs (bead masses averaged per (cell, position)):
+    beads in the average 188; between-cell D-overlap 0.139   null 0.221+-0.016   z = -5.2
+(4) the split (averaged census): which pairs of cells avoid each other's differences?
+    same scale, different tau   (the difference phase sorts the lock DURATION) pairs  26  overlap 0.178   null 0.223+-0.023   z = -2.0
+    same tau, different scale   (the difference phase sorts the DEPTH)     pairs  13  overlap 0.105   null 0.233+-0.031   z = -4.1
+    different tau and scale                                                pairs  52  overlap 0.128   null 0.217+-0.018   z = -4.8
+    reading: z still strongly negative -> partition survives averaging (physical); z ~ 0 -> it was the vertex (thrift)
+(5) the sorting map (averaged census): share of each D-bin's mass by SCALE, then by TAU   (a function D -> s shows as one dominant column per row)
+    D bin        mass   | by scale: s=1.0   s=1.8   s=2.6    | by tau: t=0.5   t=1.0   t=2.0   t=4.0   t=8.0 
+    [  0.0, 11.2)  0.087  |            0.49    0.45    0.06    |          0.37    0.04    0.59    0.00    0.00 
+    [ 11.2, 22.5)  0.055  |            0.44    0.22    0.34    |          0.44    0.34    0.22    0.00    0.00 
+    [ 22.5, 33.8)  0.100  |            0.41    0.55    0.04    |          0.49    0.06    0.42    0.01    0.01 
+    [ 33.8, 45.0)  0.010  |            0.34    0.32    0.35    |          0.00    0.68    0.32    0.00    0.00 
+    [ 45.0, 56.2)  0.040  |            0.28    0.41    0.31    |          0.36    0.47    0.00    0.17    0.00 
+    [ 56.2, 67.5)  0.032  |            0.75    0.09    0.16    |          0.41    0.50    0.00    0.00    0.09 
+    [ 67.5, 78.8)  0.042  |            0.34    0.09    0.57    |          0.87    0.00    0.03    0.08    0.03 
+    [ 78.8, 90.0)  0.023  |            0.00    0.71    0.29    |          0.51    0.07    0.42    0.00    0.00 
+    [ 90.0,101.2)  0.020  |            0.03    0.52    0.45    |          0.36    0.47    0.15    0.00    0.02 
+    [101.2,112.5)  0.049  |            0.03    0.20    0.76    |          0.00    0.76    0.24    0.00    0.00 
+    [112.5,123.8)  0.050  |            0.44    0.55    0.01    |          0.01    0.53    0.25    0.15    0.05 
+    [123.8,135.0)  0.019  |            0.00    0.66    0.34    |          0.66    0.00    0.05    0.17    0.11 
+    [135.0,146.2)  0.068  |            0.00    0.37    0.62    |          0.49    0.05    0.09    0.07    0.30 
+    [146.2,157.5)  0.020  |            0.68    0.32    0.00    |          0.28    0.00    0.00    0.40    0.32 
+    [157.5,168.8)  0.044  |            0.13    0.28    0.59    |          0.25    0.49    0.04    0.00    0.22 
+    [168.8,180.0)  0.013  |            0.59    0.26    0.16    |          1.00    0.00    0.00    0.00    0.00 
+    sorting strength (mass-weighted mean of the largest column share): by scale 0.58 (unsorted 0.33, perfect 1.00);  by tau 0.58 (unsorted 0.20, perfect 1.00)

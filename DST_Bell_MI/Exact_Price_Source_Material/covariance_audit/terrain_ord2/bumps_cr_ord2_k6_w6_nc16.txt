@@ -1,0 +1,48 @@
+file: rho_nsh32_grid0_eps0.01_nang161.json   atoms 15360 = 15 x 1024
+class: smooth K=6 (169 functions/cell, free) + 256 bumps/cell of half-width 6 deg (kappa 31.7) on a 16x16 grid, coefficients >= 0;  eps 0.01
+  price LP (smooth part >= 0, crests >= 0):
+    [highs-ipm] status 0; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [912s]
+    verify: rho_min -2.48e-11  mass 1.000000000  band miss over eps +1.18e-11  MD/floor 1.3880   OK
+
+RESULT  K=6 + bumps w=6 deg: MD/floor = 1.3880   (K=6 alone 1.700; K=14 1.000)
+  mass in bumps 0.779, in the smooth part 0.221;  active bumps: 173 in all, per cell 0 20 30 0 6 24 0 1 29 0 18 26 0 4 15   (atoms: 699 active = 47/cell)
+
+  top bumps per cell (xi_A, xi_B in deg; weight):
+    tau=0.5  s=1.0  n=  0  
+    tau=0.5  s=1.8  n= 20  ( 16.9,  5.6) 0.0180  (106.9, 95.6) 0.0160  (151.9,151.9) 0.0127  ( 61.9, 61.9) 0.0121
+    tau=0.5  s=2.6  n= 30  ( 50.6, 61.9) 0.0101  (129.4,  5.6) 0.0096  (140.6,151.9) 0.0094  (140.6, 61.9) 0.0071
+    tau=1.0  s=1.0  n=  0  
+    tau=1.0  s=1.8  n=  6  (163.1, 95.6) 0.0079  ( 73.1,  5.6) 0.0077  (106.9,106.9) 0.0077  ( 16.9, 16.9) 0.0031
+    tau=1.0  s=2.6  n= 24  ( 84.4, 95.6) 0.0135  (151.9, 73.1) 0.0121  (174.4,  5.6) 0.0115  ( 39.4,163.1) 0.0107
+    tau=2.0  s=1.0  n=  0  
+    tau=2.0  s=1.8  n=  1  ( 73.1,106.9) 0.0043
+    tau=2.0  s=2.6  n= 29  (129.4, 95.6) 0.0134  ( 39.4,  5.6) 0.0122  ( 16.9,118.1) 0.0093  (  5.6, 84.4) 0.0092
+    tau=4.0  s=1.0  n=  0  
+    tau=4.0  s=1.8  n= 18  (174.4, 84.4) 0.0119  ( 84.4,174.4) 0.0117  (151.9, 95.6) 0.0102  ( 61.9,  5.6) 0.0099
+    tau=4.0  s=2.6  n= 26  ( 84.4,  5.6) 0.0077  (174.4, 95.6) 0.0074  ( 61.9, 73.1) 0.0070  ( 95.6, 28.1) 0.0064
+    tau=8.0  s=1.0  n=  0  
+    tau=8.0  s=1.8  n=  4  ( 16.9, 16.9) 0.0099  (106.9,106.9) 0.0063  (140.6, 84.4) 0.0020  ( 50.6,174.4) 0.0011
+    tau=8.0  s=2.6  n= 15  ( 61.9,163.1) 0.0093  (129.4,  5.6) 0.0056  (151.9, 73.1) 0.0051  ( 50.6,151.9) 0.0046
+
+  drift: weighted circular mean of active bump positions vs tau (pooled over scale) -- a traveling crest advances with tau:
+     tau     <xi_A>   R_A    <xi_B>   R_B    <S=xi_A+xi_B>  R_S    mass
+    0.5      144.8  0.02     60.8  0.02      141.5     0.29   0.252
+    1.0      149.8  0.04    114.4  0.05       23.8     0.40   0.173
+    2.0       89.8  0.02    109.9  0.04       84.3     0.27   0.138
+    4.0       70.2  0.02     33.2  0.06       84.0     0.21   0.154
+    8.0       53.4  0.11    171.0  0.15       32.0     0.66   0.062
+
+  leading harmonics of the pooled census (|F|, k_A, k_B, phi):
+     0.304  (+0,+2)     +0.88
+     0.211  (+2,-2)    -61.07
+     0.189  (+0,+4)     +8.66
+     0.184  (+2,+2)   +131.24
+     0.165  (+2,+0)     -2.15
+     0.161  (+4,+0)    +61.42
+     0.129  (+6,-2)   +110.37
+     0.129  (+2,+4)    +35.67
+     0.106  (+4,+4)     +4.96
+     0.099  (+2,-4)    -12.34
+
+SUMMARY  K=6 + bumps w=6 nc=16: price 1.3880  bump mass 0.779  active bumps 173 (11.5/cell)   [915s]
+wrote census_bumps_v1_cr_ord2_k6_w6_nc16_rho_nsh32_grid0_eps0.01_nang161.json

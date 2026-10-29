@@ -1,0 +1,37 @@
+
+file rho_nsh32_grid0_eps0.01_nang161.json: md = 0.138071187457714, nsh 32, mode grid0
+
+===== rho_nsh32_grid0_eps0.01_nang161.json =====
+effective number of offsets 244.7
+permutation null for any single pixel |F|: 95th pct 0.140
+
+(1) rho(S,D) ~ 1 + sum 2|F| cos(2 k_S S + 2 k_D D - phi)   [pixels above the null]
+     k_S  k_D    |F|     phi[deg]   type
+     +2   +0   0.328    +146.25   pure S
+     +0   +2   0.220     +61.30   pure D
+     +1   +1   0.212    +153.22   cross (S-D coupling)
+     +3   -1   0.206     -70.82   cross (S-D coupling)
+     +2   -2   0.198     +84.08   cross (S-D coupling)
+     +1   +3   0.196    -144.69   cross (S-D coupling)
+
+(2) S marginal (axis of the birth, pinned frame):
+    harmonic cos 2S: preferred S =  44.50 deg (mod 180), concentration 0.105
+    harmonic cos 4S: preferred S =  36.56 deg (mod 90), concentration 0.328
+    harmonic cos 6S: preferred S =  35.37 deg (mod 60), concentration 0.018
+
+(3) D given S  (8 bins of S):
+     S-bin [deg]      mass    <D> at cos2D [deg]  R2     <D> at cos4D [deg]  R4
+    [  0.0, 22.5)   0.099        66.5        0.378        19.7        0.228
+    [ 22.5, 45.0)   0.225        20.0        0.267        13.6        0.387
+    [ 45.0, 67.5)   0.193        18.6        0.388        14.1        0.251
+    [ 67.5, 90.0)   0.047        55.3        0.357        49.0        0.264
+    [ 90.0,112.5)   0.089       127.8        0.254         9.8        0.361
+    [112.5,135.0)   0.186       169.1        0.219        10.1        0.205
+    [135.0,157.5)   0.116       121.7        0.458        29.3        0.182
+    [157.5,180.0)   0.044       147.5        0.310        45.8        0.186
+
+(4) cross pixels vs product of marginals  |F(kS,kD)|  vs  |F(kS,0)||F(0,kD)|:
+    (+1,+1): 0.212 vs 0.010   ratio 21.7
+    (+3,-1): 0.206 vs 0.002   ratio 124.8
+    (+2,-2): 0.198 vs 0.072   ratio 2.7
+    (+1,+3): 0.196 vs 0.006   ratio 30.7

@@ -1,0 +1,81 @@
+[2026-10-28 18:08:46] pipeline_terrain_v1 [ord3]: terrain cut max(m,n) <= 3: 15 of 23 terms, 93.9% of the weight; parent sees 15 terms
+[2026-10-28 18:08:46] nsh=32 (1024 offsets) mode=grid seed=0 nang=161 nw=2048 eps=0.01 cores=28 register=paper  folder P:\CHSHDerivation\moire-phase-space-sampler-main\moire-phase-space-sampler-main\DST_Bell_MI\Exact_Price_Source_Material\covariance_audit\terrain_ord3
+[2026-10-28 18:08:46] shared-compute job 401, reserved 60 GiB
+[2026-10-28 18:08:46] evolving 506880 trajectories on 28 cores (5 tau snapshots each), streaming into the banks
+[2026-10-28 18:08:48] worker check: workers see 15 terms (parent 15)
+[2026-10-28 18:09:04]   1/506880 trajectories  (0.01 h elapsed, ~2551.73 h left)
+[2026-10-28 18:16:33]   12672/506880 trajectories  (0.13 h elapsed, ~5.05 h left)
+[2026-10-28 18:24:06]   25344/506880 trajectories  (0.26 h elapsed, ~4.85 h left)
+[2026-10-28 18:31:42]   38016/506880 trajectories  (0.38 h elapsed, ~4.71 h left)
+[2026-10-28 18:39:18]   50688/506880 trajectories  (0.51 h elapsed, ~4.58 h left)
+[2026-10-28 18:46:56]   63360/506880 trajectories  (0.64 h elapsed, ~4.45 h left)
+[2026-10-28 18:54:37]   76032/506880 trajectories  (0.76 h elapsed, ~4.33 h left)
+[2026-10-28 19:02:16]   88704/506880 trajectories  (0.89 h elapsed, ~4.20 h left)
+[2026-10-28 19:09:57]   101376/506880 trajectories  (1.02 h elapsed, ~4.08 h left)
+[2026-10-28 19:17:35]   114048/506880 trajectories  (1.15 h elapsed, ~3.95 h left)
+[2026-10-28 19:25:18]   126720/506880 trajectories  (1.28 h elapsed, ~3.83 h left)
+[2026-10-28 19:33:00]   139392/506880 trajectories  (1.40 h elapsed, ~3.70 h left)
+[2026-10-28 19:40:39]   152064/506880 trajectories  (1.53 h elapsed, ~3.57 h left)
+[2026-10-28 19:48:22]   164736/506880 trajectories  (1.66 h elapsed, ~3.45 h left)
+[2026-10-28 19:55:54]   177408/506880 trajectories  (1.79 h elapsed, ~3.32 h left)
+[2026-10-28 20:03:18]   190080/506880 trajectories  (1.91 h elapsed, ~3.18 h left)
+[2026-10-28 20:10:42]   202752/506880 trajectories  (2.03 h elapsed, ~3.05 h left)
+[2026-10-28 20:18:11]   215424/506880 trajectories  (2.16 h elapsed, ~2.92 h left)
+[2026-10-28 20:23:08]   228096/506880 trajectories  (2.24 h elapsed, ~2.74 h left)
+[2026-10-28 20:27:45]   240768/506880 trajectories  (2.32 h elapsed, ~2.56 h left)
+[2026-10-28 20:32:24]   253440/506880 trajectories  (2.39 h elapsed, ~2.39 h left)
+[2026-10-28 20:37:01]   266112/506880 trajectories  (2.47 h elapsed, ~2.24 h left)
+[2026-10-28 20:41:40]   278784/506880 trajectories  (2.55 h elapsed, ~2.09 h left)
+[2026-10-28 20:46:20]   291456/506880 trajectories  (2.63 h elapsed, ~1.94 h left)
+[2026-10-28 20:50:59]   304128/506880 trajectories  (2.70 h elapsed, ~1.80 h left)
+[2026-10-28 20:55:39]   316800/506880 trajectories  (2.78 h elapsed, ~1.67 h left)
+[2026-10-28 21:00:18]   329472/506880 trajectories  (2.86 h elapsed, ~1.54 h left)
+[2026-10-28 21:04:55]   342144/506880 trajectories  (2.94 h elapsed, ~1.41 h left)
+[2026-10-28 21:09:28]   354816/506880 trajectories  (3.01 h elapsed, ~1.29 h left)
+[2026-10-28 21:14:01]   367488/506880 trajectories  (3.09 h elapsed, ~1.17 h left)
+[2026-10-28 21:18:33]   380160/506880 trajectories  (3.16 h elapsed, ~1.05 h left)
+[2026-10-28 21:23:09]   392832/506880 trajectories  (3.24 h elapsed, ~0.94 h left)
+[2026-10-28 21:27:46]   405504/506880 trajectories  (3.32 h elapsed, ~0.83 h left)
+[2026-10-28 21:32:22]   418176/506880 trajectories  (3.39 h elapsed, ~0.72 h left)
+[2026-10-28 21:37:00]   430848/506880 trajectories  (3.47 h elapsed, ~0.61 h left)
+[2026-10-28 21:41:39]   443520/506880 trajectories  (3.55 h elapsed, ~0.51 h left)
+[2026-10-28 21:46:18]   456192/506880 trajectories  (3.63 h elapsed, ~0.40 h left)
+[2026-10-28 21:50:56]   468864/506880 trajectories  (3.70 h elapsed, ~0.30 h left)
+[2026-10-28 21:55:50]   481536/506880 trajectories  (3.78 h elapsed, ~0.20 h left)
+[2026-10-28 22:01:01]   494208/506880 trajectories  (3.87 h elapsed, ~0.10 h left)
+[2026-10-28 22:06:03]   506880/506880 trajectories  (3.95 h elapsed, ~0.00 h left)
+[2026-10-28 22:06:03] build done in 3.95 h
+[2026-10-28 22:06:04] banks checkpointed to banks_nsh32_grid0_nang161_nw2048.npz
+[2026-10-28 22:06:04] LP: min_md_full over 15360 atoms at eps=0.01 (HiGHS)
+[2026-10-28 22:28:52] LP done in 23 min: MD/floor = 1.000000, active atoms 699/15360; saved rho_nsh32_grid0_eps0.01_nang161.json
+[2026-10-28 22:28:52] started K=3 -> bl_n32_k3.txt
+[2026-10-28 22:28:52] started K=4 -> bl_n32_k4.txt
+[2026-10-28 22:28:52] started K=5 -> bl_n32_k5.txt
+[2026-10-28 22:28:52] started K=6 -> bl_n32_k6.txt
+[2026-10-28 22:28:52] started K=8 -> bl_n32_k8.txt
+[2026-10-28 22:28:52] started K=10 -> bl_n32_k10.txt
+[2026-10-28 22:28:52] started K=12 -> bl_n32_k12.txt
+[2026-10-28 22:28:52] started K=14 -> bl_n32_k14.txt
+[2026-10-28 22:29:52] K=3 finished exit=0 after 1 min
+[2026-10-28 22:30:22] K=4 finished exit=0 after 2 min
+[2026-10-28 22:31:22] K=5 finished exit=0 after 3 min
+[2026-10-28 22:34:22] K=6 finished exit=0 after 6 min
+[2026-10-28 22:40:22] K=8 finished exit=0 after 12 min
+[2026-10-28 22:57:52] K=10 finished exit=0 after 29 min
+[2026-10-29 00:00:22] K=12 finished exit=0 after 92 min
+[2026-10-29 02:30:52] K=14 finished exit=0 after 242 min
+[2026-10-29 02:30:55] census_structure_v2.py -> census_structure_v2_nsh32_grid0.txt
+[2026-10-29 02:30:56] census_sumdiff_v1.py -> census_sumdiff_v1_nsh32_grid0.txt
+
+SUMMARY  K-curve of the band-limited census, MD/floor at eps=0.01
+   K     terrain ord3 (max(m,n)<=3)  full terrain, lattice   (prices are MD / Hall floor; this terrain's own unrestricted price is printed above)
+   3                          -              8.5% miss
+   4                          -             1.17% miss
+   5                     2.4581            1.055% miss
+   6                     1.7215                    1.7
+   8                     1.4745                  1.429
+  10                     1.2823                  1.258
+  12                     1.1359                  1.112
+  14                     1.0000                    1.0
+reading: the K at which this terrain's curve reaches its own unrestricted price is K_needed; if it falls with MMAX the grain is the mesh's, if it stays ~14 it is the photon's.
+[2026-10-29 02:30:56] pipeline_terrain_v1 [ord3] finished

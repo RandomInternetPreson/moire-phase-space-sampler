@@ -1,0 +1,28 @@
+6 runs; 14 cells
+(1) per run: price, between-cell D-overlap, shuffle null, z
+    census_bumps_v2_ctl_p1_rho_nsh32_grid0_e price 1.5019   overlap 0.163   null 0.214+-0.012   z = -4.2
+    census_bumps_v2_ctl_p2_rho_nsh32_grid0_e price 1.5019   overlap 0.171   null 0.226+-0.015   z = -3.8
+    census_bumps_v2_ctl_p3_rho_nsh32_grid0_e price 1.5019   overlap 0.142   null 0.209+-0.014   z = -4.7
+    census_bumps_v2_ctl_p4_rho_nsh32_grid0_e price 1.5019   overlap 0.152   null 0.220+-0.014   z = -4.9
+    census_bumps_v2_ctl_p5_rho_nsh32_grid0_e price 1.5019   overlap 0.163   null 0.222+-0.014   z = -4.3
+    census_bumps_v2_ctl_p6_rho_nsh32_grid0_e price 1.5019   overlap 0.146   null 0.224+-0.015   z = -5.1
+(2) stability of each cell's D-set across runs (same cell, different vertices): overlap averaged over run pairs
+    tau=0.5  s=1.0  same-cell overlap across runs 1.000
+    tau=0.5  s=1.8  same-cell overlap across runs 1.000
+    tau=0.5  s=2.6  same-cell overlap across runs 1.000
+    tau=1.0  s=1.0  same-cell overlap across runs 1.000
+    tau=1.0  s=1.8  same-cell overlap across runs 1.000
+    tau=1.0  s=2.6  same-cell overlap across runs 0.974
+    tau=2.0  s=1.0  same-cell overlap across runs 1.000
+    tau=2.0  s=1.8  same-cell overlap across runs 0.998
+    tau=2.0  s=2.6  same-cell overlap across runs 0.477
+    tau=4.0  s=1.0  same-cell overlap across runs 1.000
+    tau=4.0  s=1.8  same-cell overlap across runs 1.000
+    tau=4.0  s=2.6  same-cell overlap across runs 0.335
+    tau=8.0  s=1.8  same-cell overlap across runs 1.000
+    tau=8.0  s=2.6  same-cell overlap across runs 0.253
+    MEAN same-cell/different-run overlap 0.860   vs   mean between-cell/same-run overlap 0.156
+    reading: same-cell >> between-cell -> the cells keep their D-sets (physical); same-cell ~ between-cell -> the assignment reshuffles (thrift)
+(3) averaged census over runs (bead masses averaged per (cell, position)):
+    beads in the average 188; between-cell D-overlap 0.139   null 0.221+-0.016   z = -5.2
+    reading: z still strongly negative -> partition survives averaging (physical); z ~ 0 -> it was the vertex (thrift)

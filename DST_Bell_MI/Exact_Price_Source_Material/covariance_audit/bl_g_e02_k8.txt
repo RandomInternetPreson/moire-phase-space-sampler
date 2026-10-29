@@ -1,0 +1,25 @@
+file: rho_nsh32_grid0_eps0.01_nang161.json   atoms 15360 = 15 x 1024   K list [8]   eps [0.02]   solver highs-ipm (retry highs-ds)   miss-only False
+check: MD of the stored rho* on these banks = 0.138071187458   (file says 0.138071187458; floor 0.138071187458)
+
+=== eps=0.02  K=8   (289 basis functions per (tau,scale) cell, 4335 coefficients) ===
+  price LP:
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [1073s]
+    verify: rho_min -4.58e-08  mass 1.000000000  band miss over eps +7.01e-13  MD/floor 1.2682   OK
+  MD/floor = 1.2682   feasible   active coefficients 3165/4335   [1077s total]
+  leading harmonics of the pooled census  (|F|, k_A, k_B, phi[deg])  -- (k_S,k_D) = ((k_A+k_B)/2, (k_A-k_B)/2):
+     0.350  (+2,+2)   +157.50    (S,D)-harmonic (+2.0,+0.0)
+     0.321  (+2,+0)   +168.76    (S,D)-harmonic (+1.0,+1.0)
+     0.245  (+1,+1)    +76.63    (S,D)-harmonic (+1.0,+0.0)
+     0.239  (+2,+4)    -67.28    (S,D)-harmonic (+3.0,-1.0)
+     0.220  (+0,+4)   +108.39    (S,D)-harmonic (+2.0,-2.0)
+     0.202  (+4,-2)   -159.25    (S,D)-harmonic (+1.0,+3.0)
+     0.189  (+2,-2)    +32.25    (S,D)-harmonic (+0.0,+2.0)
+     0.159  (+4,+2)    -64.23    (S,D)-harmonic (+3.0,+1.0)
+     0.130  (+3,-1)   +134.27    (S,D)-harmonic (+1.0,+2.0)
+     0.128  (+0,+2)     +8.36    (S,D)-harmonic (+1.0,-1.0)
+
+SUMMARY  (MD/floor of the smoothest census of bandwidth K; infeasible entries carry the certified minimum miss)
+   eps   K     price   note
+  0.02   8    1.2682   feasible [highs-ipm]
+
+reference: rho* (unrestricted, 1024 atoms per cell) MD/floor = 1.000000   total 1077s
