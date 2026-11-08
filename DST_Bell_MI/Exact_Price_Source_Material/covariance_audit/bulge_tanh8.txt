@@ -1,0 +1,68 @@
+census_profile_v1  profile tanh:8 [tanh8]: blunted step  tanh(8 cos 2 theta)/tanh(8)
+histograms hist_nsh32_grid0_nang161_nw2048.npz: 15 cells x 1024 offsets x (161 angles + 4 CHSH settings) x 256 bins, 2048 counts each
+K list 6,8,10,12,14  eps 0.01  full 1  solver highs-ipm (retry highs-ds)
+profile on theta = 0..165 deg step 15:  D_A +1.000 +1.000 +1.000 +0.746 -0.993 -1.000 -1.000 -1.000 -1.000 -0.993 +0.746 +1.000 +1.000
+                                       D_B +1.000 +1.000 +1.000 +0.746 -0.993 -1.000 -1.000 -1.000 -1.000 -0.993 +0.746 +1.000 +1.000
+contraction done in 3s
+against banks_nsh32_grid0_nang161_nw2048.npz:  max|Svec - banks| 2.71e+00   max|Ecoef - banks| 1.00e+00   max|Q0 - banks| 0.00e+00   (a shaped bulge is expected to differ in Svec/Ecoef; Q must match)
+
+S_max with this bulge = 3.999978 = 1.414206 x 2 sqrt 2   ->  the singlet's CHSH value is reachable
+
+relaxed min-miss LP over the full census (161 angles + 4 CHSH correlators, no CHSH equality):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [14s]
+  the closest this bulge gets to the singlet, any census: max |E - target| = 0.000073 over 165 correlators (that census's MD/floor 5.5031)
+
+=== full   (1024 basis functions per cell, 15360 coefficients) ===
+  price LP:
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [267s]
+    verify: rho_min +0.00e+00  mass 1.000000000  band miss over eps +1.60e-14  MD/floor 1.0476   OK
+  MD/floor = 1.0476   feasible   [290s total]
+
+=== K=6   (169 basis functions per cell, 2535 coefficients) ===
+  price LP:
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [247s]
+    verify: rho_min -3.35e-08  mass 1.000000000  band miss over eps +1.70e-15  MD/floor 2.5615   OK
+  MD/floor = 2.5615   feasible   [538s total]
+  leading harmonics (|F|, k_A, k_B, phi):  0.506(+2,+2)+167  0.416(+2,+0)+177  0.351(+0,+4)+116  0.306(+4,+2)-36  0.268(+2,+4)-67
+
+=== K=8   (289 basis functions per cell, 4335 coefficients) ===
+  price LP:
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [866s]
+    verify: rho_min -8.54e-08  mass 1.000000000  band miss over eps +1.00e-14  MD/floor 2.0004   OK
+  MD/floor = 2.0004   feasible   [1406s total]
+  leading harmonics (|F|, k_A, k_B, phi):  0.513(+2,+0)+179  0.438(+2,+2)+165  0.360(+0,+4)+107  0.338(+4,+2)-34  0.334(+2,+4)-65
+
+=== K=10   (441 basis functions per cell, 6615 coefficients) ===
+  price LP:
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [4071s]
+    verify: rho_min -9.22e-08  mass 1.000000000  band miss over eps +1.29e-12  MD/floor 1.7401   OK
+  MD/floor = 1.7401   feasible   [5481s total]
+
+=== K=12   (625 basis functions per cell, 9375 coefficients) ===
+  price LP:
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [8440s]
+    verify: rho_min -7.82e-08  mass 1.000000000  band miss over eps +3.32e-14  MD/floor 1.5451   OK
+  MD/floor = 1.5451   feasible   [13925s total]
+
+=== K=14   (841 basis functions per cell, 12615 coefficients) ===
+  price LP:
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [18969s]
+    verify: rho_min -2.47e-13  mass 1.000000000  band miss over eps +7.67e-14  MD/floor 1.3038   OK
+  MD/floor = 1.3038   feasible   [32900s total]
+
+marginals under the full price census (diagnostic; <A>(t) with Alice at 0 and Bob at t, 161 angles):
+  raw vertex:  max |<A>| 0.0070  spread over Bob's angle 0.0125   max |<B>| 0.0068  spread 0.0125
+  symmetrized (census averaged with its +90/+90 twin):  max |<A>| 1.06e-16  max |<B>| 2.55e-16   MD/floor 1.047601 (raw 1.047601)   max change in any correlator 4.44e-16
+  (the symmetrized census is an equally good census with zero marginals: the raw marginals are the vertex's, not the model's)
+  (an unpolarized source has <A> = <B> = 0; a spread of <A> over Bob's angle would be setting-dependence of a marginal)
+
+SUMMARY  profile tanh:8 [tanh8]  blunted step  tanh(8 cos 2 theta)/tanh(8)
+  S_max/2rt2 1.414206   relaxed miss 0.000073
+    full    1.0476   feasible [highs-ipm]
+     K=6    2.5615   feasible [highs-ipm]
+     K=8    2.0004   feasible [highs-ipm]
+    K=10    1.7401   feasible [highs-ipm]
+    K=12    1.5451   feasible [highs-ipm]
+    K=14    1.3038   feasible [highs-ipm]
+  marginals: raw vertex max|<A>| 0.0070 (spread 0.0125)  max|<B>| 0.0068;  symmetrized max|<A>| 1.1e-16, MD/floor 1.0476 vs raw 1.0476, correlators moved 4.4e-16
+  total 32900s   json census_profile_v1_tanh8.json

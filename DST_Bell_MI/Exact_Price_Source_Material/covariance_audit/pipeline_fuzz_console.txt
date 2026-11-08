@@ -1,0 +1,76 @@
+[2026-11-01 08:53:02] pipeline_fuzz_v1: nsh=32 (1024 offsets) mode=grid seed=0 nang=161 nw=2048 eps=0.01 cores=56 register=paper
+[2026-11-01 08:53:02] shared-compute job 405, reserved 100 GiB
+[2026-11-01 08:53:02] evolving 506880 trajectories on 56 cores (5 tau snapshots each); storing every particle's final bin (5.19 GB in memory as uint8)
+[2026-11-01 08:53:29]   1/506880 trajectories  (0.01 h elapsed, ~3694.72 h left)
+[2026-11-01 08:59:08]   12672/506880 trajectories  (0.10 h elapsed, ~3.96 h left)
+[2026-11-01 09:04:59]   25344/506880 trajectories  (0.20 h elapsed, ~3.78 h left)
+[2026-11-01 09:10:53]   38016/506880 trajectories  (0.30 h elapsed, ~3.67 h left)
+[2026-11-01 09:16:45]   50688/506880 trajectories  (0.40 h elapsed, ~3.56 h left)
+[2026-11-01 09:22:37]   63360/506880 trajectories  (0.49 h elapsed, ~3.45 h left)
+[2026-11-01 09:28:36]   76032/506880 trajectories  (0.59 h elapsed, ~3.36 h left)
+[2026-11-01 09:34:28]   88704/506880 trajectories  (0.69 h elapsed, ~3.25 h left)
+[2026-11-01 09:40:19]   101376/506880 trajectories  (0.79 h elapsed, ~3.15 h left)
+[2026-11-01 09:46:15]   114048/506880 trajectories  (0.89 h elapsed, ~3.05 h left)
+[2026-11-01 09:52:09]   126720/506880 trajectories  (0.99 h elapsed, ~2.96 h left)
+[2026-11-01 09:58:05]   139392/506880 trajectories  (1.08 h elapsed, ~2.86 h left)
+[2026-11-01 10:03:58]   152064/506880 trajectories  (1.18 h elapsed, ~2.76 h left)
+[2026-11-01 10:09:52]   164736/506880 trajectories  (1.28 h elapsed, ~2.66 h left)
+[2026-11-01 10:15:44]   177408/506880 trajectories  (1.38 h elapsed, ~2.56 h left)
+[2026-11-01 10:21:36]   190080/506880 trajectories  (1.48 h elapsed, ~2.46 h left)
+[2026-11-01 10:27:22]   202752/506880 trajectories  (1.57 h elapsed, ~2.36 h left)
+[2026-11-01 10:33:10]   215424/506880 trajectories  (1.67 h elapsed, ~2.26 h left)
+[2026-11-01 10:39:03]   228096/506880 trajectories  (1.77 h elapsed, ~2.16 h left)
+[2026-11-01 10:45:01]   240768/506880 trajectories  (1.87 h elapsed, ~2.06 h left)
+[2026-11-01 10:50:53]   253440/506880 trajectories  (1.96 h elapsed, ~1.96 h left)
+[2026-11-01 10:56:56]   266112/506880 trajectories  (2.06 h elapsed, ~1.87 h left)
+[2026-11-01 11:02:51]   278784/506880 trajectories  (2.16 h elapsed, ~1.77 h left)
+[2026-11-01 11:08:47]   291456/506880 trajectories  (2.26 h elapsed, ~1.67 h left)
+[2026-11-01 11:14:51]   304128/506880 trajectories  (2.36 h elapsed, ~1.58 h left)
+[2026-11-01 11:20:48]   316800/506880 trajectories  (2.46 h elapsed, ~1.48 h left)
+[2026-11-01 11:26:42]   329472/506880 trajectories  (2.56 h elapsed, ~1.38 h left)
+[2026-11-01 11:32:40]   342144/506880 trajectories  (2.66 h elapsed, ~1.28 h left)
+[2026-11-01 11:38:30]   354816/506880 trajectories  (2.76 h elapsed, ~1.18 h left)
+[2026-11-01 11:44:19]   367488/506880 trajectories  (2.85 h elapsed, ~1.08 h left)
+[2026-11-01 11:50:12]   380160/506880 trajectories  (2.95 h elapsed, ~0.98 h left)
+[2026-11-01 11:56:03]   392832/506880 trajectories  (3.05 h elapsed, ~0.89 h left)
+[2026-11-01 12:02:04]   405504/506880 trajectories  (3.15 h elapsed, ~0.79 h left)
+[2026-11-01 12:07:53]   418176/506880 trajectories  (3.25 h elapsed, ~0.69 h left)
+[2026-11-01 12:13:44]   430848/506880 trajectories  (3.34 h elapsed, ~0.59 h left)
+[2026-11-01 12:19:35]   443520/506880 trajectories  (3.44 h elapsed, ~0.49 h left)
+[2026-11-01 12:25:25]   456192/506880 trajectories  (3.54 h elapsed, ~0.39 h left)
+[2026-11-01 12:31:15]   468864/506880 trajectories  (3.64 h elapsed, ~0.29 h left)
+[2026-11-01 12:37:09]   481536/506880 trajectories  (3.74 h elapsed, ~0.20 h left)
+[2026-11-01 12:43:01]   494208/506880 trajectories  (3.83 h elapsed, ~0.10 h left)
+[2026-11-01 12:48:48]   506880/506880 trajectories  (3.93 h elapsed, ~0.00 h left)
+[2026-11-01 12:48:48] build done in 3.93 h
+[2026-11-01 12:50:23] check against hist_nsh32_grid0_nang161_nw2048.npz: 0 (cell, setting) blocks differ (must be 0; all 4 CHSH settings and every ~8th angle compared)
+[2026-11-01 12:50:47] particle store saved to part_nsh32_grid0_nang161_nw2048.npz (0.20 GB on disk, 0.4 min)
+[2026-11-01 12:50:47] contracting with Lmax=3 -> fuzz_contracted_Lmax3_part_nsh32_grid0_nang161_nw2048.npz
+[2026-11-01 12:51:21] started L=0 K=6 cell -> fuzz_L0_K6_cell.txt
+[2026-11-01 12:51:21] started L=0 K=8 cell -> fuzz_L0_K8_cell.txt
+[2026-11-01 12:51:21] started L=0 K=10 cell -> fuzz_L0_K10_cell.txt
+[2026-11-01 12:51:21] started L=1 K=6 cell -> fuzz_L1_K6_cell.txt
+[2026-11-01 12:51:21] started L=1 K=6 atom -> fuzz_L1_K6_atom.txt
+[2026-11-01 12:51:21] started L=1 K=8 cell -> fuzz_L1_K8_cell.txt
+[2026-11-01 13:06:21] fuzz_L0_K6_cell.txt finished exit=0 after 15 min
+[2026-11-01 13:06:21] started L=1 K=8 atom -> fuzz_L1_K8_atom.txt
+[2026-11-01 13:16:51] fuzz_L0_K8_cell.txt finished exit=0 after 26 min
+[2026-11-01 13:16:51] started L=1 K=10 cell -> fuzz_L1_K10_cell.txt
+[2026-11-01 13:41:21] fuzz_L0_K10_cell.txt finished exit=0 after 50 min
+[2026-11-01 13:41:21] started L=1 K=10 atom -> fuzz_L1_K10_atom.txt
+[2026-11-01 15:29:22] fuzz_L1_K6_cell.txt finished exit=0 after 158 min
+[2026-11-01 15:29:22] started L=2 K=6 cell -> fuzz_L2_K6_cell.txt
+[2026-11-01 18:25:22] fuzz_L1_K8_cell.txt finished exit=0 after 334 min
+[2026-11-01 18:25:22] started L=2 K=6 atom -> fuzz_L2_K6_atom.txt
+[2026-11-01 21:52:22] fuzz_L2_K6_cell.txt finished exit=0 after 541 min
+[2026-11-01 21:52:22] started L=2 K=8 cell -> fuzz_L2_K8_cell.txt
+[2026-11-01 22:57:22] fuzz_L1_K10_cell.txt finished exit=0 after 606 min
+[2026-11-01 22:57:22] started L=2 K=8 atom -> fuzz_L2_K8_atom.txt
+[2026-11-01 23:30:52] fuzz_L1_K6_atom.txt finished exit=0 after 640 min
+[2026-11-01 23:30:52] started L=2 K=10 cell -> fuzz_L2_K10_cell.txt
+[2026-11-02 08:07:50] fuzz_L2_K8_cell.txt finished exit=0 after 1156 min
+[2026-11-02 08:07:50] started L=2 K=10 atom -> fuzz_L2_K10_atom.txt
+[2026-11-02 20:49:20] fuzz_L2_K10_cell.txt finished exit=0 after 1918 min
+[2026-11-03 18:36:51] fuzz_L1_K10_atom.txt finished exit=1 after 3225 min
+[2026-11-03 18:36:51] fuzz_L2_K10_atom.txt finished exit=1 after 3225 min
+[2026-11-05 04:35:50] fuzz_L2_K6_atom.txt finished exit=0 after 5264 min

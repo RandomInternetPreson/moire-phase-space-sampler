@@ -1,0 +1,61 @@
+census_profile_v3  profile tilt:0.05 [tilt0p05]: cap tilted against the disc: height 1 at the rear edge falling to 0.95 at the front edge (period 90 deg)
+histograms hist_nsh32_grid0_nang161_nw2048.npz: 15 cells x 1024 offsets x (161 angles + 4 CHSH settings) x 256 bins, 2048 counts each
+K list 6,8,10  eps 0.01  full 1  solver highs-ipm (retry highs-ds)
+profile on theta = -60..60 deg step 10 (phi = 0):  D_A -0.958 -0.953 +0.997 +0.992 +0.986 +0.981 +0.975 +0.969 +0.964 +0.958 +0.953 -0.997 -0.992
+                                                 D_B -0.958 -0.953 +0.997 +0.992 +0.986 +0.981 +0.975 +0.969 +0.964 +0.958 +0.953 -0.997 -0.992
+port rule  max |D(theta) + D(theta + 90)| = 1.11e-16   (kept)
+contraction done in 5s
+against banks_nsh32_grid0_nang161_nw2048.npz:  max|Svec - banks| 3.03e-01   max|Ecoef - banks| 9.71e-02   max|Q0 - banks| 0.00e+00   (a shaped bulge is expected to differ in Svec/Ecoef; Q must match)
+
+S_max with this bulge = 3.891368 = 1.375806 x 2 sqrt 2   ->  the singlet's CHSH value is reachable
+
+relaxed min-miss LP over the full census (161 angles + 4 CHSH correlators, no CHSH equality):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [10s]
+  the closest this bulge gets to the singlet, any census: max |E - target| = 0.030532 over 165 correlators (that census's MD/floor 6.6234)
+
+=== full   (1024 basis functions per cell, 15360 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [123s]
+  min-miss LP (certificate by value):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [10s]
+    verify: rho_min +0.00e+00  mass 1.000000000  max |E - target| 0.030546  MD/floor 6.6452   OK
+  INFEASIBLE at eps=0.01: min miss 0.03055 > eps
+
+=== K=6   (169 basis functions per cell, 2535 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [153s]
+  min-miss LP (certificate by value):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [52s]
+    verify: rho_min -8.75e-08  mass 1.000000000  max |E - target| 0.044887  MD/floor 3.4366   OK
+  INFEASIBLE at eps=0.01: min miss 0.04489 > eps
+
+=== K=8   (289 basis functions per cell, 4335 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [373s]
+  min-miss LP (certificate by value):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [155s]
+    verify: rho_min -8.16e-08  mass 1.000000000  max |E - target| 0.039935  MD/floor 3.8489   OK
+  INFEASIBLE at eps=0.01: min miss 0.03993 > eps
+
+=== K=10   (441 basis functions per cell, 6615 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [665s]
+  min-miss LP (certificate by value):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [370s]
+    verify: rho_min -1.02e-15  mass 1.000000000  max |E - target| 0.037308  MD/floor 4.3289   OK
+  INFEASIBLE at eps=0.01: min miss 0.03731 > eps
+
+marginals under the relaxed min-miss census (diagnostic; <A>(t) with Alice at 0 and Bob at t, 161 angles):
+  raw vertex:  max |<A>| 0.5099  spread over Bob's angle 0.3747   max |<B>| 0.4752  spread 0.8625
+  symmetrized (census averaged with its +90/+90 twin):  max |<A>| 2.67e-17  max |<B>| 1.95e-17   MD/floor 6.106072 (raw 6.623361)   max change in any correlator 2.22e-16
+  (the symmetrized census is an equally good census with zero marginals: the raw marginals are the vertex's, not the model's)
+  (an unpolarized source has <A> = <B> = 0; a spread of <A> over Bob's angle would be setting-dependence of a marginal)
+
+SUMMARY  profile tilt:0.05 [tilt0p05]  cap tilted against the disc: height 1 at the rear edge falling to 0.95 at the front edge (period 90 deg)
+  S_max/2rt2 1.375806   relaxed miss 0.030532
+    full         -   infeasible (certified by value); min miss 0.03055
+     K=6         -   infeasible (certified by value); min miss 0.04489
+     K=8         -   infeasible (certified by value); min miss 0.03993
+    K=10         -   infeasible (certified by value); min miss 0.03731
+  marginals: raw vertex max|<A>| 0.5099 (spread 0.3747)  max|<B>| 0.4752;  symmetrized max|<A>| 2.7e-17, MD/floor 6.1061 vs raw 6.6234, correlators moved 2.2e-16
+  total 1927s   json census_profile_v3_tilt0p05.json

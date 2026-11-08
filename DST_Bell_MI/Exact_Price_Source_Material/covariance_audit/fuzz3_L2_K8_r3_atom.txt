@@ -1,0 +1,33 @@
+census_fuzz_v3  L=2 (lambda_0 harmonics: cos/sin 2..4 lambda_0)  K=8  scope=atom  eps=0.01
+question: does a shaped rim (birth fuzz in lambda_0, depending on the approach phases too) let the census of bandwidth K reach the floor more cheaply than L=0?
+  price LP:
+rim band limit Krim = 3; positivity at 32 lambda_0 points; tolerances 1e-07
+    LP: 85612 variables (7275 coefficients, 76800 joint-density values), 494920 inequality rows, 76802 equalities, 33,634,472 nonzeros
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [25069s]
+    verify: joint density min -1.78e-06 = -2.730% of the mean atom density (512-point lambda_0 grid; positivity was imposed at 32 points)  mass 1.000000000  band miss over eps +2.96e-12  MD/floor 1.4122   ** VIOLATED **
+    rim per atom (mass-weighted modulation depth; 0 = uniform birth): h1 0.177  h2 0.077
+    rim direction tracks (circular correlation |R|, lag):  h1~1xxiA: 0.35 @ +165  h1~1xxiB: 0.32 @ +97  h2~1xsum: 0.31 @ -75  h2~1xdiff: 0.20 @ -27   (|R| = 1: the rim's lean is a fixed function of that phase)
+    clipped census (joint density clipped at 0, renormalized): MD/floor 1.4122 (upper bound), max |E - target| 0.01000 (eps 0.01)
+  solution saved: census_fuzz_v3_L2_K8_r3_atom_solution.npz
+  MD/floor = 1.4122   feasible (joint density dips -2.73% between positivity points: the price is a slight lower bound)   [25073s]
+  the rim per cell (amplitude of each lambda_0 harmonic relative to the cell's mass, and its phase in deg):
+    cell  0  mass 0.1011  h1: 0.001 @  -83.8  h2: 0.296 @   +5.9
+    cell  1  mass 0.2445  h1: 0.001 @  +70.0  h2: 0.076 @   -7.9
+    cell  2  mass 0.0753  h1: 0.000 @  +12.4  h2: 0.000 @  -26.9
+    cell  3  mass 0.0115  h1: 0.000 @  -73.5  h2: 0.000 @   +8.1
+    cell  4  mass 0.0363  h1: 0.000 @  +90.0  h2: 0.000 @  -23.5
+    cell  5  mass 0.2099  h1: 0.000 @  -88.3  h2: 0.041 @  +20.0
+    cell  6  mass 0.0647  h1: 0.000 @   -0.9  h2: 0.173 @  -11.3
+    cell  7  mass 0.1027  h1: 0.000 @  +57.4  h2: 0.000 @  +40.2
+    cell  8  mass 0.0577  h1: 0.000 @   +1.1  h2: 0.000 @  +37.9
+    cell  9  mass 0.0038  h1: 0.000 @  +83.9  h2: 0.000 @  -10.2
+    cell 10  mass 0.0649  h1: 0.000 @   +0.0  h2: 0.000 @  +45.0
+    cell 11  mass -0.0000  h1: 9.818 @  -48.1  h2: 109.590 @  +34.8
+    cell 12  mass 0.0000  h1: 1.225 @  -28.6  h2: 2.287 @  +40.3
+    cell 13  mass 0.0274  h1: 0.000 @   +0.0  h2: 0.000 @  -27.0
+    cell 14  mass 0.0000  h1: 3.294 @  -16.9  h2: 0.746 @  +23.9
+  pooled rim: h1: 0.000 @  +75.6 deg  h2: 0.053 @   +0.8 deg   (0 = uniform birth; 1 = fully modulated)
+
+SUMMARY  census_fuzz_v3  L=2  K=8  Krim=3  scope=atom  eps=0.01  (positivity points 32)
+  MD/floor 1.4122   feasible (joint density dips -2.73% between positivity points: the price is a slight lower bound)   clipped upper bound 1.4122 (band miss 0.01000)   rim depth h1 0.177 h2 0.077
+  reference L=0 (paper, lattice): K=6 1.700, K=8 1.429, K=10 1.258, full 1.000      total 25073s   json census_fuzz_v3_L2_K8_r3_atom.json

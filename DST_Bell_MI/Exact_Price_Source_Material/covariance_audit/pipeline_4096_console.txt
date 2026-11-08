@@ -1,0 +1,63 @@
+[2026-10-25 09:54:02] pipeline_4096_v2: nsh=64 (4096 offsets) mode=random seed=0 nang=161 nw=2048 eps=0.01 cores=56 register=paper
+[2026-10-25 09:54:02] shared-compute job 399, reserved 80 GiB
+[2026-10-25 09:54:03] evolving 2027520 trajectories on 56 cores (5 tau snapshots each), streaming into the banks
+[2026-10-25 09:54:28]   1/2027520 trajectories  (0.01 h elapsed, ~14601.42 h left)
+[2026-10-25 10:17:33]   50688/2027520 trajectories  (0.39 h elapsed, ~15.28 h left)
+[2026-10-25 10:40:47]   101376/2027520 trajectories  (0.78 h elapsed, ~14.80 h left)
+[2026-10-25 11:04:00]   152064/2027520 trajectories  (1.17 h elapsed, ~14.38 h left)
+[2026-10-25 11:29:09]   202752/2027520 trajectories  (1.59 h elapsed, ~14.27 h left)
+[2026-10-25 11:56:06]   253440/2027520 trajectories  (2.03 h elapsed, ~14.24 h left)
+[2026-10-25 12:19:25]   304128/2027520 trajectories  (2.42 h elapsed, ~13.73 h left)
+[2026-10-25 12:42:30]   354816/2027520 trajectories  (2.81 h elapsed, ~13.24 h left)
+[2026-10-25 13:05:27]   405504/2027520 trajectories  (3.19 h elapsed, ~12.76 h left)
+[2026-10-25 13:28:21]   456192/2027520 trajectories  (3.57 h elapsed, ~12.30 h left)
+[2026-10-25 13:51:17]   506880/2027520 trajectories  (3.95 h elapsed, ~11.86 h left)
+[2026-10-25 14:14:13]   557568/2027520 trajectories  (4.34 h elapsed, ~11.43 h left)
+[2026-10-25 14:37:08]   608256/2027520 trajectories  (4.72 h elapsed, ~11.01 h left)
+[2026-10-25 15:00:04]   658944/2027520 trajectories  (5.10 h elapsed, ~10.59 h left)
+[2026-10-25 15:22:32]   709632/2027520 trajectories  (5.47 h elapsed, ~10.17 h left)
+[2026-10-25 15:44:49]   760320/2027520 trajectories  (5.85 h elapsed, ~9.74 h left)
+[2026-10-25 16:07:10]   811008/2027520 trajectories  (6.22 h elapsed, ~9.33 h left)
+[2026-10-25 16:29:35]   861696/2027520 trajectories  (6.59 h elapsed, ~8.92 h left)
+[2026-10-25 16:52:04]   912384/2027520 trajectories  (6.97 h elapsed, ~8.52 h left)
+[2026-10-25 17:14:40]   963072/2027520 trajectories  (7.34 h elapsed, ~8.12 h left)
+[2026-10-25 17:37:23]   1013760/2027520 trajectories  (7.72 h elapsed, ~7.72 h left)
+[2026-10-25 18:01:43]   1064448/2027520 trajectories  (8.13 h elapsed, ~7.35 h left)
+[2026-10-25 18:26:16]   1115136/2027520 trajectories  (8.54 h elapsed, ~6.98 h left)
+[2026-10-25 18:50:24]   1165824/2027520 trajectories  (8.94 h elapsed, ~6.61 h left)
+[2026-10-25 19:14:25]   1216512/2027520 trajectories  (9.34 h elapsed, ~6.23 h left)
+[2026-10-25 19:37:17]   1267200/2027520 trajectories  (9.72 h elapsed, ~5.83 h left)
+[2026-10-25 20:00:07]   1317888/2027520 trajectories  (10.10 h elapsed, ~5.44 h left)
+[2026-10-25 20:22:50]   1368576/2027520 trajectories  (10.48 h elapsed, ~5.05 h left)
+[2026-10-25 20:45:11]   1419264/2027520 trajectories  (10.85 h elapsed, ~4.65 h left)
+[2026-10-25 21:07:35]   1469952/2027520 trajectories  (11.23 h elapsed, ~4.26 h left)
+[2026-10-25 21:30:03]   1520640/2027520 trajectories  (11.60 h elapsed, ~3.87 h left)
+[2026-10-25 21:52:36]   1571328/2027520 trajectories  (11.98 h elapsed, ~3.48 h left)
+[2026-10-25 22:15:13]   1622016/2027520 trajectories  (12.35 h elapsed, ~3.09 h left)
+[2026-10-25 22:37:55]   1672704/2027520 trajectories  (12.73 h elapsed, ~2.70 h left)
+[2026-10-25 23:00:38]   1723392/2027520 trajectories  (13.11 h elapsed, ~2.31 h left)
+[2026-10-25 23:23:21]   1774080/2027520 trajectories  (13.49 h elapsed, ~1.93 h left)
+[2026-10-25 23:46:08]   1824768/2027520 trajectories  (13.87 h elapsed, ~1.54 h left)
+[2026-10-26 00:08:55]   1875456/2027520 trajectories  (14.25 h elapsed, ~1.16 h left)
+[2026-10-26 00:31:42]   1926144/2027520 trajectories  (14.63 h elapsed, ~0.77 h left)
+[2026-10-26 00:54:30]   1976832/2027520 trajectories  (15.01 h elapsed, ~0.38 h left)
+[2026-10-26 01:17:13]   2027520/2027520 trajectories  (15.39 h elapsed, ~0.00 h left)
+[2026-10-26 01:17:13] build done in 15.39 h
+[2026-10-26 01:17:17] banks checkpointed to banks_nsh64_random0_nang161_nw2048.npz
+[2026-10-26 01:17:17] LP: min_md_full over 61440 atoms at eps=0.01 (HiGHS)
+[2026-10-26 02:37:37] LP done in 80 min: MD/floor = 1.000000, active atoms 762/61440; saved rho_nsh64_random0_eps0.01_nang161.json
+[2026-10-26 02:37:37] started K=6 -> bl_n64_k6.txt
+[2026-10-26 02:37:37] started K=8 -> bl_n64_k8.txt
+[2026-10-26 02:37:37] started K=10 -> bl_n64_k10.txt
+[2026-10-26 02:37:37] started K=12 -> bl_n64_k12.txt
+[2026-10-26 02:37:37] started K=14 -> bl_n64_k14.txt
+[2026-10-26 02:37:37] started K=16 -> bl_n64_k16.txt
+[2026-10-26 02:37:37] started K=18 -> bl_n64_k18.txt
+[2026-10-26 02:37:37] started K=20 -> bl_n64_k20.txt
+[2026-10-26 02:56:37] K=6 finished exit=0 after 19 min
+[2026-10-26 03:26:07] K=8 finished exit=0 after 49 min
+[2026-10-26 04:29:37] K=10 finished exit=0 after 112 min
+[2026-10-26 05:21:07] K=12 finished exit=0 after 164 min
+[2026-10-26 07:34:07] K=14 finished exit=0 after 297 min
+[2026-10-26 10:45:08] K=16 finished exit=0 after 488 min
+[2026-10-27 10:55:00] K=18 finished exit=0 after 1937 min

@@ -1,0 +1,78 @@
+census_profile_v1  profile notch:5:0.25 [notch5_e25]: notched step: sign(cos 2 theta) x (1 - 0.25(1 + cos 20 theta)/2) on both
+histograms hist_nsh32_grid0_nang161_nw2048.npz: 15 cells x 1024 offsets x (161 angles + 4 CHSH settings) x 256 bins, 2048 counts each
+K list 6,8,10,12,14  eps 0.01  full 1  solver highs-ipm (retry highs-ds)
+profile on theta = 0..165 deg step 15:  D_A +0.750 +0.860 +0.996 +0.919 -0.764 -0.804 -0.969 -0.969 -0.804 -0.764 +0.919 +0.996 +0.860
+                                       D_B +0.750 +0.860 +0.996 +0.919 -0.764 -0.804 -0.969 -0.969 -0.804 -0.764 +0.919 +0.996 +0.860
+contraction done in 3s
+against banks_nsh32_grid0_nang161_nw2048.npz:  max|Svec - banks| 1.46e+00   max|Ecoef - banks| 4.37e-01   max|Q0 - banks| 0.00e+00   (a shaped bulge is expected to differ in Svec/Ecoef; Q must match)
+
+S_max with this bulge = 3.618416 = 1.279303 x 2 sqrt 2   ->  the singlet's CHSH value is reachable
+
+relaxed min-miss LP over the full census (161 angles + 4 CHSH correlators, no CHSH equality):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [9s]
+  the closest this bulge gets to the singlet, any census: max |E - target| = 0.188973 over 165 correlators (that census's MD/floor 7.0092)
+
+=== full   (1024 basis functions per cell, 15360 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [127s]
+  min-miss LP (certificate by value):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [8s]
+    verify: rho_min +0.00e+00  mass 1.000000000  max |E - target| 0.189723  MD/floor 7.1356   OK
+  INFEASIBLE at eps=0.01: min miss 0.18972 > eps
+
+=== K=6   (169 basis functions per cell, 2535 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [155s]
+  min-miss LP (certificate by value):
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)   [40s]
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [46s]
+  CHSH equality infeasible in this band -> relaxed min miss 0.213999 (MD/floor of that census 3.8438)
+
+=== K=8   (289 basis functions per cell, 4335 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [345s]
+  min-miss LP (certificate by value):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [152s]
+    verify: rho_min -4.48e-16  mass 1.000000000  max |E - target| 0.218626  MD/floor 5.0419   OK
+  INFEASIBLE at eps=0.01: min miss 0.21863 > eps
+
+=== K=10   (441 basis functions per cell, 6615 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [693s]
+  min-miss LP (certificate by value):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [315s]
+    verify: rho_min -8.26e-09  mass 1.000000000  max |E - target| 0.202058  MD/floor 5.1119   OK
+  INFEASIBLE at eps=0.01: min miss 0.20206 > eps
+
+=== K=12   (625 basis functions per cell, 9375 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [1891s]
+  min-miss LP (certificate by value):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [752s]
+    verify: rho_min -9.69e-08  mass 1.000000000  max |E - target| 0.194638  MD/floor 5.9227   OK
+  INFEASIBLE at eps=0.01: min miss 0.19464 > eps
+
+=== K=14   (841 basis functions per cell, 12615 coefficients) ===
+  price LP:
+    [highs-ipm] status 2 = infeasible (solver status); The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)   [3293s]
+  min-miss LP (certificate by value):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [1259s]
+    verify: rho_min -1.52e-09  mass 1.000000000  max |E - target| 0.191663  MD/floor 6.0206   OK
+  INFEASIBLE at eps=0.01: min miss 0.19166 > eps
+
+marginals under the relaxed min-miss census (diagnostic; <A>(t) with Alice at 0 and Bob at t, 161 angles):
+  raw vertex:  max |<A>| 0.5244  spread over Bob's angle 0.5007   max |<B>| 0.4207  spread 0.8336
+  symmetrized (census averaged with its +90/+90 twin):  max |<A>| 8.83e-17  max |<B>| 2.14e-16   MD/floor 6.710787 (raw 7.009243)   max change in any correlator 3.33e-16
+  (the symmetrized census is an equally good census with zero marginals: the raw marginals are the vertex's, not the model's)
+  (an unpolarized source has <A> = <B> = 0; a spread of <A> over Bob's angle would be setting-dependence of a marginal)
+
+SUMMARY  profile notch:5:0.25 [notch5_e25]  notched step: sign(cos 2 theta) x (1 - 0.25(1 + cos 20 theta)/2) on both
+  S_max/2rt2 1.279303   relaxed miss 0.188973
+    full         -   infeasible (certified by value); min miss 0.18972
+     K=6         -   CHSH value unreachable in this band; relaxed min miss; min miss 0.21400
+     K=8         -   infeasible (certified by value); min miss 0.21863
+    K=10         -   infeasible (certified by value); min miss 0.20206
+    K=12         -   infeasible (certified by value); min miss 0.19464
+    K=14         -   infeasible (certified by value); min miss 0.19166
+  marginals: raw vertex max|<A>| 0.5244 (spread 0.5007)  max|<B>| 0.4207;  symmetrized max|<A>| 8.8e-17, MD/floor 6.7108 vs raw 7.0092, correlators moved 3.3e-16
+  total 9113s   json census_profile_v1_notch5_e25.json
