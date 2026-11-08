@@ -373,3 +373,4 @@ Deposit: version 5 of 10.5281/zenodo.23537610. Note: `census_fine_structure_note
 **Open (not in this version).** L = 3 at K = 6; random-offset replication of the rim's skeleton (its fine structure is a lattice result until then); the swap frame for the (−1,0) pixel; the same test on the 4096 census.
 
 Deposit: version 6 of 10.5281/zenodo.24053426. Note: `census_bulge_and_rim_note_zenodo_v6.pdf`.
+part_nsh32_grid0_nang161_nw2048.npz and fuzz_contracted_Lmax3_part_nsh32_grid0_nang161_nw2048.npz are uploaded in the Zenodo deposit - too large for github
