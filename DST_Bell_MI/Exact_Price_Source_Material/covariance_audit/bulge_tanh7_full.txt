@@ -1,0 +1,31 @@
+census_profile_v2  profile tanh:7 [tanh7]: blunted step  tanh(7 cos 2 theta)/tanh(7)
+histograms hist_nsh32_grid0_nang161_nw2048.npz: 15 cells x 1024 offsets x (161 angles + 4 CHSH settings) x 256 bins, 2048 counts each
+K list   eps 0.01  full 1  solver highs-ipm (retry highs-ds)
+profile on theta = 0..165 deg step 15:  D_A +1.000 +1.000 +0.999 +0.688 -0.986 -1.000 -1.000 -1.000 -1.000 -0.986 +0.688 +0.999 +1.000
+                                       D_B +1.000 +1.000 +0.999 +0.688 -0.986 -1.000 -1.000 -1.000 -1.000 -0.986 +0.688 +0.999 +1.000
+contraction done in 2s
+against banks_nsh32_grid0_nang161_nw2048.npz:  max|Svec - banks| 2.75e+00   max|Ecoef - banks| 1.00e+00   max|Q0 - banks| 0.00e+00   (a shaped bulge is expected to differ in Svec/Ecoef; Q must match)
+
+S_max with this bulge = 3.999894 = 1.414176 x 2 sqrt 2   ->  the singlet's CHSH value is reachable
+
+relaxed min-miss LP over the full census (161 angles + 4 CHSH correlators, no CHSH equality):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [9s]
+  the closest this bulge gets to the singlet, any census: max |E - target| = 0.000304 over 165 correlators (that census's MD/floor 5.7865)
+
+=== full   (1024 basis functions per cell, 15360 coefficients) ===
+  price LP:
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [213s]
+    verify: rho_min +0.00e+00  mass 1.000000000  band miss over eps +8.95e-15  MD/floor 1.1686   OK
+  MD/floor = 1.1686   feasible   [228s total]
+
+marginals under the full price census (diagnostic; <A>(t) with Alice at 0 and Bob at t, 161 angles):
+  raw vertex:  max |<A>| 0.0096  spread over Bob's angle 0.0174   max |<B>| 0.0114  spread 0.0194
+  symmetrized (census averaged with its +90/+90 twin):  max |<A>| 9.53e-17  max |<B>| 2.35e-16   MD/floor 1.168570 (raw 1.168570)   max change in any correlator 3.33e-16
+  (the symmetrized census is an equally good census with zero marginals: the raw marginals are the vertex's, not the model's)
+  (an unpolarized source has <A> = <B> = 0; a spread of <A> over Bob's angle would be setting-dependence of a marginal)
+
+SUMMARY  profile tanh:7 [tanh7]  blunted step  tanh(7 cos 2 theta)/tanh(7)
+  S_max/2rt2 1.414176   relaxed miss 0.000304
+    full    1.1686   feasible [highs-ipm]
+  marginals: raw vertex max|<A>| 0.0096 (spread 0.0174)  max|<B>| 0.0114;  symmetrized max|<A>| 9.5e-17, MD/floor 1.1686 vs raw 1.1686, correlators moved 3.3e-16
+  total 228s   json census_profile_v2_tanh7.json

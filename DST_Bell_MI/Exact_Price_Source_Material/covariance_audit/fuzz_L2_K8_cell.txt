@@ -1,0 +1,28 @@
+census_fuzz_v1  L=2 (lambda_0 harmonics: cos/sin 2..4 lambda_0)  K=8  scope=cell  eps=0.01
+question: does a shaped rim (birth fuzz in lambda_0, dial-dependent only) let the census of bandwidth K reach the floor more cheaply than L=0?
+  price LP:
+    LP: 82732 variables (4395 coefficients, 76800 joint-density values), 1969480 inequality rows, 76802 equalities, 28,775,109 nonzeros
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [36895s]
+    verify: joint density min -3.75e-08 = -0.058% of the mean atom density (512-point lambda_0 grid; positivity was imposed at 128 points)  mass 1.000000000  band miss over eps +1.29e-12  MD/floor 1.4290   OK
+  MD/floor = 1.4290   feasible   [36899s]
+  the rim per cell (amplitude of each lambda_0 harmonic relative to the cell's mass, and its phase in deg):
+    cell  0  mass 0.1056  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell  1  mass 0.2135  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell  2  mass 0.0620  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell  3  mass 0.0291  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell  4  mass 0.0460  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell  5  mass 0.1503  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell  6  mass 0.0496  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell  7  mass 0.1689  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell  8  mass 0.1236  h1: 0.000 @  -30.6  h2: 0.000 @  -38.7
+    cell  9  mass 0.0097  h1: 0.000 @  -13.5  h2: 0.000 @  +31.5
+    cell 10  mass 0.0377  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell 11  mass 0.0000  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell 12  mass -0.0000  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell 13  mass 0.0039  h1: 0.001 @  +74.3  h2: 0.000 @  -15.5
+    cell 14  mass 0.0000  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+  pooled rim: h1: 0.000 @  -35.9 deg  h2: 0.000 @  -37.4 deg   (0 = uniform birth; 1 = fully modulated)
+
+SUMMARY  census_fuzz_v1  L=2  K=8  scope=cell  eps=0.01
+  MD/floor 1.4290   feasible
+  reference L=0 (paper, lattice): K=6 1.700, K=8 1.429, K=10 1.258, full 1.000      total 36899s   json census_fuzz_v1_L2_K8_cell.json

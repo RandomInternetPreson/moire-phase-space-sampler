@@ -1,0 +1,28 @@
+census_fuzz_v1  L=1 (lambda_0 harmonics: cos/sin 2..2 lambda_0)  K=8  scope=cell  eps=0.01
+question: does a shaped rim (birth fuzz in lambda_0, dial-dependent only) let the census of bandwidth K reach the floor more cheaply than L=0?
+  price LP:
+    LP: 51982 variables (4365 coefficients, 46080 joint-density values), 986440 inequality rows, 46082 equalities, 21,770,801 nonzeros
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [20031s]
+    verify: joint density min -6.89e-08 = -0.106% of the mean atom density (512-point lambda_0 grid; positivity was imposed at 64 points)  mass 1.000000000  band miss over eps +3.14e-14  MD/floor 1.4290   ** VIOLATED **
+  MD/floor = 1.4290   feasible (joint density dips -0.11% between positivity points: the price is a slight lower bound)   [20034s]
+  the rim per cell (amplitude of each lambda_0 harmonic relative to the cell's mass, and its phase in deg):
+    cell  0  mass 0.1057  h1: 0.000 @   +0.0
+    cell  1  mass 0.2136  h1: 0.000 @   +0.0
+    cell  2  mass 0.0620  h1: 0.000 @   +0.0
+    cell  3  mass 0.0291  h1: 0.000 @   +0.0
+    cell  4  mass 0.0462  h1: 0.000 @   +0.0
+    cell  5  mass 0.1504  h1: 0.000 @   +0.0
+    cell  6  mass 0.0496  h1: 0.000 @   +0.0
+    cell  7  mass 0.1687  h1: 0.000 @   +0.0
+    cell  8  mass 0.1234  h1: 0.000 @   +0.0
+    cell  9  mass 0.0097  h1: 0.000 @  -41.1
+    cell 10  mass 0.0378  h1: 0.000 @   +0.0
+    cell 11  mass 0.0000  h1: 0.000 @   +0.0
+    cell 12  mass 0.0000  h1: 0.000 @   +0.0
+    cell 13  mass 0.0039  h1: 0.000 @   +0.0
+    cell 14  mass 0.0000  h1: 0.000 @   +0.0
+  pooled rim: h1: 0.000 @  -41.1 deg   (0 = uniform birth; 1 = fully modulated)
+
+SUMMARY  census_fuzz_v1  L=1  K=8  scope=cell  eps=0.01
+  MD/floor 1.4290   feasible (joint density dips -0.11% between positivity points: the price is a slight lower bound)
+  reference L=0 (paper, lattice): K=6 1.700, K=8 1.429, K=10 1.258, full 1.000      total 20034s   json census_fuzz_v1_L1_K8_cell.json

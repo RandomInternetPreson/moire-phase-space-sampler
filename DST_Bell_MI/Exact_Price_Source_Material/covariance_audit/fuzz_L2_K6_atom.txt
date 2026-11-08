@@ -1,0 +1,28 @@
+census_fuzz_v1  L=2 (lambda_0 harmonics: cos/sin 2..4 lambda_0)  K=6  scope=atom  eps=0.01
+question: does a shaped rim (birth fuzz in lambda_0, depending on the approach phases too) let the census of bandwidth K reach the floor more cheaply than L=0?
+  price LP:
+    LP: 91012 variables (12675 coefficients, 76800 joint-density values), 1969480 inequality rows, 76802 equalities, 64,273,659 nonzeros
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [295792s]
+    verify: joint density min -6.29e-07 = -0.966% of the mean atom density (512-point lambda_0 grid; positivity was imposed at 128 points)  mass 1.000000000  band miss over eps +1.84e-13  MD/floor 1.2310   ** VIOLATED **
+  MD/floor = 1.2310   feasible (joint density dips -0.97% between positivity points: the price is a slight lower bound)   [295798s]
+  the rim per cell (amplitude of each lambda_0 harmonic relative to the cell's mass, and its phase in deg):
+    cell  0  mass 0.1174  h1: 0.000 @  -32.3  h2: 0.739 @   +4.7
+    cell  1  mass 0.1363  h1: 0.001 @  +19.9  h2: 0.063 @  -19.9
+    cell  2  mass 0.1849  h1: 0.002 @  -53.6  h2: 0.169 @  +27.1
+    cell  3  mass 0.0243  h1: 0.001 @  -89.1  h2: 0.959 @   +2.4
+    cell  4  mass 0.0370  h1: 0.005 @  -38.4  h2: 0.184 @  +12.6
+    cell  5  mass 0.1394  h1: 0.006 @  +26.3  h2: 0.128 @  +27.7
+    cell  6  mass 0.0638  h1: 0.001 @  +29.0  h2: 0.709 @  -26.4
+    cell  7  mass 0.1089  h1: 0.002 @  -16.5  h2: 0.301 @   -2.1
+    cell  8  mass 0.0085  h1: 0.021 @  +83.2  h2: 0.150 @  +26.4
+    cell  9  mass 0.0000  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell 10  mass 0.0911  h1: 0.002 @  +88.7  h2: 0.456 @   -0.3
+    cell 11  mass 0.0092  h1: 0.007 @  -69.9  h2: 0.147 @  +26.2
+    cell 12  mass 0.0000  h1: 0.000 @   +0.0  h2: 0.000 @   +0.0
+    cell 13  mass 0.0793  h1: 0.001 @  +80.7  h2: 0.272 @  -37.4
+    cell 14  mass 0.0001  h1: 0.063 @  -16.7  h2: 0.156 @  +26.6
+  pooled rim: h1: 0.000 @   +6.8 deg  h2: 0.138 @   +1.8 deg   (0 = uniform birth; 1 = fully modulated)
+
+SUMMARY  census_fuzz_v1  L=2  K=6  scope=atom  eps=0.01
+  MD/floor 1.2310   feasible (joint density dips -0.97% between positivity points: the price is a slight lower bound)
+  reference L=0 (paper, lattice): K=6 1.700, K=8 1.429, K=10 1.258, full 1.000      total 295798s   json census_fuzz_v1_L2_K6_atom.json

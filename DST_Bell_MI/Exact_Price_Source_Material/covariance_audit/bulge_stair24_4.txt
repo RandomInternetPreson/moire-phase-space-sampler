@@ -1,0 +1,32 @@
+census_profile_v4  profile stair:24:4 [stair24_4]: siding: staircase wall, total width 24 deg in 4 risers (5 click levels); port rule kept
+histograms hist_nsh32_grid0_nang161_nw2048.npz: 15 cells x 1024 offsets x (161 angles + 4 CHSH settings) x 256 bins, 2048 counts each
+K list   eps 0.01  full 1  solver highs-ipm (retry highs-ds)
+profile on theta = -60..60 deg step 10 (phi = 0):  D_A -1.000 -0.500 +0.500 +1.000 +1.000 +1.000 +1.000 +1.000 +1.000 +1.000 +0.500 -0.500 -1.000
+                                                 D_B -1.000 -0.500 +0.500 +1.000 +1.000 +1.000 +1.000 +1.000 +1.000 +1.000 +0.500 -0.500 -1.000
+port rule  max |D(theta) + D(theta + 90)| = 0.00e+00   (kept)
+contraction done in 5s
+against banks_nsh32_grid0_nang161_nw2048.npz:  max|Svec - banks| 3.01e+00   max|Ecoef - banks| 1.00e+00   max|Q0 - banks| 0.00e+00   (a shaped bulge is expected to differ in Svec/Ecoef; Q must match)
+
+S_max with this bulge = 4.000000 = 1.414214 x 2 sqrt 2   ->  the singlet's CHSH value is reachable
+
+relaxed min-miss LP over the full census (161 angles + 4 CHSH correlators, no CHSH equality):
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [15s]
+  the closest this bulge gets to the singlet, any census: max |E - target| = 0.000520 over 165 correlators (that census's MD/floor 5.6077)
+
+=== full   (1024 basis functions per cell, 15360 coefficients) ===
+  price LP:
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [230s]
+    verify: rho_min +0.00e+00  mass 1.000000000  band miss over eps +2.78e-15  MD/floor 2.6569   OK
+  MD/floor = 2.6569   feasible   joint-(lambda, atom) MD/floor 6.9348   [258s total]
+
+marginals under the full price census (diagnostic; <A>(t) with Alice at 0 and Bob at t, 161 angles):
+  raw vertex:  max |<A>| 0.0243  spread over Bob's angle 0.0354   max |<B>| 0.0217  spread 0.0418
+  symmetrized (census averaged with its +90/+90 twin):  max |<A>| 1.81e-17  max |<B>| 1.16e-17   MD/floor 2.656905 (raw 2.656905)   max change in any correlator 2.22e-16
+  (the symmetrized census is an equally good census with zero marginals: the raw marginals are the vertex's, not the model's)
+  (an unpolarized source has <A> = <B> = 0; a spread of <A> over Bob's angle would be setting-dependence of a marginal)
+
+SUMMARY  profile stair:24:4 [stair24_4]  siding: staircase wall, total width 24 deg in 4 risers (5 click levels); port rule kept
+  S_max/2rt2 1.414214   relaxed miss 0.000520
+    full    2.6569   feasible [highs-ipm]   joint MD/floor 6.9348
+  marginals: raw vertex max|<A>| 0.0243 (spread 0.0354)  max|<B>| 0.0217;  symmetrized max|<A>| 1.8e-17, MD/floor 2.6569 vs raw 2.6569, correlators moved 2.2e-16
+  total 259s   json census_profile_v4_stair24_4.json

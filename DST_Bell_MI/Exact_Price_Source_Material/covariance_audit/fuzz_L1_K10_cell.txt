@@ -1,0 +1,28 @@
+census_fuzz_v1  L=1 (lambda_0 harmonics: cos/sin 2..2 lambda_0)  K=10  scope=cell  eps=0.01
+question: does a shaped rim (birth fuzz in lambda_0, dial-dependent only) let the census of bandwidth K reach the floor more cheaply than L=0?
+  price LP:
+    LP: 54262 variables (6645 coefficients, 46080 joint-density values), 986440 inequality rows, 46082 equalities, 31,736,067 nonzeros
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [34802s]
+    verify: joint density min -9.46e-08 = -0.145% of the mean atom density (512-point lambda_0 grid; positivity was imposed at 64 points)  mass 1.000000000  band miss over eps +8.85e-13  MD/floor 1.2579   ** VIOLATED **
+  MD/floor = 1.2579   feasible (joint density dips -0.15% between positivity points: the price is a slight lower bound)   [34805s]
+  the rim per cell (amplitude of each lambda_0 harmonic relative to the cell's mass, and its phase in deg):
+    cell  0  mass 0.0678  h1: 0.000 @  +39.0
+    cell  1  mass 0.1625  h1: 0.000 @   +0.0
+    cell  2  mass 0.0970  h1: 0.000 @   +0.0
+    cell  3  mass 0.0568  h1: 0.000 @   +0.0
+    cell  4  mass 0.0654  h1: 0.000 @   +0.0
+    cell  5  mass 0.1224  h1: 0.000 @   +0.0
+    cell  6  mass 0.0489  h1: 0.000 @   +0.0
+    cell  7  mass 0.1347  h1: 0.000 @   +0.0
+    cell  8  mass 0.1330  h1: 0.000 @  -32.7
+    cell  9  mass 0.0193  h1: 0.000 @   +0.0
+    cell 10  mass 0.0592  h1: 0.000 @   +0.0
+    cell 11  mass -0.0000  h1: 0.000 @   +0.0
+    cell 12  mass 0.0080  h1: 0.000 @   +0.0
+    cell 13  mass 0.0249  h1: 0.000 @   +0.0
+    cell 14  mass -0.0000  h1: 0.000 @   +0.0
+  pooled rim: h1: 0.000 @  -28.8 deg   (0 = uniform birth; 1 = fully modulated)
+
+SUMMARY  census_fuzz_v1  L=1  K=10  scope=cell  eps=0.01
+  MD/floor 1.2579   feasible (joint density dips -0.15% between positivity points: the price is a slight lower bound)
+  reference L=0 (paper, lattice): K=6 1.700, K=8 1.429, K=10 1.258, full 1.000      total 34805s   json census_fuzz_v1_L1_K10_cell.json

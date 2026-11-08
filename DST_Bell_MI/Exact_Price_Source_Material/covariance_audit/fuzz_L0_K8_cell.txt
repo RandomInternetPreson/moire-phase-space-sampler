@@ -1,0 +1,11 @@
+census_fuzz_v1  L=0 (lambda_0 harmonics: uniform birth, the paper)  K=8  scope=cell  eps=0.01
+question: does a shaped rim (birth fuzz in lambda_0, dial-dependent only) let the census of bandwidth K reach the floor more cheaply than L=0?
+  price LP:
+    LP: 21232 variables (4335 coefficients, 15360 joint-density values), 18760 inequality rows, 15362 equalities, 18,717,743 nonzeros
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [1502s]
+    verify: joint density min -9.43e-08 = -0.145% of the mean atom density (512-point lambda_0 grid; positivity was imposed at 1 points)  mass 1.000000000  band miss over eps +5.93e-13  MD/floor 1.4290   ** VIOLATED **
+  MD/floor = 1.4290   feasible (joint density dips -0.14% between positivity points: the price is a slight lower bound)   [1504s]
+
+SUMMARY  census_fuzz_v1  L=0  K=8  scope=cell  eps=0.01
+  MD/floor 1.4290   feasible (joint density dips -0.14% between positivity points: the price is a slight lower bound)
+  reference L=0 (paper, lattice): K=6 1.700, K=8 1.429, K=10 1.258, full 1.000      total 1504s   json census_fuzz_v1_L0_K8_cell.json

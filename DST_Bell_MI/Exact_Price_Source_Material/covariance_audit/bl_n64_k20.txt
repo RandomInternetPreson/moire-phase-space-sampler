@@ -1,0 +1,5 @@
+file: rho_nsh64_random0_eps0.01_nang161.json   atoms 61440 = 15 x 4096   K list [20]   eps [0.01]   solver highs-ipm (retry highs-ds)   miss-only False
+check: MD of the stored rho* on these banks = 0.138071187458   (file says 0.138071187458; floor 0.138071187458)
+
+=== eps=0.01  K=20   (1681 basis functions per (tau,scale) cell, 25215 coefficients) ===
+  price LP:

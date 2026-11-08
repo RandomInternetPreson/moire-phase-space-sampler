@@ -1,0 +1,4 @@
+census_fuzz_v2  L=2 (lambda_0 harmonics: cos/sin 2..4 lambda_0)  K=6  scope=atom  eps=0.01
+question: does a shaped rim (birth fuzz in lambda_0, depending on the approach phases too) let the census of bandwidth K reach the floor more cheaply than L=0?
+  price LP:
+    LP: 91012 variables (12675 coefficients, 76800 joint-density values), 1969480 inequality rows, 76802 equalities, 64,273,659 nonzeros

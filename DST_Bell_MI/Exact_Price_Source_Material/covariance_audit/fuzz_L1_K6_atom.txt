@@ -1,0 +1,28 @@
+census_fuzz_v1  L=1 (lambda_0 harmonics: cos/sin 2..2 lambda_0)  K=6  scope=atom  eps=0.01
+question: does a shaped rim (birth fuzz in lambda_0, depending on the approach phases too) let the census of bandwidth K reach the floor more cheaply than L=0?
+  price LP:
+    LP: 55222 variables (7605 coefficients, 46080 joint-density values), 986440 inequality rows, 46082 equalities, 35,619,584 nonzeros
+    [highs-ipm] status 0 = optimal; Optimization terminated successfully. (HiGHS Status 7: Optimal)   [38345s]
+    verify: joint density min -1.24e-06 = -1.910% of the mean atom density (512-point lambda_0 grid; positivity was imposed at 64 points)  mass 1.000000000  band miss over eps +4.39e-14  MD/floor 1.3728   ** VIOLATED **
+  MD/floor = 1.3728   feasible (joint density dips -1.91% between positivity points: the price is a slight lower bound)   [38349s]
+  the rim per cell (amplitude of each lambda_0 harmonic relative to the cell's mass, and its phase in deg):
+    cell  0  mass 0.0852  h1: 0.001 @  -60.0
+    cell  1  mass 0.1492  h1: 0.001 @  -44.4
+    cell  2  mass 0.1773  h1: 0.001 @  -25.7
+    cell  3  mass 0.0101  h1: 0.017 @  -21.4
+    cell  4  mass 0.0834  h1: 0.005 @  +45.2
+    cell  5  mass 0.2531  h1: 0.001 @  +87.8
+    cell  6  mass 0.0218  h1: 0.009 @  +41.3
+    cell  7  mass 0.0688  h1: 0.001 @  +29.8
+    cell  8  mass 0.0000  h1: 0.000 @   +0.0
+    cell  9  mass 0.0000  h1: 0.000 @   +0.0
+    cell 10  mass 0.0501  h1: 0.003 @  -48.2
+    cell 11  mass 0.0000  h1: 0.000 @   +0.0
+    cell 12  mass 0.0000  h1: 0.000 @   +0.0
+    cell 13  mass 0.1010  h1: 0.001 @  -11.4
+    cell 14  mass 0.0000  h1: 0.000 @   +0.0
+  pooled rim: h1: 0.000 @   -4.6 deg   (0 = uniform birth; 1 = fully modulated)
+
+SUMMARY  census_fuzz_v1  L=1  K=6  scope=atom  eps=0.01
+  MD/floor 1.3728   feasible (joint density dips -1.91% between positivity points: the price is a slight lower bound)
+  reference L=0 (paper, lattice): K=6 1.700, K=8 1.429, K=10 1.258, full 1.000      total 38349s   json census_fuzz_v1_L1_K6_atom.json
