@@ -49,4 +49,4 @@ record. The v4 revisions follow an independent review; the brief and its README 
 changed.
 
 `Interactive_Visualizer` is an exploratory visualization not referenced by the paper.
-[Click here to view the live Visualizer](https://randominternetpreson.github.io/moire-phase-space-sampler/DST_Bell_MI/Exact_Price_Source_Material/Interactive_Visualizer/moire_garden_v20.html)
+[Click here to view the live Visualizer](https://randominternetpreson.github.io/moire-phase-space-sampler/DST_Bell_MI/Exact_Price_Source_Material/Interactive_Visualizer/moire_garden_v23.html)
