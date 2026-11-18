@@ -36,6 +36,7 @@ background singles do not touch, and prints the singles estimate beside it with 
 when the two disagree. On inputs without background the two versions agree to the
 fourth decimal in X.
 
-The paper (Sec. 10) and the brief describe the calibration from channel singles with
-the coincidence marginals as a cross-check. v2 uses the coincidence estimate as the
-calibration and the singles as the cross-check.
+The paper (Sec. 10, through v7) and the brief before v2.6 describe the calibration from
+channel singles with the coincidence marginals as a cross-check. `cross_ratio_v2.py`
+and brief v2.6 use the coincidence estimate as the calibration and the singles as the
+cross-check; `../protocol_sensitivity_v2_3.py` tests the same reversal on the full torus.
