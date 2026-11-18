@@ -22,6 +22,13 @@ arXiv:2608.18886 (Secs. 9–10).
   coincidence-marginal check. Reference figures: with 3% factorizable ripple plus 20%
   constant and 3% angle-dependent imbalance per side at 10^6 coincidences per point, the
   uncalibrated null is (−0.041 ± 0.017)% and the calibrated null (0.000 ± 0.006)%.
+- `cross_ratio_v1/` — scripts for running Design A on archived or new data. The folder
+  name is kept so that earlier links resolve; the current analysis script inside it is
+  `cross_ratio_v2.py`, with `timetag_to_table_v1.py` to count coincidences from raw
+  time-tags. v2 takes the imbalance calibration from the coincidence tables alone and
+  keeps the singles as a flagged cross-check, because singles that carry dark counts
+  under-correct (see the README in that folder). `cross_ratio_v1.py` is superseded and
+  kept for the record.
 - `hance_checks.py` — numpy port of the independent reviewer's Mathematica checks
   (sections 3–5 of their script), reproducing each printed figure: the imbalance pixel
   values, the multi-pair identity, the Larsson / symmetrised Gisin–Gisin efficiency
